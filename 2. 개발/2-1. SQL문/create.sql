@@ -21,11 +21,13 @@ CREATE TABLE PRODUCT (
     PD_STATUS   CHAR(2)         NULL,           --진행상태
     PD_BUYER    VARCHAR2(30)    NULL,           --구매자
     PD_NAME     VARCHAR2(100)   NULL,           --상품명
+    PD_CLASS    CHAR(2)         NULL,           --상품유형
     PD_PRICE    NUMBER          NULL,           --상품가격
     PD_SUBJECT  VARCHAR2(100)   NULL,           --상품제목
     PD_CONTENT  VARCHAR2(4000)  NULL,           --상품내용
-    PD_IMG      VARCHAR2(300)   NULL,	        -- 이미지
-    PD_IMG_COPY VARCHAR2(300)   NULL,	        -- 이미지사본
+    PD_VIEW     NUMBER          NULL,           --조회수
+    PD_IMG      VARCHAR2(300)   NULL,	        --이미지
+    PD_IMG_COPY VARCHAR2(300)   NULL,		--이미지사본
     PD_REGDATE  DATE            NOT NULL        --상품등록날짜
 );
 ALTER TABLE PRODUCT ADD CONSTRAINT PK_PRODUCT PRIMARY KEY (PD_NO);
