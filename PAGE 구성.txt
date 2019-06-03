@@ -5,6 +5,13 @@ MAIN VIEW
 로그인 (sign_in.jsp)
 회원가입(sign_up.jsp)
 
+NAV
+===========
+새소식
+중고거래
+자유게시판
+고객센터
+
 NEWS VIEW
 ===========
 공지사항(news_notice.jsp) default
