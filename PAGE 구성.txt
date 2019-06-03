@@ -1,0 +1,38 @@
+
+MAIN VIEW
+===========
+메인 (index.jsp)
+로그인 (sign_in.jsp)
+회원가입(sign_up.jsp)
+
+NEWS VIEW
+===========
+공지사항(news_notice.jsp) default
+이벤트(news_event.jsp)
+
+TRANSACTION VIEW
+===========
+상품리스트(product_list.jsp)
+상품등록(product_reg.jsp)
+상품수정(product_update.jsp)
+상품상세(product_content.jsp)
+
+BOARD VIEW
+===========
+게시판리스트(board_list.jsp)
+글 작성(board_reg.jsp)
+글 수정(board_update.jsp)
+글 상세(board_content.jsp)
+
+SERVICE VIEW
+===========
+Q&A(service_qna.jsp)
+신고리스트 (service_report_list.jsp)
+신고작성(service_report_reg.jsp)
+
+MYPAGE VIEW
+===========
+회원관리 거래내역(mypage_list.jsp) default
+회원 수정(mypage_update.jsp)
+회원 탈퇴(mypage_delete.jsp)
+
