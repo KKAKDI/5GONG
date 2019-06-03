@@ -12,12 +12,14 @@ public class ProductDTO {
 	private int pd_price;
 	private String pd_subject;
 	private String pd_content;
+	private String pd_img;
+	private String pd_img_copy;
 	private Date pd_regdate;
 	
-	ProductDTO(){}
+	public ProductDTO(){}
 
 	public ProductDTO(int pd_no, String pd_email, String pd_nick, String pd_status, String pd_buyer, String pd_name,
-			int pd_price, String pd_subject, String pd_content, Date pd_regdate) {
+			int pd_price, String pd_subject, String pd_content, String pd_img, String pd_img_copy, Date pd_regdate) {
 		this.pd_no = pd_no;
 		this.pd_email = pd_email;
 		this.pd_nick = pd_nick;
@@ -27,6 +29,8 @@ public class ProductDTO {
 		this.pd_price = pd_price;
 		this.pd_subject = pd_subject;
 		this.pd_content = pd_content;
+		this.pd_img = pd_img;
+		this.pd_img_copy = pd_img_copy;
 		this.pd_regdate = pd_regdate;
 	}
 
@@ -100,6 +104,22 @@ public class ProductDTO {
 
 	public void setPd_content(String pd_content) {
 		this.pd_content = pd_content;
+	}
+
+	public String getPd_img() {
+		return pd_img;
+	}
+
+	public void setPd_img(String pd_img) {
+		this.pd_img = pd_img;
+	}
+
+	public String getPd_img_copy() {
+		return pd_img_copy;
+	}
+
+	public void setPd_img_copy(String pd_img_copy) {
+		this.pd_img_copy = pd_img_copy;
 	}
 
 	public Date getPd_regdate() {
