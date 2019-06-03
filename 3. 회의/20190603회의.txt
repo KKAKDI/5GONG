@@ -3,6 +3,8 @@
  -패키지명-
    tkl.board.model
    tkl.board.control
+   tkl.report.model
+   tkl.report.control
    tkl.bcomment
    tkl.member
    tkl.product
