@@ -1,0 +1,18 @@
+1. 	
+ 파일 - 
+ -패키지명-
+   tkl.board.model
+   tkl.board.control
+   tkl.bcomment
+   tkl.member
+   tkl.product
+   tkl.pcomment
+   tkl.news
+
+2. view 프로토 타입
+
+3. 업무분담
+
+   자유게시판, 신고게시판 (변정우, 조성식)
+
+   상품, 회원 (곽지훈, 박동진, 최운학)			
