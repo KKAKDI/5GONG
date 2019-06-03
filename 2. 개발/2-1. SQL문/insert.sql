@@ -1,33 +1,33 @@
 --회원 (권한 - 0:관리자, 1:일반회원)
-insert into MEMBER values('aaa@naver.com', '닉네임1', '0', '최운학', '국민은행', 111122223333, 01011112222, 1000000, 90);
-insert into MEMBER values('bbb@google.com', '닉네임2', '0', '곽지훈', '신한은행', 444455556666, 01033334444, 2000000, 100);
-insert into MEMBER values('ccc@daum.net', '닉네임3', '1', '변정우', '우리은행', 777788889999, 01055556666, 900000, 80);
-insert into MEMBER values('ddd@naver.com', '닉네임4', '1', '조성식', '카카오뱅크', 123456789012, 01012345678, 800000, 70);
-insert into MEMBER values('eee@google.com', '닉네임5', '1', '박동진', '기업은행', 987654321234, 01098765432, 700000, 60);
+insert into MEMBER values('aaa@naver.com', '닉네임1', '0', '최운학', '국민은행', 111122223333, 01011112222, 1000000, 90, SYSDATE);
+insert into MEMBER values('bbb@google.com', '닉네임2', '0', '곽지훈', '신한은행', 444455556666, 01033334444, 2000000, 100, SYSDATE);
+insert into MEMBER values('ccc@daum.net', '닉네임3', '1', '변정우', '우리은행', 777788889999, 01055556666, 900000, 80, SYSDATE);
+insert into MEMBER values('ddd@naver.com', '닉네임4', '1', '조성식', '카카오뱅크', 123456789012, 01012345678, 800000, 70, SYSDATE);
+insert into MEMBER values('eee@google.com', '닉네임5', '1', '박동진', '기업은행', 987654321234, 01098765432, 700000, 60, SYSDATE);
 
 --상품 (진행상태 - 0:판매중, 1:거래중, 2:거래완료)
-insert into PRODUCT values(1, 'ccc@daum.net', '닉네임3', '1', '닉네임4', '나이키 운동화', 100000, '나이키 운동화', '나이키 운동화 10만원에 팝니다', SYSDATE);
-insert into PRODUCT values(2, 'ddd@naver.com', '닉네임4', '0', null, '뉴발란스 운동화', 150000, '뉴발란스 운동화', '뉴발란스 운동화 15만원에 팝니다', SYSDATE);
-insert into PRODUCT values(3, 'eee@google.com', '닉네임5', '2', '닉네임3', '아디다스 운동화', 120000, '아디다스 운동화', '아디다스 운동화 12만원에 팝니다', SYSDATE);
-insert into PRODUCT values(4, 'ddd@naver.com', '닉네임4', '2', '닉네임5', '컨버스 단화', 80000, '컨버스 단화', '컨버스 단화 8만원에 팝니다', SYSDATE);
+insert into PRODUCT values(1, 'ccc@daum.net', '닉네임3', '1', '닉네임4', '나이키 운동화', 100000, '나이키 운동화', '나이키 운동화 10만원에 팝니다', 'a1.jsp', 'a1_copy01.jsp', SYSDATE);
+insert into PRODUCT values(2, 'ddd@naver.com', '닉네임4', '0', null, '뉴발란스 운동화', 150000, '뉴발란스 운동화', '뉴발란스 운동화 15만원에 팝니다', 'a2.jsp', 'a2_copy02.jsp', SYSDATE);
+insert into PRODUCT values(3, 'eee@google.com', '닉네임5', '2', '닉네임3', '아디다스 운동화', 120000, '아디다스 운동화', '아디다스 운동화 12만원에 팝니다', 'a3.jsp', 'a3_copy03.jsp', SYSDATE);
+insert into PRODUCT values(4, 'ddd@naver.com', '닉네임4', '2', '닉네임5', '컨버스 단화', 80000, '컨버스 단화', '컨버스 단화 8만원에 팝니다', 'a4.jsp', 'a4_copy04.jsp', SYSDATE);
 
 --결제
-insert into PAYMENT values(1, 1, '닉네임3', 777788889999, '닉네임4', 123456789012, 100000, 100000);
-insert into PAYMENT values(2, 2, '닉네임4', 123456789012, null, null, 150000, null);
-insert into PAYMENT values(3, 3, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, 120000);
-insert into PAYMENT values(4, 4, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, 80000);
+insert into PAYMENT values(1, 1, '닉네임3', 777788889999, '닉네임4', 123456789012, 100000, 100000, SYSDATE);
+insert into PAYMENT values(2, 2, '닉네임4', 123456789012, null, null, 150000, null, SYSDATE);
+insert into PAYMENT values(3, 3, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, 120000, SYSDATE);
+insert into PAYMENT values(4, 4, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, 80000, SYSDATE);
 
 --거래기록
 insert into HISTORY values(1, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, SYSDATE);
 insert into HISTORY values(2, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, SYSDATE);
 
 --상품댓글
-insert into P_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', '나이키 운동화 9만에 에눌 가능한가요?', SYSDATE);
-insert into P_REPLY values(2, 3, 'eee@google.com', '닉네임5', '뉴발란스 운동화 14만에 에눌 가능한가요?', SYSDATE);
+insert into P_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', '나이키 운동화 9만에 에눌 가능한가요?', 'b1.png', 'b1_copy.png', SYSDATE);
+insert into P_REPLY values(2, 3, 'eee@google.com', '닉네임5', '뉴발란스 운동화 14만에 에눌 가능한가요?', 'b2.png', 'b2_copy.png', SYSDATE);
 
 --신고목록
-insert into REPORT values(1, '닉네임3 유저 사기 신고', '닉네임3 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'a.jpg', 'ddd@naver.com', '닉네임4');
-insert into REPORT values(2, '닉네임4 유저 사기 신고', '닉네임5 유저가 물품을 보내지 않습니다', 'b.jpg', 'eee@google.com', '닉네임5');
+insert into REPORT values(1, '닉네임3 유저 사기 신고', '닉네임3 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'a.jpg', 'ddd@naver.com', '닉네임4', SYSDATE);
+insert into REPORT values(2, '닉네임4 유저 사기 신고', '닉네임5 유저가 물품을 보내지 않습니다', 'b.jpg', 'eee@google.com', '닉네임5', SYSDATE);
 
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
 insert into NEWS values(1, 'aaa@naver.com', '닉네임1', '[공지]사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 10, SYSDATE, '0');
