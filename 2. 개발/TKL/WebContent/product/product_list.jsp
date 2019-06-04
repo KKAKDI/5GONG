@@ -16,7 +16,7 @@
 	<table>
 		<tr>
 			<th align='center' width='10%'>상품번호</th>
-			<th align='center' width='10%'>거래상태</th>
+			<th align='center' width='10%'>진행상태</th>
 			<th align='center' width='10%'>제목</th>
 			<th align='center' width='10%'>판매자</th>
 			<th align='center' width='10%'>등록일</th>
@@ -30,7 +30,7 @@
 		<tr>
 			<td align='center'>${dto.pd_no}</td>
 			<td align='center'>${dto.pd_status}</td>
-			<td align='center'><a href="product.do?m=con&pd_no=${dto.pd_no}">${dto.pd_subject} </a></td>
+			<td align='center'><a href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a></td>
 			<td align='center'>${dto.pd_nick}</td>
 			<td align='center'>${dto.pd_regdate}</td>
 		</tr>

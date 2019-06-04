@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	import="java.util.*, tkl.product.model.ProductDTO"%>
-<meta charset='utf-8'>
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" import="tkl.product.model.ProductDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
-<title>상품 상세정보</title>
 <head>
 <meta charset="utf-8">
-<title>Title</title>
+<title>상품 상세정보</title>
 <style type="text/css">
 table {
 	border: 1px solid #333;;
@@ -18,49 +15,38 @@ tr, th, td {
 	border: 1px solid #333;
 }
 </style>
-<body>
-
-	<h2 align="center">상품 상세정보</h2>
-	<center>
-		<% 
-	ProductDTO dto = (ProductDTO)request.getAttribute("con");
-	%>
-		<table>
-			<colgroup>
-				<col width="50%">
-				<col width="25%">
-				<col width="25%">
-			</colgroup>
-			<tbody>
-				<tr>
-					<td rowspan="6">이미지 : <%=dto.getPd_img()%></td>
-					<td colspan="2"> 상품번호 : <%=dto.getPd_no()%></td>
-				</tr>
-				<tr>
-					<td colspan="2">상품유형 : <%=dto.getPd_class()%></td>
-				</tr>
-				<tr>
-					<td colspan="2">상품이름 : <%=dto.getPd_name()%></td>
-
-				</tr>
-				<tr>
-					<td colspan="2">가격 : <%=dto.getPd_price()%></td>
-				</tr>
-				<tr>
-					<td>조회수 : <%=dto.getPd_view()%></td>
-
-					<td>상품등록날짜 : <%=dto.getPd_regdate()%></td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center"><input type="button" value="구매하기"
-						onclick="location.href='product.do?m=list' "></td>
-				</tr>
-				<tr>
-					<td colspan="3">댓글</td>
-				</tr>
-			</tbody>
-		</table>
-	</center>
-</body>
 </head>
+<body>
+	<h2>상품 상세정보</h2>
+	<table>
+			
+			<tr>
+				<td rowspan="6"><img
+					src='product.do?m=con_file&pd_img_copy=${con.pd_img_copy}'></td>
+				<td colspan="2">상품번호 : ${con.pd_no}</td>
+			</tr>
+			<tr>
+				<td colspan="2">상품유형 : ${con.pd_class}</td>
+			</tr>
+			<tr>
+				<td colspan="2">상품이름 : ${con.pd_name}</td>
+
+			</tr>
+			<tr>
+				<td colspan="2">가격 : ${con.pd_price}</td>
+			</tr>
+			<tr>
+				<td>조회수 : ${con.pd_view}</td>
+				<td>상품등록날짜 : ${con.pd_regdate}</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="button"
+					value="구매하기" onclick="location.href='product.do?m=list' "></td>
+			</tr>
+			<tr>
+				<td colspan="3">댓글</td>
+			</tr>
+		
+	</table>
+</body>
 </html>
