@@ -72,7 +72,6 @@ CREATE TABLE BOARD (
 	B_IMG_COPY  VARCHAR2(300)  NULL,     -- 이미지사본
 	B_VIEW      NUMBER         NULL,     -- 조회수
 	B_LIKE      NUMBER         NULL,     -- 추천수
-	B_NOTICE    CHAR(1)        NULL,     -- 공지
 	B_WRITEDATE DATE           NOT NULL  -- 작성날짜
 );
 ALTER TABLE BOARD ADD CONSTRAINT PK_BOARD PRIMARY KEY (B_NO);
