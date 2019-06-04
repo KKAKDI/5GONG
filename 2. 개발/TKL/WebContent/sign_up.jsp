@@ -17,9 +17,8 @@ function confirm_phone(){
 </script>
 </head>
 <body>
-	<!-- upper 는 동일 (네비게이션 + 타이틀) -->
-
-	<form name='signup' action='로그인서블릿' method='post'>
+	
+	<form name='signup' action='가입서블릿' method='post'>
 	 <fieldset>
 	<legend> 회 원 가 입 </legend>
 		이메일 :
@@ -62,10 +61,8 @@ function confirm_phone(){
 		개인정보 처리방침
 		<input type='button' id='개인정보' value='동의'/>
 		<br>
-		<input type='submit' value='회원가입'>
-		
+		<input type='submit' value='회원가입'>		
 		</fieldset>
-			
 	</form>
 </body>
 </html>
