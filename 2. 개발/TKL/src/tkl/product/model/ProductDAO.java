@@ -82,8 +82,14 @@ public class ProductDAO {
 			String pd_class = rs.getString("pd_class");
 			int pd_view = rs.getInt("pd_view");
 			
-			ProductDTO dto = new ProductDTO(pd_no, null, null, null, null, pd_name, pd_price, null, null, pd_img,null, pd_regdate, pd_class, pd_view);
-			
+			ProductDTO dto = new ProductDTO();
+			//dto.setPd_no(-1);
+			dto.setPd_name(pd_name);
+			dto.setPd_price(pd_price);
+			dto.setPd_img(pd_img);
+			dto.setPd_regdate(pd_regdate);
+			dto.setPd_class(pd_class);
+			dto.setPd_view(pd_view);
 			return dto;
 			
 		} catch (SQLException se) {
