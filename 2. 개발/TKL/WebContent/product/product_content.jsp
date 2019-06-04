@@ -12,7 +12,7 @@
 		</style>
 <body >
 	
-		<h2>상품 상세정보</h2>
+		<h2  align="center">상품 상세정보</h2>
 	<center>
 	<% 
 	ProductDTO dto = (ProductDTO)request.getAttribute("con");
@@ -25,10 +25,14 @@
 			</colgroup>
 			<tbody>
 				<tr>
-					<td rowspan="5">이미지 :
+					<td rowspan="6">이미지 :
 					 <%=dto.getPd_img()%></td>
-					<td colspan="2">상품번호 : 
+					<td colspan="2">거래번호 : 
 					<%=dto.getPd_no()%></td>
+				</tr>
+				<tr>
+				<td colspan="2"> 상품유형 :
+				<%=dto.getPd_class()%></td>
 				</tr>
 				<tr>
 				<td colspan="2">상품이름 :
@@ -42,7 +46,9 @@
 				
 				</tr>
 				<tr>
-					 <td>조회수</td>
+					 <td>조회수 :
+					 <%=dto.getPd_view()%></td>
+					 
 					 <td>작성시간 : 
 					 <%=dto.getPd_regdate()%></td>	
 				</tr>

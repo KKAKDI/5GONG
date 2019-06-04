@@ -79,7 +79,10 @@ public class ProductDAO {
 			String pd_img = rs.getString("pd_img");
 			String pd_img_copy = rs.getString("pd_img_copy");
 			java.sql.Date pd_regdate = rs.getDate("pd_regdate");
-			ProductDTO dto = new ProductDTO(pd_no, null, null, null, null, pd_name, pd_price, null, null, pd_img,null, pd_regdate);
+			String pd_class = rs.getString("pd_class");
+			int pd_view = rs.getInt("pd_view");
+			
+			ProductDTO dto = new ProductDTO(pd_no, null, null, null, null, pd_name, pd_price, null, null, pd_img,null, pd_regdate, pd_class, pd_view);
 			
 			return dto;
 			
