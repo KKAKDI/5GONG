@@ -53,6 +53,7 @@ CREATE TABLE REPORT (
 	R_SUBJECT	VARCHAR2(100)  NULL,     -- 제목
 	R_CONTENT	VARCHAR2(3000) NULL,     -- 내용
 	R_FILE		VARCHAR2(300)  NULL,     -- 첨부파일
+	R_FILE_COPY     VARCHAR2(300)  NULL,     -- 첨부파일사본
 	R_EMAIL		VARCHAR2(40)   NULL,     -- 이메일
 	R_NICK		VARCHAR2(30)   NULL,     -- 닉네임
 	R_WRITEDATE	DATE	       NOT NULL	 -- 작성날짜
@@ -71,6 +72,7 @@ CREATE TABLE BOARD (
 	B_IMG_COPY  VARCHAR2(300)  NULL,     -- 이미지사본
 	B_VIEW      NUMBER         NULL,     -- 조회수
 	B_LIKE      NUMBER         NULL,     -- 추천수
+	B_NOTICE    CHAR(1)        NULL,     -- 공지
 	B_WRITEDATE DATE           NOT NULL  -- 작성날짜
 );
 ALTER TABLE BOARD ADD CONSTRAINT PK_BOARD PRIMARY KEY (B_NO);
