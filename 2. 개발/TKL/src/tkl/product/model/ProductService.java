@@ -14,4 +14,13 @@ public class ProductService {
 	public ArrayList<ProductDTO> selectS(){
 		return dao.select();
 	}
+
+	public ProductDTO contentS(int pd_no) {
+		return dao.content(pd_no);
+	}
+
+
+
+
+
 }

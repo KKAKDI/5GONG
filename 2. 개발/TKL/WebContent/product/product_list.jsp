@@ -30,7 +30,7 @@
 		<tr>
 			<td align='center'>${dto.pd_no}</td>
 			<td align='center'>${dto.pd_status}</td>
-			<td align='center'>${dto.pd_subject}</td>
+			<td align='center'><a href="product.do?m=con&pd_no=${dto.pd_no}">${dto.pd_subject} </a></td>
 			<td align='center'>${dto.pd_nick}</td>
 			<td align='center'>${dto.pd_regdate}</td>
 		</tr>
