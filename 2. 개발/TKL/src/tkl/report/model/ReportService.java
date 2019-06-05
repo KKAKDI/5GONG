@@ -11,8 +11,8 @@ public class ReportService {
 	public static ReportService getInstance() {
 		return instance;
 	}
-	public ArrayList<ReportDTO> selectS(){
-		return dao.select();
+	public ArrayList<ReportDTO> selectS(int i, int k){
+		return dao.select(i, k);
 	}
 	public void insertS(ReportDTO dto) {
 		dao.insert(dto);

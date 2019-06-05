@@ -26,15 +26,17 @@ public class ReportDAO {
 		}catch(NamingException ne) {		
 		}
 	}
-	ArrayList<ReportDTO> select(){
+	ArrayList<ReportDTO> select(int i, int k){
 		ArrayList<ReportDTO> list = new ArrayList<>();
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(ReportSQL.sqlS);
+			pstmt = con.prepareStatement(ReportSQL.sqlS);
+			pstmt.setInt(1, i);
+			pstmt.setInt(2, k);
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int rNO = rs.getInt("R_NO");
 				String rSubject = rs.getString("R_SUBJECT");
@@ -54,7 +56,8 @@ public class ReportDAO {
 			return null;
 		}finally {
 			try {
-				if(stmt != null) stmt.close();
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 			}catch(SQLException se) {
 			}

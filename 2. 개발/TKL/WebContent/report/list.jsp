@@ -10,6 +10,18 @@
 <a href='rBoard.do?m=in_form'>신고하기</a>
 &nbsp;&nbsp;&nbsp;
 <a href='index.do'>인덱스</a>
+&nbsp;&nbsp;&nbsp;
+
+<form action="rBoard.do">
+<select name="m">
+<option value="list">--처리상태--</option>
+<option value="list">모두보기</option>
+<option value="listR">처리중</option>
+<option value="listC">처리완료</option>
+</select>
+<input type="submit" value="검색"/>
+</form>
+
 </center>
 <table border='1' width='600' align='center' cellpadding='2'>
 <tr>

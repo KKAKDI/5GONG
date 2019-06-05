@@ -41,12 +41,10 @@ public class ReportControl extends HttpServlet {
 				content(request, response);
 			}else if(m.equals("fileDownLoad")) {
 				fileDownLoad(request, response);
-			}else if(m.equals("updateList")) {
-				
-			}else if(m.equals("update")) {
-	            
-			}else if(m.equals("replyList")) {
-				
+			}else if(m.equals("listR")) {
+				listC(request, response);
+			}else if(m.equals("listC")) {
+				listC(request, response);
 			}else if(m.equals("reply")) {
 				
 			}else {
@@ -58,7 +56,21 @@ public class ReportControl extends HttpServlet {
 	}
 	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReportService service = ReportService.getInstance();
-		ArrayList<ReportDTO> list = service.selectS();
+		ArrayList<ReportDTO> list = service.selectS(0, 1);
+		request.setAttribute("list",  list);
+		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
+		rd.forward(request, response);
+	}
+	protected void listC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ReportService service = ReportService.getInstance();
+		ArrayList<ReportDTO> list = null;
+		String m = request.getParameter("m");
+
+		if(m.equals("listR")) {
+			list = service.selectS(0, 0);
+		}else if(m.equals("listC")) {
+			list = service.selectS(1, 1);
+		}
 		request.setAttribute("list",  list);
 		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
 		rd.forward(request, response);
@@ -76,7 +88,7 @@ public class ReportControl extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(
 				request, saveDir, maxPostSize, encoding, policy); 
 		//String fwriter = mr.getParameter("writer");
-	    String rFileCopy = mr.getFilesystemName("rFileCopy");
+	    String rFileCopy = mr.getFilesystemName("rFile");
 	    System.out.println("rFileCopy : " + rFileCopy);
 	    String rFile = mr.getOriginalFileName("rFile"); 
 	    System.out.println("rFile : " + rFile);
