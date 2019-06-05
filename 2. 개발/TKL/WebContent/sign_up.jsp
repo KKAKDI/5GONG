@@ -8,16 +8,44 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
 	#pwdck{display:none;}
+	#nickck{display:none;}
 	#signupform{width:220px; margin:auto;}
 </style>
 <script>
 
-$(function(){
+$(document).ready(function(){ 
 	$("#emailconfirm").click(function(){
 		alert("이메일 인증완료");
 	});
-	$("#nickconfirm").click(function(){
-		
+	$("#nickconfirm").click(function(){		
+		getNick = $("#nick").val();		
+		if(getNick==''){
+			alert("닉네임을 입력하세요.");
+			return;
+		}
+		$.ajax({
+			type:'POST',
+			url:'signUp.do',
+			data: {
+				"nick" : getNick
+					},
+			success:function(data){
+				var obj = JSON.parse(data);
+				var memlist = obj.member;
+				for(var i=0;i<memlist.length;i++){
+					console.log(memlist[i].nick);
+					if(memlist[i].nick==getNick){
+						jQuery("#nickck").show();
+						$("#nickck").css("color", "red");
+						$("#nickck").text("닉네임 사용불가능.");
+					}else{
+						jQuery("#nickck").show();
+						$("#nickck").css("color", "green");
+						$("#nickck").text("닉네임 사용가능.");
+					}
+				}		
+			}			
+		});
 	});	
 	$("#pwd2").focusout(function(){
 		var pwd1 = $("#pwd1").val();
@@ -59,6 +87,7 @@ $(function(){
 		<div id='pwdck'></div> 		
 		 닉네임 :
 		<input type='text' name='nick' id='nick' title='닉네임은 사이트 활동에 사용됩니다.' maxlength = '12' required> 
+		<div id='nickck'></div>
 		<input type='button' id='nickconfirm' value='닉네임 중복확인'/>
 		<br>
 		은행명 :

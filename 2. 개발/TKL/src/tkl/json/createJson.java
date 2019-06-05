@@ -1,16 +1,22 @@
 package tkl.json;
 
+import java.io.PrintWriter;
+
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-public class createJson {
+public class createJson {	
 
+	 
+	JSONObject jsobj;
+	JSONArray memArray; 
+	JSONObject memInfo;
 	public createJson(){
-		JSONObject jsobj = new JSONObject();
-		
-		JSONArray memArray = new JSONArray();
-		JSONObject memInfo = new JSONObject();
-		
+		 jsobj = new JSONObject();		
+		 memArray = new JSONArray();		
+	}
+	public String list() {		
+		 memInfo = new JSONObject();			
 		memInfo.put("email","TKL@take.look");
 		memInfo.put("nick", "admin");
 		memArray.add(memInfo);
@@ -22,12 +28,9 @@ public class createJson {
 		
 		jsobj.put("member", memArray);
 		
-		String jsonInfo = jsobj.toJSONString();
+		String jsonInfo = jsobj.toJSONString();		
 		
-		System.out.print(jsonInfo);
-	}
-	
-	public static void main(String args[]) {
-		createJson cj = new createJson();
+		
+		return jsonInfo;
 	}
 }
