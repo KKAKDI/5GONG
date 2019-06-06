@@ -60,9 +60,11 @@ visibility:hidden;">
 <table border='1' width='600' align='center' cellpadding='3'>
 <tr align="center" id="ta">
 
+<form action="rBoard.do">
 <tr>
 <td align="center" width="15%"><b>답변</b></td>
-<td colspan="5" align="center" width="85%"></td>
+<td colspan="5" align="center" width="85%"><textarea name="rContent" rows="5" cols="53"></textarea><input type="submit" value="확인"/></td>
 </tr>
+</form>
  </table>
  
