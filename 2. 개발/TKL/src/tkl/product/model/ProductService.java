@@ -20,4 +20,10 @@ public class ProductService {
 	public ProductDTO contentS(int pd_no) {
 		return dao.content(pd_no);
 	}
+	public void deleteS(int pd_no) {
+		dao.delete(pd_no);
+	}
+	public void updateS(ProductDTO dto) {
+		dao.update(dto);
+	}
 }

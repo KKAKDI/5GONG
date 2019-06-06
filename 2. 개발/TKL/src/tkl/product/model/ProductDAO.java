@@ -23,7 +23,6 @@ class ProductDAO {
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		Connection con = null;
 		Statement stmt = null;
-		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
@@ -49,7 +48,7 @@ class ProductDAO {
 		}finally {
 			try {
 				if(rs != null) rs.close();
-				if(pstmt != null) rs.close();
+				if(stmt != null) stmt.close();
 				if(con != null) con.close();
 			}catch(SQLException se) {}
 		}
@@ -61,7 +60,6 @@ class ProductDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ProductSQL.sqlReg);
-			//pd_no, pd_nick, pd_status, pd_name, pd_class, pd_price, pd_subject, pd_content, pd_view, pd_img, pd_img_copy, pd_regdate
 			pstmt.setString(1, dto.getPd_nick());
 			pstmt.setString(2, dto.getPd_status());
 			pstmt.setString(3, dto.getPd_name());
@@ -71,9 +69,7 @@ class ProductDAO {
 			pstmt.setString(7, dto.getPd_content());
 			pstmt.setString(8, dto.getPd_img());
 			pstmt.setString(9, dto.getPd_img_copy());
-			
 			pstmt.executeUpdate();
-			
 		}catch(SQLException se) {
 		}finally {
 			try {
@@ -93,23 +89,13 @@ class ProductDAO {
 			pstmt.setInt(1, pd_no);
 			rs = pstmt.executeQuery();
 			rs.next();
-			//pd_no, pd_name, pd_class, pd_price, pd_view, pd_img_copy, pd_regdate
-			
 			int pd_no1 = rs.getInt("pd_no");
-			System.out.println("pd_no1 : " +pd_no1);
 			String pd_name = rs.getString("pd_name");
-			System.out.println("pd_name : " +pd_name);
 			String pd_class = rs.getString("pd_class");
-			System.out.println("pd_class : " +pd_class);
 			int pd_price = rs.getInt("pd_price");
-			System.out.println("pd_price : " +pd_price);
 			int pd_view = rs.getInt("pd_view");
-			System.out.println("pd_view : " +pd_view);
 			String pd_img_copy = rs.getString("pd_img_copy");
-			System.out.println("pd_img_copy : " +pd_img_copy);
 			java.sql.Date pd_regdate = rs.getDate("pd_regdate");
-			System.out.println("pd_regdate : " +pd_regdate);
-			
 			ProductDTO dto = new ProductDTO();
 			dto.setPd_no(pd_no1);
 			dto.setPd_name(pd_name);
@@ -120,6 +106,7 @@ class ProductDAO {
 			dto.setPd_regdate(pd_regdate);
 			return dto;
 		} catch (SQLException se) {
+			return null;
 		}finally {
 			try {
 				if(rs != null) rs.close();
@@ -127,6 +114,43 @@ class ProductDAO {
 				if(con != null) con.close();
 			} catch (SQLException se) {}
 		}
-		return null;
+	}
+	
+	void delete(int pd_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlDelete);
+			pstmt.setInt(1, pd_no);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
+	void update(ProductDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlUpdate);
+			pstmt.setString(1, dto.getPd_name());
+			pstmt.setString(2, dto.getPd_class());
+			pstmt.setInt(3, dto.getPd_price());
+			pstmt.setString(4, dto.getPd_img_copy());
+			pstmt.setInt(5, dto.getPd_no());
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
 	}
 }

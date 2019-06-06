@@ -1,11 +1,9 @@
 package tkl.product.model;
 
-import java.sql.Date;
-
 class ProductSQL {
-	static final String sqlList = "select pd_no, pd_nick, pd_status, pd_subject, pd_regdate from PRODUCT";
-	static final String sqlReg = "insert into PRODUCT(pd_no, pd_nick, pd_status, pd_name, pd_class, pd_price, pd_subject, pd_content, pd_view, pd_img, pd_img_copy, pd_regdate) values(PRODUCT_PD_NO.nextval, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, SYSDATE)";
-	//static final String sqlContent = "select pd_no, pd_email, pd_nick, pd_status, pd_buyer, pd_name, pd_price, pd_subject, pd_content,"
-	//		+ " pd_img, pd_img_copy, pd_regdate, pd_class, pd_view from PRODUCT where PD_NO=?";
-	static final String sqlContent = "select pd_no, pd_name, pd_class, pd_price, pd_view, pd_img_copy, pd_regdate from PRODUCT where PD_NO=?";
+	static final String sqlList = "select PD_NO, PD_NICK, PD_STATUS, PD_SUBJECT, PD_REGDATE from PRODUCT";
+	static final String sqlReg = "insert into PRODUCT(PD_NO, PD_NICK, PD_STATUS, PD_NAME, PD_CLASS, PD_PRICE, PD_SUBJECT, PD_CONTENT, PD_VIEW, PD_IMG, PD_IMG_COPY, PD_REGDATE) values(PRODUCT_PD_NO.nextval, ?, ?, ?, ?, ?, ?, ?, 0, ?, ?, SYSDATE)";
+	static final String sqlContent = "select PD_NO, PD_NAME, PD_CLASS, PD_PRICE, PD_VIEW, PD_IMG_COPY, PD_REGDATE from PRODUCT where PD_NO=?";
+	static final String sqlDelete = "delete from PRODUCT where PD_NO=?";
+	static final String sqlUpdate = "update PRODUCT set PD_NAME=?, PD_CLASS=?, PD_PRICE=?, PD_IMG_COPY=? where PD_NO=?";
 }

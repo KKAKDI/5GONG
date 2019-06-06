@@ -6,13 +6,8 @@
 <title>중고상품 목록</title>
 </head>
 <body>
-	<h1>
-		중고상품 목록
-	</h1>
-	<div align='right'>
+	<h1>중고상품 목록</h1>
 	<a href='product/product_reg.jsp'>상품등록</a>
-	&nbsp;&nbsp;&nbsp; <a href='product/product_update.jsp'>상품수정</a>
-	</div>
 	<table>
 		<tr>
 			<th align='center' width='10%'>상품번호</th>
@@ -27,13 +22,14 @@
 			</tr>
 		</c:if>
 		<c:forEach items="${list}" var="dto">
-		<tr>
-			<td align='center'>${dto.pd_no}</td>
-			<td align='center'>${dto.pd_status}</td>
-			<td align='center'><a href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a></td>
-			<td align='center'>${dto.pd_nick}</td>
-			<td align='center'>${dto.pd_regdate}</td>
-		</tr>
+			<tr>
+				<td align='center'>${dto.pd_no}</td>
+				<td align='center'>${dto.pd_status}</td>
+				<td align='center'><a
+					href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a></td>
+				<td align='center'>${dto.pd_nick}</td>
+				<td align='center'>${dto.pd_regdate}</td>
+			</tr>
 		</c:forEach>
 	</table>
 </body>
