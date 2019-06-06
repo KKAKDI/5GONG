@@ -22,10 +22,7 @@
 		 <br>
 		 <input type='button' id='find'  value='ID/PW 찾기'/>
 		<input type='button' id='signup' value='회원가입'/>
-		
-		
 		</fieldset>
-			
 	</form>
 </body>
 </html>
