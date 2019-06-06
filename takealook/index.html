@@ -29,74 +29,102 @@
 	<!-- <script src="js/main.js"></script>
 	<script src="js/gnb.js"></script> -->
 	<!--<![endif]-->
+	<script src="js/main.js"></script>
 </head>
 <body>
 <div class="wrap">
-	<header id="header" class="clearfix">
-		<div class="upper"></div>
-		<div class="header_inner">
-			<div class="logo"><a href=""><img src="" alt="logo"></a></div>
-			<div class="search">
-					<form name="search" action="검색서블릿" method="POST">
-						<div class="search_radio">
-								<label><input type="radio" name="radio">팝니다</label>
-								<label><input type="radio" name="radio">삽니다</label>
-						</div>
-						<div class="search_bar">
-								<input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
-						</div>
-						<div class="search_button">
-								<input type="submit" value="검색">
-						</div>
-					</form>			
-         </div>
-      </div>
-			<nav id="GNB">
-				<ul>
-					<li>
-						<a href="">menu1
-                  </a>
-                  <ul>
-                     <li><a href="">menu1_1</a></li>
-                     <li><a href="">menu2_1</a></li>
-                     <li><a href="">menu3_1</a></li>
-                  </ul>
-					</li>
-					<li>
-						<a href="">menu2
-                  </a>
-                  <ul>
-                     <li><a href="">menu1_1</a></li>
-                     <li><a href="">menu2_1</a></li>
-                     <li><a href="">menu3_1</a></li>
-                  </ul>
-					</li>
-					<li>
-						<a href="">menu3
-                  </a>
-                  <ul>
-                     <li><a href="">menu1_1</a></li>
-                     <li><a href="">menu2_1</a></li>
-                     <li><a href="">menu3_1</a></li>
-                  </ul>
-					</li>
-					<li>
-						<a href="">menu4
-                  </a>
-                  <ul>
-                     <li><a href="">menu1_1</a></li>
-                     <li><a href="">menu2_1</a></li>
-                     <li><a href="">menu3_1</a></li>
-                  </ul>
-					</li>
-				</ul>
-			</nav>
+	<div id="skip_navi" class="skip_navi">
+		<div class="skip_wrap">
+			<a href="#content">본문 내용 바로가기</a>
+			<a href="#GNB">주 메뉴 바로가기</a>
+		</div>
+	</div>
+	<header id="header">
+		<div class="logo"><a href=""><img src="images/logo.png" alt="logo"></a></div>
+		<div class="search">
+			<form name="search" action="검색서블릿" method="POST">
+				<div class="search_radio">
+					<label><input type="radio" name="radio">팝니다</label>
+					<label><input type="radio" name="radio">삽니다</label>
+				</div>
+				<div class="search_bar">
+					<input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
+				</div>
+				<div class="search_button">
+					<input type="submit" value="검색">
+				</div>
+			</form>	
+ 		</div>
+		<div class="location">
+			<ul>
+				<li><a href="">Login</a></li>
+				<li><a href="">Join</a></li>
+				<li><a href="">absdrfe</a></li>
+				
+			</ul>
+		</div>
 	</header>
-	<div id="keyvisual">
+	<nav id="GNB">
 		<ul>
-			<li><img src="" alt="keyvisual"></li>
-			<li><img src="" alt="keyvisual"></li>
-			<li><img src="" alt="keyvisual"></li>
+			<li>
+				<a href="">NEW</a>
+				<ul class="sub">
+					<li><a href="">ARRIVED</a></li>
+					<li><a href="">NEW</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">WOMEN</a>
+				<ul class="sub">
+					<li><a href="">APPAREL</a></li>
+					<li><a href="">SHOES</a></li>
+					<li><a href="">BAGS</a></li>
+					<li><a href="">ACCESSORIES</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">MEN</a>
+				<ul class="sub">
+					<li><a href="">APPAREL</a></li>
+					<li><a href="">SHOES</a></li>
+					<li><a href="">BAG & ACC</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">LIFE</a>
+				<ul class="sub">
+					<li><a href="">APARTMENT</a></li>
+					<li><a href="">ELECTRONICS</a></li>
+					<li><a href="">CULTURE</a></li>
+					<li><a href="">BEAUTY</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">SALE</a>
+				<ul class="sub">
+					<li><a href="">SALE</a></li>
+					<li><a href="">SALE EVENT</a></li>
+				</ul>
+			</li>
+			<li>
+				<a href="">BRAND</a>
+				<ul class="sub">
+					<li><a href="">EXCLUSIVE</a></li>
+					<li><a href="">TOP</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div class="keyvisual">
+		<ul class="gallery">
+			<li><img src="images/key1.jpg" alt=""></li>
+			<li><img src="images/key2.jpg" alt=""></li>
+			<li><img src="images/key3.jpg" alt=""></li>
+			<li><img src="images/key4.jpg" alt=""></li>
+		</ul>
+		<ul class="direction_nav">
+			<li class="left"><a href="" title="left"><img src="images/btn_left.png"></a></li>
+			<li class="right"><a href="" title="right"><img src="images/btn_right.png"></a></li>
 		</ul>
 	</div>
 </div>
