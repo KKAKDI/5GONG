@@ -14,7 +14,7 @@ public class BoardDTO {
 	private int bLike;
 	private Date bWriteDate;
 	public BoardDTO() {}
-	public BoardDTO(int bNO, String mEmail, String mNick, String bSubject, String bContent, String bImg,
+	public BoardDTO(int bNo, String mEmail, String mNick, String bSubject, String bContent, String bImg,
 			String bImgCopy, int bView, int bLike, Date bWriteDate) {
 		super();
 		this.bNo = bNo;

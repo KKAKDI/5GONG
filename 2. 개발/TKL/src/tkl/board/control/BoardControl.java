@@ -14,33 +14,45 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+import tkl.bReply.model.ReplyService;
 import tkl.board.model.BoardDTO;
 import tkl.board.model.BoardService;
 
 @WebServlet("/board.do")
-public class BoardControl extends HttpServlet{
+public class BoardControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String m = request.getParameter("m");
 		String cp = request.getParameter("currentPage");
-		if(m != null) {
+		if (m != null) {
 			m = m.trim();
 			if (m.equals("board_list")) {
 				boardList(request, response);
-			}else if(m.equals("board_input")) {
+			} else if (m.equals("board_input")) {
 				boardInform(request, response);
-				
-			}else if(m.equals("board_in")) {
+			} else if (m.equals("board_in")) {
 				boardIn(request, response);
-			}else if(m.equals("board_content")) {
+			} else if (m.equals("board_content")) {
 				boardContent(request, response);
+			} else if (m.equals("board_delete")) {
+				boardDelete(request, response);
+			} else if (m.equals("board_update_form")) {
+				boardUpdateForm(request, response);
+			} else if (m.equals("board_update")) {
+				boardUpdate(request, response);
+			} else if (m.equals("board_download")) {
+				boardDownload(request, response);
+			} else if (m.equals("replyIn")) {
+				replyIn(request, response);
 			}
-		}else {
+		} else {
 			boardList(request, response);
 		}
 	}
-	private void boardList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void boardList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		BoardService service = BoardService.getInstance();
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList();
@@ -48,35 +60,156 @@ public class BoardControl extends HttpServlet{
 		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_list.jsp");
 		rd.forward(request, response);
 	}
-	private void boardInform(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void boardInform(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_input.jsp");
 		rd.forward(request, response);
 	}
-	private void boardIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void boardIn(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
 		String saveDir = sc.getRealPath("/image");
-		System.out.println("saveDir : "+saveDir);
-		int maxPostSize = 10*1028*1028;
+		System.out.println("saveDir : " + saveDir);
+		int maxPostSize = 10 * 1028 * 1028;
 		String encoding = "utf-8";
 		FileRenamePolicy policy = new DefaultFileRenamePolicy();
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxPostSize, encoding, policy);
 		String bImgCopy = mr.getFilesystemName("bImg");
-		System.out.println("filename : "+bImgCopy);
+		System.out.println("bImgCopy : " + bImgCopy);
 		String bImg = mr.getOriginalFileName("bImg");
+		System.out.println("bImg: " + bImg);
 		String mNick = mr.getParameter("mNick");
-		System.out.println("mNick : "+mNick);
+		System.out.println("mNick : " + mNick);
 		String eMail = mr.getParameter("eMail");
 		String bSubejct = mr.getParameter("bSubejct");
 		String bContent = mr.getParameter("bContent");
 		String homepage = mr.getParameter("homepage");
 		String pwd = mr.getParameter("pwd");
-		BoardDTO dto = new BoardDTO(-1, eMail,mNick,bSubejct,bContent,bImg,bImgCopy,-1,-1,null);
+		BoardDTO dto = new BoardDTO(-1, eMail, mNick, bSubejct, bContent, bImg, bImgCopy, -1, -1, null);
 		BoardService service = BoardService.getInstance();
 		service.insertS(dto);
 		System.out.println("파일 업로드 성공");
 		response.sendRedirect("board.do");
 	}
-	private void boardContent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	private void boardContent(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BoardService service = BoardService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		BoardDTO dto = service.boardContentS(bNo);
+		request.setAttribute("dto", dto);
+		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_content.jsp");
+		rd.forward(request, response);
 	}
+
+	private void boardUpdateForm(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BoardService service = BoardService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		BoardDTO dto = service.boardContentS(bNo);
+		request.setAttribute("dto", dto);
+		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_update.jsp");
+		rd.forward(request, response);
+
+	}
+
+	private void boardUpdate(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BoardService service = BoardService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		String bSubject = request.getParameter("bSubject");
+		System.out.println("bSubject : " + bSubject);
+		String bContent = request.getParameter("bContent");
+		String bImg = request.getParameter("bImg");
+		String bImgCopy = request.getParameter("bImg");
+		System.out.println("bImg : " + bImg);
+		service.boardUpdateS(bNo, bSubject, bContent, bImg, bImgCopy);
+		response.sendRedirect("board.do");
+
+	}
+
+	private void boardDelete(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		BoardService service = BoardService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		ServletContext sc = getServletContext();
+		String saveDir = sc.getRealPath("image");
+		System.out.println("saveDir : " + saveDir);
+		String bImgCopy = request.getParameter("bImgCopy");
+		System.out.println("bImgCopy : " + bImgCopy);
+		File f = new File(saveDir, bImgCopy);
+		if (f.exists()) {
+			f.delete();
+			System.out.println("파일 삭제 성공");
+		}
+		service.boardDeleteS(bNo);
+
+		response.sendRedirect("board.do");
+
+	}
+
+	private void boardDownload(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println("boardDownload();");
+		ServletContext sc = getServletContext();
+		String saveDir = sc.getRealPath("image");
+
+		String fileName = new String(request.getParameter("bImgCopy"));
+		File file = new File(saveDir + "/" + fileName);
+		response.setContentType("application/octet-stream");
+		String Agent = request.getHeader("USER-AGENT");
+		if (Agent.indexOf("MSIE") >= 0) {
+			int i = Agent.indexOf('M', 2);
+			String IEV = Agent.substring(i + 5, i + 8);
+			if (IEV.equalsIgnoreCase("5.5")) {
+				response.setHeader("Content-Disposition",
+						"filename=" + new String(fileName.getBytes("utf-8"), "8859_1"));
+			} else {
+				response.setHeader("Content-Disposition",
+						"attachment;filename=" + new String(fileName.getBytes("utf-8"), "8859_1"));
+			}
+		} else {
+			response.setHeader("Content-Disposition",
+					"attachment;filename=" + new String(fileName.getBytes("utf-8"), "8859_1"));
+		}
+
+		byte b[] = new byte[1024];
+		if (file.isFile()) {
+			try {
+				BufferedInputStream fin = new BufferedInputStream(new FileInputStream(file));
+				BufferedOutputStream outs = new BufferedOutputStream(response.getOutputStream());
+
+				int read = 0;
+				while ((read = fin.read(b)) != -1) {
+					outs.write(b, 0, read);
+				}
+				outs.flush();
+				outs.close();
+				fin.close();
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	private void delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ServletContext sc = getServletContext();
+		String saveDir = sc.getRealPath("/file/store");
+
+		String fname = request.getParameter("fname");
+		File f = new File(saveDir, fname);
+		if (f.exists()) {
+			f.delete();
+		}
+
+		response.sendRedirect("file.do");
+	}
+	private void replyIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ReplyService rs = ReplyService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		String bContent = request.getParameter("bContent");
+		rs.replyInS(bNo, bContent);
+	}
+
 }
