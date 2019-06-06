@@ -1,0 +1,12 @@
+package tkl.news.model;
+
+
+public class NewsSQL {
+	static final String sqlS = "select n_no, n_nick, n_subject, n_content, n_view, n_writedate from NEWS order by N_NO desc";
+	static final String sqlI = "insert into NEWS(n_no, n_nick, n_subject, n_content, n_view, n_writedate,n_division) "
+			+ "values(NEWS_n_no.nextval,?,?,?,0,SYSDATE,?)";
+	static final String sqlC = "select n_no, n_nick, n_subject, n_division, n_content from NEWS where n_no=?";
+	static final String sqlD = "delete from NEWS where n_no=?";
+	static final String sqlV = "select n_no, n_nick, n_subject, n_content , n_division from NEWS where n_no=?";
+	static final String sqlU = "update NEWS set n_subject=?, n_content=? where n_no=?";
+}
