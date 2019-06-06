@@ -8,24 +8,24 @@ public class ReplyDTO {
 	private String mEmail;
 	private String mNick;
 	private String brContent;
-	private Date brWritedate;
+	private Date brWriteDate;
 	private String brImg;
 	private String brImgCopy;
 	private int brLike;
-	private int brDislike;
-	public ReplyDTO(int brNo, int bNo, String mEmail, String mNick, String brContent, Date brWritedate, String brImg,
-			String brImgCopy, int brLike, int brDislike) {
+	private int brDisLike;
+	public ReplyDTO(int brNo, int bNo, String mEmail, String mNick, String brContent, Date brWriteDate, String brImg,
+			String brImgCopy, int brLike, int brDisLike) {
 		super();
 		this.brNo = brNo;
 		this.bNo = bNo;
 		this.mEmail = mEmail;
 		this.mNick = mNick;
 		this.brContent = brContent;
-		this.brWritedate = brWritedate;
+		this.brWriteDate = brWriteDate;
 		this.brImg = brImg;
 		this.brImgCopy = brImgCopy;
 		this.brLike = brLike;
-		this.brDislike = brDislike;
+		this.brDisLike = brDisLike;
 	}
 	public int getBrNo() {
 		return brNo;
@@ -57,11 +57,11 @@ public class ReplyDTO {
 	public void setBrContent(String brContent) {
 		this.brContent = brContent;
 	}
-	public Date getBrWritedate() {
-		return brWritedate;
+	public Date getBrWriteDate() {
+		return brWriteDate;
 	}
-	public void setBrWritedate(Date brWritedate) {
-		this.brWritedate = brWritedate;
+	public void setBrWriteDate(Date brWriteDate) {
+		this.brWriteDate = brWriteDate;
 	}
 	public String getBrImg() {
 		return brImg;
@@ -81,11 +81,11 @@ public class ReplyDTO {
 	public void setBrLike(int brLike) {
 		this.brLike = brLike;
 	}
-	public int getBrDislike() {
-		return brDislike;
+	public int getBrDisLike() {
+		return brDisLike;
 	}
-	public void setBrDislike(int brDislike) {
-		this.brDislike = brDislike;
+	public void setBrDisLike(int brDisLike) {
+		this.brDisLike = brDisLike;
 	}
 	
 }

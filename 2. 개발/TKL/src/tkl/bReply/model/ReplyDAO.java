@@ -20,28 +20,15 @@ public class ReplyDAO {
 		}catch(NamingException ne) {	
 		}
 	}
-	void replyIn(ReplyDTO dto) {
+	void replyIn(int bNo, String brContent) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(ReplySQL.sqlRS);
-			int brNo = 
-			String replyWriter = dto.getReplyWriter();
-			String replyPwd = dto.getReplyPwd();
-			String replyContent = dto.getReplyContent();
-			String replyId = dto.getReplyId();
-			int replyIdx = dto.getReplyIdx();
-			pstmt.setString(1, replyWriter);
-			pstmt.setString(2, replyPwd);
-			pstmt.setString(3, replyContent);
-			pstmt.setString(4, replyId);
-			pstmt.setInt(5, replyIdx);
-
+			pstmt = con.prepareStatement(ReplySQL.sqlI);
+			pstmt.setInt(1, bNo);
+			pstmt.setString(2, brContent);
 			pstmt.executeUpdate();
-
-			
-			
 		}catch(SQLException se) {
 			System.out.println("replyIn : "+se);
 		}finally {
@@ -52,29 +39,30 @@ public class ReplyDAO {
 			}catch(SQLException se ) {}
 		}
 	}
-	ArrayList<ReplyDTO> replyList(int replyIdxFk) {
+	ArrayList<ReplyDTO> replyList(int bNo) {
+		System.out.println("replyList()");
 		ArrayList<ReplyDTO> list = new ArrayList<ReplyDTO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			//pstmt = con.prepareStatement(ReplySQL.sqlReplyS);
-			pstmt.setInt(1, replyIdxFk);
-			rs =pstmt.executeQuery();
+			pstmt = con.prepareStatement(ReplySQL.sqlS);
+			pstmt.setInt(1, bNo);
+			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				int idx = rs.getInt(1);
-				String replyWriter = rs.getString(2);
-				String replyPwd = rs.getString(3);
-				String replyContent = rs.getString(4);
-				Date replyDate = rs.getDate(5);
-				String replyId = rs.getString(6);
-				int replyIdx = rs.getInt(7);
-				//ReplyDTO dto = new ReplyDTO(idx, replyWriter, replyPwd, replyContent, replyDate, replyId, replyIdx);
-				//list.add(dto);
+				int brNo = rs.getInt("BR_NO");
+				String mNick = rs.getString("M_NICK");
+				String brContent = rs.getString("BR_CONTENT");
+				Date brWriteDate = rs.getDate("BR_WRITEDATE");
+				int brLike = rs.getInt("BR_LIKE");
+				int brDisLike = rs.getInt("BR_DISLIKE");
+				ReplyDTO dto = new ReplyDTO(brNo, bNo, null, mNick, brContent, brWriteDate, null, null, brLike, brDisLike);
+				list.add(dto);
 			} 
 			return list;
 		}catch(SQLException se) {
+			System.out.println("replyList se : "+se);
 		}finally {
 			try {
 				if(pstmt != null)pstmt.close();
@@ -113,5 +101,24 @@ public class ReplyDAO {
 		}	
 		return false;
 	}
-	  
+	void replyDelete(int brNo) {
+		System.out.println("replyDelete");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con= ds.getConnection();
+			pstmt = con.prepareStatement(ReplySQL.sqlD);
+			pstmt.setInt(1, brNo);
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println("replyDelete se : "+se );
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {
+				
+			}
+		}
+	}
 }

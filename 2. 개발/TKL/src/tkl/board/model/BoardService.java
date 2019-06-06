@@ -24,7 +24,9 @@ public class BoardService {
 	}
 	public BoardDTO boardContentS(int bNo) throws ServletException, IOException {
 		return dao.boardContent(bNo);
-		
+	}
+	public void boardViewS(int bNo) {
+		dao.boardView(bNo);
 	}
 	public void boardDeleteS(int bNo) {
 		dao.boardDelete(bNo);

@@ -7,5 +7,5 @@ public class BoardSQL {
 	static final String sqlC= "select M_NICK, B_SUBJECT, B_CONTENT, B_IMG, B_IMG_COPY,  B_VIEW, B_LIKE from BOARD where B_NO = ?";
 	static final String sqlD= "delete from BOARD where B_NO = ?";
 	static final String sqlU= "update BOARD set B_SUBJECT = ?, B_CONTENT= ?, B_IMG =?, B_IMG_COPY= ? where B_NO = ?";
-	static final String sql
+	static final String sqlV= "update BOARD set B_VIEW = B_VIEW+1 where B_NO = ?";
 }

@@ -14,7 +14,13 @@ public class ReplyService {
 	public static ReplyService getInstance() {
 		return instance;
 	}
-	public void replyInS(int bNo, String bContent) {
-		dao.replyIn(bNo, bContent);
+	public void replyInS(int bNo, String brContent) {
+		dao.replyIn(bNo, brContent);
+	}
+	public ArrayList<ReplyDTO> replyListS(int bNo) {
+		return dao.replyList(bNo);
+	}
+	public void replyDeleteS(int brNo) {
+		dao.replyDelete(brNo);
 	}
 }

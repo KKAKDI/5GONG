@@ -96,6 +96,27 @@ public class BoardDAO {
 			}
 		}
 	}
+	void boardView(int bNo) {
+		System.out.println("BoardView()");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(BoardSQL.sqlV);
+			pstmt.setInt(1, bNo);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+			System.out.println(" : " + se);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+	}
 
 	void insert(BoardDTO dto) {
 		System.out.println("insert()");
@@ -120,7 +141,6 @@ public class BoardDAO {
 					con.close();
 			} catch (SQLException se) {
 			}
-
 		}
 	}
 
