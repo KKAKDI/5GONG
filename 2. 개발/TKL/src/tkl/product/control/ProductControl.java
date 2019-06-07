@@ -19,6 +19,8 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 
 import java.util.*;
 
+import javax.servlet.http.Cookie;
+
 import tkl.product.model.ProductService;
 import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
@@ -47,8 +49,14 @@ public class ProductControl extends HttpServlet {
 				update_form(request, response);
 			}else if(m.equals("update")) {
 				update(request, response);
-			}else if(m.equals("reply_list")) {
-				//reply_list(request, response);
+			}else if(m.equals("reply_reg")) {
+				reply_reg(request, response);
+			}else if(m.equals("reply_delete")) {
+				reply_delete(request, response);
+			}else if(m.equals("list_sel")) {
+				list_sel(request, response);
+			}else if(m.equals("list_buy")) {
+				list_buy(request, response);
 			}else {
 				list(request, response);
 			}
@@ -131,11 +139,28 @@ public class ProductControl extends HttpServlet {
 	}
 	
 	private void content(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int pd_no = getPd_no(request);
+		Cookie[] cookies = request.getCookies();
 		ProductService service1 = ProductService.getInstance();
-		PreplyService service2 = PreplyService.getInstance();
+		int pd_no = getPd_no(request);
+		boolean isGet=false;
+		if(cookies!=null){   
+			for(Cookie c: cookies){  
+				//num쿠키가 있는 경우
+				if(c.getName().equals("coocie"+pd_no)){
+					isGet=true; 
+				}
+			}
+			// num쿠키가 없는 경우
+			if(!isGet) {
+				service1.viewS(pd_no);//조회수증가
+				Cookie c1 = new Cookie("coocie"+pd_no, "coocie"+pd_no); 
+				c1.setMaxAge(1*24*60*60);//하루저장
+				response.addCookie(c1);    
+			}
+		}
 		ProductDTO dto = service1.contentS(pd_no);
 		request.setAttribute("con", dto);
+		PreplyService service2 = PreplyService.getInstance();
 		ArrayList<PreplyDTO> reply_list = service2.selectS(pd_no);
 		request.setAttribute("reply_list", reply_list);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_content.jsp");
@@ -173,7 +198,6 @@ public class ProductControl extends HttpServlet {
 		pd_priceStr = pd_priceStr.trim();
 		int pd_price = Integer.parseInt(pd_priceStr);
 		String pd_img_copy = request.getParameter("pd_img_copy");
-		System.out.println("pd_img_copy : " + pd_img_copy);
 		
 		ProductDTO dto = new ProductDTO();
 		dto.setPd_no(pd_no);
@@ -184,6 +208,27 @@ public class ProductControl extends HttpServlet {
 		ProductService service = ProductService.getInstance();
 		service.updateS(dto);
 		response.sendRedirect("product.do");
+	}
+	
+	private void reply_reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pd_no = getPd_no(request);
+		String pr_comment = request.getParameter("pr_comment");
+		PreplyService service = PreplyService.getInstance();
+		PreplyDTO dto = new PreplyDTO();
+		dto.setPd_no(pd_no);
+		dto.setPr_comment(pr_comment);
+		service.regS(dto);
+		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
+	}
+	
+	private void reply_delete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pd_no = getPd_no(request);
+		String pr_noStr = request.getParameter("pr_no");
+		pr_noStr = pr_noStr.trim();
+		int pr_no = Integer.parseInt(pr_noStr);
+		PreplyService service = PreplyService.getInstance();
+		service.deleteS(pr_no);
+		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
 	}
 	
 	private int getPd_no(HttpServletRequest request) {
@@ -204,5 +249,21 @@ public class ProductControl extends HttpServlet {
 		}else {
 			return -1;
 		}
+	}
+	
+	private void list_sel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductService service = ProductService.getInstance();
+		ArrayList<ProductDTO> list_sel = service.selectSelS();
+		request.setAttribute("list_sel", list_sel);
+		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_sel.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void list_buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductService service = ProductService.getInstance();
+		ArrayList<ProductDTO> list_buy = service.selectBuyS();
+		request.setAttribute("list_buy", list_buy);
+		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_buy.jsp");
+		rd.forward(request, response);
 	}
 }

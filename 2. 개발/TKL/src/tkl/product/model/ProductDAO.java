@@ -32,14 +32,20 @@ class ProductDAO {
 				int pd_no = rs.getInt("pd_no");
 				String pd_nick = rs.getString("pd_nick");
 				String pd_status = rs.getString("pd_status");
+				String pd_class = rs.getString("pd_class");
 				String pd_subject = rs.getString("pd_subject");
 				java.sql.Date pd_regdate = rs.getDate("pd_regdate");
+				int pd_view = rs.getInt("pd_view");
+				int cnt = rs.getInt("cnt");
 				ProductDTO dto = new ProductDTO();
 				dto.setPd_no(pd_no);
 				dto.setPd_nick(pd_nick);
 				dto.setPd_status(pd_status);
+				dto.setPd_class(pd_class);
 				dto.setPd_subject(pd_subject);
 				dto.setPd_regdate(pd_regdate);
+				dto.setPd_view(pd_view);
+				dto.setCnt(cnt);
 				list.add(dto);
 			}
 			return list;
@@ -85,6 +91,9 @@ class ProductDAO {
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
+			//pstmt = con.prepareStatement(ProductSQL.sqlUpView);
+			//pstmt.setInt(1, pd_no);
+			//pstmt.executeUpdate();
 			pstmt = con.prepareStatement(ProductSQL.sqlContent);
 			pstmt.setInt(1, pd_no);
 			rs = pstmt.executeQuery();
@@ -113,6 +122,23 @@ class ProductDAO {
 				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 			} catch (SQLException se) {}
+		}
+	}
+	
+	void view(int pd_no) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlUpView);
+			pstmt.setInt(1, pd_no);
+			pstmt.executeUpdate();
+		} catch (SQLException se) {
+		} finally {
+			try {
+				if (pstmt != null) pstmt.close();
+				if (con != null) con.close();
+			} catch (SQLException e) {}
 		}
 	}
 	
@@ -148,6 +174,92 @@ class ProductDAO {
 		}catch(SQLException se) {
 		}finally {
 			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
+	ArrayList<ProductDTO> selectSel(){
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//String pd_class = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlListSel);
+			//pstmt.setString(1, pd_class);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int pd_no = rs.getInt("pd_no");
+				String pd_nick = rs.getString("pd_nick");
+				String pd_status = rs.getString("pd_status");
+				String pd_class1 = rs.getString("pd_class");
+				String pd_subject = rs.getString("pd_subject");
+				java.sql.Date pd_regdate = rs.getDate("pd_regdate");
+				int pd_view = rs.getInt("pd_view");
+				int cnt = rs.getInt("cnt");
+				ProductDTO dto = new ProductDTO();
+				dto.setPd_no(pd_no);
+				dto.setPd_nick(pd_nick);
+				dto.setPd_status(pd_status);
+				dto.setPd_class(pd_class1);
+				dto.setPd_subject(pd_subject);
+				dto.setPd_regdate(pd_regdate);
+				dto.setPd_view(pd_view);
+				dto.setCnt(cnt);
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se) {
+			return null;
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
+	ArrayList<ProductDTO> selectBuy(){
+		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		//String pd_class = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlListBuy);
+			//pstmt.setString(1, pd_class);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int pd_no = rs.getInt("pd_no");
+				String pd_nick = rs.getString("pd_nick");
+				String pd_status = rs.getString("pd_status");
+				String pd_class = rs.getString("pd_class");
+				String pd_subject = rs.getString("pd_subject");
+				java.sql.Date pd_regdate = rs.getDate("pd_regdate");
+				int pd_view = rs.getInt("pd_view");
+				int cnt = rs.getInt("cnt");
+				ProductDTO dto = new ProductDTO();
+				dto.setPd_no(pd_no);
+				dto.setPd_nick(pd_nick);
+				dto.setPd_status(pd_status);
+				dto.setPd_class(pd_class);
+				dto.setPd_subject(pd_subject);
+				dto.setPd_regdate(pd_regdate);
+				dto.setPd_view(pd_view);
+				dto.setCnt(cnt);
+				list.add(dto);
+			}
+			return list;
+		}catch(SQLException se) {
+			return null;
+		}finally {
+			try {
+				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
 			}catch(SQLException se) {}

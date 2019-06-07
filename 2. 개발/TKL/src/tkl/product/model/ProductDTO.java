@@ -17,12 +17,13 @@ public class ProductDTO {
 	private String pd_img;
 	private String pd_img_copy;
 	private Date pd_regdate;
+	private int cnt;
 	
 	public ProductDTO(){}
 
 	public ProductDTO(int pd_no, String pd_email, String pd_nick, String pd_status, String pd_buyer, String pd_name,
 			String pd_class, int pd_price, String pd_subject, String pd_content, int pd_view, String pd_img,
-			String pd_img_copy, Date pd_regdate) {
+			String pd_img_copy, Date pd_regdate, int cnt) {
 		this.pd_no = pd_no;
 		this.pd_email = pd_email;
 		this.pd_nick = pd_nick;
@@ -37,6 +38,7 @@ public class ProductDTO {
 		this.pd_img = pd_img;
 		this.pd_img_copy = pd_img_copy;
 		this.pd_regdate = pd_regdate;
+		this.cnt = cnt;
 	}
 
 	public int getPd_no() {
@@ -149,5 +151,13 @@ public class ProductDTO {
 
 	public void setPd_regdate(Date pd_regdate) {
 		this.pd_regdate = pd_regdate;
+	}
+	
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 }

@@ -24,29 +24,30 @@
 </head>
 <body>
 	<h2>상품 수정</h2>
-	<a href='product/product_update.jsp'>상품수정</a>
-	<form name='f' method='post' action='product.do?m=update&pd_no=${update_form.pd_no}'>
+	&nbsp;&nbsp;&nbsp;<a href='product.do'>상품목록</a>
+	<form name='f' method='post' action='product.do?m=update&pd_no=${update_form.pd_no}&pd_class=${update_form.pd_class}'>
 	<table>
 		<tr>
-			<td rowspan="6"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
+			<td rowspan="7"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
         <img id="blah" src="product.do?m=content_img&pd_img_copy=${update_form.pd_img_copy}" alt="이미지" /></td>
 			<td colspan="2">상품번호 : ${update_form.pd_no}</td>
 		</tr>
 		<tr>
-			<td colspan="2">상품유형 : <input type='text' name='pd_class' size='60'
-					value='${update_form.pd_class}'></td>
+			<td colspan="2">상품유형 : ${update_form.pd_class}</td>
 		</tr>
 		<tr>
-			<td colspan="2">상품이름 : <input type='text' name='pd_name' size='60'
+			<td colspan="2">상품이름 : <input type='text' name='pd_name'
 					value='${update_form.pd_name}'></td>
 		</tr>
 		<tr>
-			<td colspan="2">가격 : <input type='text' name='pd_price' size='60'
+			<td colspan="2">가격 : <input type='text' name='pd_price'
 					value='${update_form.pd_price}'></td>
 		</tr>
 		<tr>
-			<td>조회수 : ${update_form.pd_view}</td>
 			<td>상품등록날짜 : ${update_form.pd_regdate}</td>
+		</tr>
+		<tr>
+			<td>조회수 : ${update_form.pd_view}</td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center"><input type="button" value="구매하기"

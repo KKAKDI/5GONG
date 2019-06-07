@@ -34,16 +34,29 @@
         <img id="blah" src="#" alt="이미지" />
 		<table>
 			<tr>
-				<td>제목 : <input type="text" name="pd_subject" size="60"></td>
+				<td>제목 : <input type="text" name="pd_subject"></td>
 			</tr>
 			<tr>
 				<td>상품명 : <input type="text" name="pd_name"></td>
 			</tr>
 			<tr>
-				<td>상품유형 : <input type="text" name="pd_class"></td>
+				<td>상품유형 : 
+					<select name="pd_class">
+						<option value="0">----선택----</option>
+						<option value="팝니다">팝니다</option>
+						<option value="삽니다">삽니다</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
-				<td>진행상태 : <input type="text" name="pd_status"></td>
+				<td>진행상태 : 
+					<select name="pd_status">
+						<option value="0">----선택----</option>
+						<option value="판매중">판매중</option>
+						<option value="거래중">거래중</option>
+						<option value="거래완료">거래완료</option>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>가격 : <input type="text" name="pd_price"></td>

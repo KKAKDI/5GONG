@@ -20,12 +20,12 @@
 			<th>등록일</th>
 			<th>조회수</th>
 		</tr>
-		<c:if test="${list.size() == 0}">
+		<c:if test="${list_buy.size() == 0}">
 			<tr>
 				<td colspan="5">데이터가 없습니다</td>
 			</tr>
 		</c:if>
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${list_buy}" var="dto">
 			<tr>
 				<td>${dto.pd_no}</td>
 				<td>${dto.pd_status}</td>
@@ -33,7 +33,7 @@
 				<span id="a" style="color:gray;">[${dto.pd_class}]</span>
 				<a href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a>
 				<c:if test="${dto.cnt != 0}">
-				<span style="color:red;">[${dto.cnt}]</span>
+				<span id="a" style="color:red;">[${dto.cnt}]</span>
 				</c:if>
 				</td>
 				<td>${dto.pd_nick}</td>

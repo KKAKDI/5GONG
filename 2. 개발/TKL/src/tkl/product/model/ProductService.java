@@ -20,10 +20,19 @@ public class ProductService {
 	public ProductDTO contentS(int pd_no) {
 		return dao.content(pd_no);
 	}
+	public void viewS(int pd_no) {
+		dao.view(pd_no);
+	}
 	public void deleteS(int pd_no) {
 		dao.delete(pd_no);
 	}
 	public void updateS(ProductDTO dto) {
 		dao.update(dto);
+	}
+	public ArrayList<ProductDTO> selectSelS(){
+		return dao.selectSel();
+	}
+	public ArrayList<ProductDTO> selectBuyS(){
+		return dao.selectBuy();
 	}
 }
