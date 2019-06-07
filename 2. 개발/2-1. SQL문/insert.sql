@@ -6,10 +6,10 @@ insert into MEMBER values('ddd@naver.com', '닉네임4', '1', '조성식', '카카오뱅크
 insert into MEMBER values('eee@google.com', '닉네임5', '1', '박동진', '기업은행', 987654321234, 01098765432, 700000, 60, SYSDATE);
 
 --상품 (진행상태 - 0:판매중, 1:거래중, 2:거래완료 / 상품유형 - 0:팝니다, 1:삽니다)
-insert into PRODUCT values(1, 'ccc@daum.net', '닉네임3', '1', '닉네임4', '나이키 운동화', '0', 100000, '나이키 운동화', '나이키 운동화 10만원에 팝니다', 0, 'a1.jsp', 'a1_copy01.jsp', SYSDATE);
-insert into PRODUCT values(2, 'ddd@naver.com', '닉네임4', '0', null, '뉴발란스 운동화', '0', 150000, '뉴발란스 운동화', '뉴발란스 운동화 15만원에 팝니다', 0, 'a2.jsp', 'a2_copy02.jsp', SYSDATE);
-insert into PRODUCT values(3, 'eee@google.com', '닉네임5', '2', '닉네임3', '아디다스 운동화', '0', 120000, '아디다스 운동화', '아디다스 운동화 12만원에 팝니다', 0, 'a3.jsp', 'a3_copy03.jsp', SYSDATE);
-insert into PRODUCT values(4, 'ddd@naver.com', '닉네임4', '2', '닉네임5', '컨버스 단화', '0', 80000, '컨버스 단화', '컨버스 단화 8만원에 팝니다', 0, 'a4.jsp', 'a4_copy04.jsp', SYSDATE);
+insert into PRODUCT values(1, 'ccc@daum.net', '닉네임3', '1', '닉네임4', '나이키 운동화', '0', 100000, '나이키 운동화', '나이키 운동화 10만원에 팝니다', 0, 'a1.jsp', 'a1_copy01.jsp', SYSDATE, 0);
+insert into PRODUCT values(2, 'ddd@naver.com', '닉네임4', '0', null, '뉴발란스 운동화', '0', 150000, '뉴발란스 운동화', '뉴발란스 운동화 15만원에 팝니다', 0, 'a2.jsp', 'a2_copy02.jsp', SYSDATE, 0);
+insert into PRODUCT values(3, 'eee@google.com', '닉네임5', '2', '닉네임3', '아디다스 운동화', '0', 120000, '아디다스 운동화', '아디다스 운동화 12만원에 팝니다', 0, 'a3.jsp', 'a3_copy03.jsp', SYSDATE, 0);
+insert into PRODUCT values(4, 'ddd@naver.com', '닉네임4', '2', '닉네임5', '컨버스 단화', '0', 80000, '컨버스 단화', '컨버스 단화 8만원에 팝니다', 0, 'a4.jsp', 'a4_copy04.jsp', SYSDATE, 0);
 
 --결제
 insert into PAYMENT values(1, 1, '닉네임3', 777788889999, '닉네임4', 123456789012, 100000, 100000, SYSDATE);
