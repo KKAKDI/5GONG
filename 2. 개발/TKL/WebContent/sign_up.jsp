@@ -12,6 +12,10 @@
 	display: none;
 }
 
+#phoneck {
+	display: none;
+}
+
 #pwdck {
 	display: none;
 }
@@ -24,8 +28,12 @@
 	display: none;
 }
 
+#actck {
+	display: none;
+}
+
 #signupform {
-	width: 220px;
+	width: 225px;
 	margin: auto;
 }
 </style>
@@ -40,7 +48,12 @@
 					title='이메일은 ID로 사용됩니다.' required>
 				<div id='emailck'></div>
 				<input type='button' id='emailconfirm' value='이메일 인증' /> <br>
-				<!-- 비밀번호 체크 쿼리 필요 -->
+				핸드폰번호 <input type='text' name='phone' id='phone'
+					title='- 을 제외하고 입력해주세요.' required> <input type='button'
+					id='phoneconfirm' value='핸드폰 본인 인증' /> <br>
+				<div id='phoneck'></div>
+				<input type="text" name='name' id='name' value='' disabled />
+				<div id="namefix"></div>
 				비밀번호 <input type='password' id='pwd1' required />
 				<div id='pwdck'></div>
 				비밀번호 확인 <input type='password' id='pwd2' required />
@@ -49,21 +62,20 @@
 					title='닉네임은 사이트 활동에 사용됩니다.' maxlength='12' required>
 				<div id='nickck'></div>
 				<input type='button' id='nickconfirm' value='닉네임 중복확인' /> <br>
-				은행명 : <select name='bank'>
-					<option value='kb'>국민은행</option>
-					<option value='nh'>농협</option>
-					<option value='ibk'>ibk기업은행</option>
-					<option value='sh'>신한은행</option>
-					<option value='wr'>우리은행</option>
-					<option value='kko'>카카오뱅크</option>
-				</select> <br> 계좌번호 <input type='text' id='accountnum' required
+				은행명 : <select name='bank' id='bank'>
+					<option value='국민은행'>국민은행</option>
+					<option value='농협'>농협</option>
+					<option value='기업은행'>ibk기업은행</option>
+					<option value='신한은행'>신한은행</option>
+					<option value='우리은행'>우리은행</option>
+					<option value='카카오뱅크'>카카오뱅크</option>
+				</select> <br> 계좌번호 <input type='text' id='actnum' required
 					title='- 을 제외하고 입력해주세요.' /> 예금주 <input type='text'
-					id='accountname' required /> <br> 핸드폰번호 <input type='text'
-					name='phone' id='phone' title='- 을 제외하고 입력해주세요.' maxlength='11'
-					required> <input type='button' id='phoneconfirm'
-					onclick='confirm_phone()' value='핸드폰 인증' /> <br> 이용약관 방침 <input
-					type='button' id='이용약관' value='동의' /> <br> 개인정보 처리방침 <input
-					type='button' id='개인정보' value='동의' /> <br> <input
+					id='actname' value='' required />
+				<div id='actck'></div>
+				<input type='button' id='actconfirm' value='계좌정보 인증' /> <br>
+				이용약관 방침 <input type='button' id='이용약관' value='동의' /> <br> 개인정보
+				처리방침 <input type='button' id='개인정보' value='동의' /> <br> <input
 					type='submit' value='회원가입'>
 			</fieldset>
 		</form>

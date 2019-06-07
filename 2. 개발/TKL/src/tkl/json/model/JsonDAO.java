@@ -17,9 +17,10 @@ import org.json.simple.JSONObject;
 
 public class JsonDAO {	
 	JSONObject jsobj;
-	JSONArray memArray; 
+	JSONArray memArray,actArray; 
 	JSONObject memInfo;
 	private DataSource ds;
+	
 	
 	JsonDAO(){
 		try {
@@ -35,7 +36,8 @@ public class JsonDAO {
 		Statement stmt = null;
 		ResultSet rs = null;
 		 jsobj = new JSONObject();		
-		 memArray = new JSONArray();			
+		 memArray = new JSONArray();
+		 actArray = new JSONArray();		
 		 String jsonInfo = null;
 		try {
 			con = ds.getConnection();
@@ -49,6 +51,22 @@ public class JsonDAO {
 				memInfo.put("nick",mNick);
 				memArray.add(memInfo);				
 				jsobj.put("member", memArray);							
+			}			
+			rs = stmt.executeQuery(JsonSQL.SQL_REF);
+			while(rs.next()) {
+				String phone = rs.getString("PHONE");
+				String name = rs.getString("NAME");
+				String bank = rs.getString("BANK");
+				String actNum = rs.getString("ACT_NUMBER");
+				String actHold = rs.getString("ACT_HOLDER");
+				memInfo = new JSONObject();	
+				memInfo.put("phone",phone);
+				memInfo.put("name",name);
+				memInfo.put("bank",bank);
+				memInfo.put("actnum",actNum);
+				memInfo.put("actown",actHold);
+				actArray.add(memInfo);	
+				jsobj.put("actinfo", actArray);
 			}
 			jsonInfo = jsobj.toJSONString();
 			return jsonInfo;
