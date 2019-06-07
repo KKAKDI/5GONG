@@ -1,7 +1,7 @@
 @charset "utf-8";
 
 body {
-    min-width: 1019px;
+    min-width: 1200px;
     font-family: 'Pragati Narrow', sans-serif;
     font-family: 'AppleSDGothicNeo';
     font-weight: 500;
@@ -44,7 +44,7 @@ body {
 #header {
     position: relative;
     margin: 0 auto;
-    width: 1019px;
+    width: 1200px;
     height: 100px;
 }
 
@@ -275,21 +275,93 @@ body {
 .keyvisual .direction_nav li.right {
     right: 100px;
 }
-#content {background-color:#773dab;}
-#content .product_area {border: 1px solid #111;}
+#content {clear:both; float:none; }
+#content .product_area { width:1200px; margin:0 auto;}
 #content .product_area .pro_buy, #content .product_area .pro_sell, #content .product_area .pro_now {
-    width:
+    width: 1200px;
     border: 1px solid #111;
 }
+#content .product_area .pro_sell, #content .product_area .pro_now {
+}
+
+#content .product_area .pro_buy li, #content .product_area .pro_sell li, #content .product_area .pro_now li {
+    display:inline-block; width: 295px; background: #fff;
+}
+#content .product_area .pro_buy li a, #content .product_area .pro_sell li a, #content .product_area .pro_now li a {
+    display:block;
+}
+#content .product_area .pro_buy dl, #content .product_area .pro_sell dl,  #content .product_area .pro_now dl {
+
+}
+#content .product_area .pro_buy dl dt, #content .product_area .pro_sell dl dt,  #content .product_area .pro_now dl dt {
+    font-size: 17px; font-weight: 600; text-indent: 5px; white-space: nowrap; text-overflow: ellipsis;
+}
+#content .product_area .pro_buy dl dd, #content .product_area .pro_sell dl dd,  #content .product_area .pro_now dl dd {
+    display: inline-block; font-size: 13px; text-indent: 5px;
+}
+#content .product_area .pro_buy dl .comment::after, #content .product_area .pro_sell dl .comment::after, #content .product_area .pro_now dl .comment::after,
+#content .product_area .pro_buy dl .contant::after, #content .product_area .pro_sell dl .contant::after, #content .product_area .pro_now dl .contant::after
+{content: "∙"; clear:both; float:none; margin-left:3px;}
+
+#content .product_area .pro_buy dl .comment_int, #content .product_area .pro_sell dl .comment_int, #content .product_area .pro_now dl .comment_int,
+#content .product_area .pro_buy dl .contant_int, #content .product_area .pro_sell dl .ontant_int, #content .product_area .pro_now dl .contant_int
+{margin-left: -5px;}
+
+
 /* 
 #content .product_area .pro_sell {border: 1px solid #111;}
 #content .product_area .pro_now {border: 1px solid #111;} */
-#content .user_area {}
-#content .user_area .free_boaed_top {}
-#content .user_area .free_boaed {}
-#content .ad_zone {background-attachment: fixed;}
+
+
+#content .user_area {clear:both; float:none; width:1200px; margin:0 auto; background: #a0a0a0;}
+#content .user_area .free_board_top, #content .user_area .free_board 
+{float:left; display:block; width:595px;}
+/* #content .user_area .free_board_top ul, #content .user_area .free_board ul */
+#content .user_area .free_board_top li, #content .user_area .free_board li 
+{width:100%; margin-bottom:2px;}
+#content .user_area .free_board_top li a, #content .user_area .free_board li a 
+{width:49%; display:inline-block;} 
+#content .user_area .free_board_top li dl, #content .user_area .free_board li dl
+{width:49%; display:inline-block; text-align: right; font-size: 12px; font-weight: 600; letter-spacing: -0.5px;}
+#content .user_area .free_board_top dl dd, #content .user_area .free_board dl dd 
+{width:97px; display:inline; color: #4d4d4d;}
+
+#content .user_area .free_board_top .user_nick, #content .user_area .free_board_top .regi_date,
+#content .user_area .free_board_top .hits_int, #content .user_area .free_board .user_nick, 
+#content .user_area .free_board .regi_date, #content .user_area .free_board .hits_int
+{margin-left: 5px; font-weight: 400; color: #000000;}
+
+#content .user_area .free_board_top .user_nick::after, #content .user_area .free_board_top .regi_date::after,
+#content .user_area .free_board_top .hits_int::after, #content .user_area .free_board .user_nick::after, 
+#content .user_area .free_board .regi_date::after, #content .user_area .free_board .hits_int::after
+{content: "∙"; clear:both; float:none; margin-left:3px;}
+
+
+#content .ad_zone  {clear:both; float:none; display:block; position:relative; width:100%; height:550px;}
+#content .ad_zone .ad_promo { display:block; width: 100%; height:350px; 
+    background-image:url(../img/promo__img.png); 
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size:contain;
+    background-attachment: fixed;}
+    /* .ad_promo에 마우스 올리면 a 활성화 js 추가 */
+#content .ad_zone .ad_promo a {display: none; position:absolute; left:50%; top:300px; margin-left:-115px; width:210px; height:40px; 
+    line-height:40px; text-align:center; letter-spacing: 2px; font-size:13px; font-weight:600; 
+    border: 1px solid #000; border-radius:20px;}
 #content .service_area {}
 #content .service_area .notice {}
-#content .service_area .cs_zone {}
-#footer {}
-#footer .footer_inner {}
+#content .service_area .cs_zone {} 
+#footer {clear:both; float:none; background-color: #1e1e1e;}
+#footer .footer_inner {width:1200px; margin: 0 auto; padding: 22px 0;}
+#footer .footer_inner .txt_copyright {display: block;
+    padding-top: 2px;
+    font-size: 12px;
+    color: #aeaeae;
+    clear: both;
+    content: '';}
+#footer .footer_inner .txt_copyright a {padding-top: 2px;
+font-size: 12px;
+color: #aeaeae;}
+#footer .footer_inner .txt_copyright a:hover, #footer .footer_inner .txt_copyright a:focus{
+text-decoration: underline;
+}
