@@ -137,13 +137,13 @@ public class NewsDAO {
 			}
 		}
 	}
-	public NewsDTO view(NewsDTO dto) {
+	public NewsDTO updateview(NewsDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			pstmt= con.prepareStatement(NewsSQL.sqlV);
+			pstmt= con.prepareStatement(NewsSQL.sqlUV);
 			pstmt.setInt(1, dto.getN_no());
 			rs = pstmt.executeQuery();
 			rs.next();
@@ -198,5 +198,24 @@ public class NewsDAO {
 		
 		}
 	}
+	public void view(int n_no) {
+	      Connection con = null;
+	      PreparedStatement pstmt = null;
+	      try {
+	         con = ds.getConnection();
+	         pstmt = con.prepareStatement(NewsSQL.sqlView);
+	         pstmt.setInt(1, n_no);
+	         pstmt.executeUpdate();
+	      } catch (SQLException se) {
+	         System.out.println("content view error : " +se);
+	      }finally {
+	         try {
+	            if(pstmt != null) pstmt.close();
+	            if(con != null) con.close();
+	         } catch (SQLException se) {
+	            System.out.println("content view finally error : " +se);
+	         }
+	      }
+	   }
 }
 
