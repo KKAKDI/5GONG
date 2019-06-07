@@ -1,18 +1,30 @@
 //유효성 검사(이메일 유형, 비밀번호 유형 etc)
 //이메일 , 본인, 계좌 JSON 만들어서 인증하기
 //인증유효성 검사
+var emailCheck = false;
+var phoneCheck = false;
+var pwdCheck = false;
+var nickCheck = false;
+var actCheck = false;
+var terms1Check = false;
+var terms2Check = false;
+
 $(document).ready(function(){
 	var regEmail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i; //이메일 요휴성검사
 	var regName = /^[가-힣]{2,4}$/; //이름 유효성 검사 2~4자 사이
 	var regNick = /^[a-z0-9_-]{3,16}$/; //아이디 유효성 검사 316자 사이
 	var regTel = /^[0-9]{11}$/; //전화번호 유효성 검사
-	var emailCheck = false;
-	var phoneCheck = false;
-	var pwdCheck = false;
-	var nickCheck = false;
-	var actCheck = false;
-	var terms1Check = false;
-	var terms2Check = false;
+
+	var timerId = setInterval(checklist,1000);
+
+	function checklist(){
+		console.log("틱톡");
+		if(emailCheck==true&&phoneCheck==true&&pwdCheck==true&&nickCheck==true&&actCheck==true&&terms1Check==true&&terms2Check==true){
+				$("#submit").attr("disabled",false);
+		}else{
+				$("#submit").attr("disabled",true);
+		}
+	}
 
 	$("#email").keyup(function(){
 		if ( regEmail.test($.trim($("#email").val())) ){
@@ -26,6 +38,12 @@ $(document).ready(function(){
 	});
 	$("#emailconfirm").click(function(){
 		var getEmail = $("#email").val();
+		if(getEmail.length==0){
+			$("#emailck").show();
+			$("#emailck").css("color", "red");
+			$("#emailck").text("이메일을 입력해주세요.");
+			return false;
+		}
 		$.ajax({
 			type:'POST',
 			url:'json.do',
@@ -190,13 +208,13 @@ $(document).ready(function(){
 			data: {
 				"bank":getBank,
 				"actnum":getActNum,
-				"actown":getActName
+				"actname":getActName
 					},
 			success:function(data){
 				var obj = JSON.parse(data);
 				var actlist = obj.actinfo;
 				for(var i=0;i<actlist.length;i++){
-					if(actlist[i].bank==getBank&&actlist[i].actnum==getActNum&&actlist[i].actown==getActName){
+					if(actlist[i].bank==getBank&&actlist[i].actnum==getActNum&&actlist[i].actname==getActName){
 						$("#actck").show();
 						$("#actck").css("color", "green");
 						$("#actck").text("계좌 인증 완료.");
@@ -210,5 +228,20 @@ $(document).ready(function(){
 				}
 			}
 		});
+	});
+	$("#service").click(function(){
+		if(terms1Check==false){
+			terms1Check = true;
+		}else if(terms1Check==true){
+			terms1Check = false;
+		}
+	});
+	$("#privacy").click(function(){
+		if(terms2Check==false){
+			terms2Check = true;
+		//	alert(emailCheck+'/'+phoneCheck+'/'+pwdCheck+'/'+nickCheck+'/'+actCheck+'/'+terms1Check+'/'+terms2Check);
+		}else if(terms2Check==true){
+			terms2Check = false;
+		}
 	});
 });

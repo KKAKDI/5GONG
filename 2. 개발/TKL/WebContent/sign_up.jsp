@@ -41,7 +41,7 @@
 </head>
 <body>
 	<div id='signupform'>
-		<form name='signup' action='가입서블릿' method='post'>
+		<form name='signup' action='/member.do?m=insert' method='post'>
 			<fieldset>
 				<legend> 회 원 가 입 </legend>
 				이메일 <input type='text' name='email' id='email'
@@ -74,9 +74,9 @@
 					id='actname' value='' required />
 				<div id='actck'></div>
 				<input type='button' id='actconfirm' value='계좌정보 인증' /> <br>
-				이용약관 방침 <input type='button' id='이용약관' value='동의' /> <br> 개인정보
-				처리방침 <input type='button' id='개인정보' value='동의' /> <br> <input
-					type='submit' value='회원가입'>
+				이용약관 방침 <input type='button' id='service' value='동의' /> <br> 개인정보
+				처리방침 <input type='button' id='privacy' value='동의' /> <br> <input
+					type='submit' id='submit' value='회원가입'>
 			</fieldset>
 		</form>
 	</div>

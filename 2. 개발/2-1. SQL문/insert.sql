@@ -1,9 +1,9 @@
 --회원 (권한 - 0:관리자, 1:일반회원)
-insert into MEMBER values('aaa@naver.com', '닉네임1', '0', '최운학', '국민은행', 111122223333, 01011112222, 1000000, 90, SYSDATE);
-insert into MEMBER values('bbb@google.com', '닉네임2', '0', '곽지훈', '신한은행', 444455556666, 01033334444, 2000000, 100, SYSDATE);
-insert into MEMBER values('ccc@daum.net', '닉네임3', '1', '변정우', '우리은행', 777788889999, 01055556666, 900000, 80, SYSDATE);
-insert into MEMBER values('ddd@naver.com', '닉네임4', '1', '조성식', '카카오뱅크', 123456789012, 01012345678, 800000, 70, SYSDATE);
-insert into MEMBER values('eee@google.com', '닉네임5', '1', '박동진', '기업은행', 987654321234, 01098765432, 700000, 60, SYSDATE);
+insert into MEMBER values('aaa@naver.com', '닉네임1', '0','1q2w3e4r!', '최운학', '국민은행', 111122223333, 01011112222, 1000000, 90, SYSDATE);
+insert into MEMBER values('bbb@google.com', '닉네임2', '0','1q2w3e4r!', '곽지훈', '신한은행', 444455556666, 01033334444, 2000000, 100, SYSDATE);
+insert into MEMBER values('ccc@daum.net', '닉네임3', '1', '변정우','1q2w3e4r!', '우리은행', 777788889999, 01055556666, 900000, 80, SYSDATE);
+insert into MEMBER values('ddd@naver.com', '닉네임4', '1', '조성식','1q2w3e4r!', '카카오뱅크', 123456789012, 01012345678, 800000, 70, SYSDATE);
+insert into MEMBER values('eee@google.com', '닉네임5', '1', '박동진','1q2w3e4r!', '기업은행', 987654321234, 01098765432, 700000, 60, SYSDATE);
 
 -- 회원 금융 정보
 insert into MONEY_MEMBER values('최운학', '01011112222', '국민은행', '111122223333', '최운학');

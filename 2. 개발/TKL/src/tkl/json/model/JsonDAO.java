@@ -64,7 +64,7 @@ public class JsonDAO {
 				memInfo.put("name",name);
 				memInfo.put("bank",bank);
 				memInfo.put("actnum",actNum);
-				memInfo.put("actown",actHold);
+				memInfo.put("actname",actHold);
 				actArray.add(memInfo);	
 				jsobj.put("actinfo", actArray);
 			}

@@ -3,6 +3,7 @@ CREATE TABLE MEMBER (
 	M_EMAIL   VARCHAR2(40) NOT NULL, -- 이메일
 	M_NICK    VARCHAR2(30) NOT NULL, -- 닉네임
 	M_GRANT   CHAR(2)      NULL,     -- 권한
+	M_PASSWORD VARCHAR2(40) NOT NULL,
 	M_NAME    VARCHAR2(12) NULL,     -- 이름
 	M_BANK    VARCHAR2(30) NULL,     -- 주거래은행
 	M_ACCOUNT NUMBER       NULL,     -- 계좌번호

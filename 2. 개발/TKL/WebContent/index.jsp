@@ -10,9 +10,6 @@
 
 <title>Take A Look</title>
 
-<script type="text/javascript">
-
-</script>
 </head>
 
 <body>
