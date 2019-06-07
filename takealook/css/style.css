@@ -1,5 +1,17 @@
 @charset "utf-8";
 
+/* 
+color:#293462;
+color:#064acb;
+color:#15005d
+color:#0a065d
+color:#
+color:#
+color:#
+color:##ededed;
+
+
+*/
 body {
     min-width: 1200px;
     font-family: 'Pragati Narrow', sans-serif;
@@ -60,18 +72,23 @@ body {
     position: absolute;
     left: 50%;
     top: 35px;
-    margin-left: -260px;
-    width: 519px;
+    margin-left: -257px;
+    width: 513px;
     height: 35px;
     border: 1px solid #4d4d4d;
     border-radius: 2px;
 }
 
 /* #header > .search > form ~ 검색창 폼 한 줄 정렬 후 커스텀 */
-#header .search_radio, #header .search_bar, #header .search_button {
+#header .search_radio,
+#header .search_bar,
+#header .search_button {
     display: inline-block;
 }
-#header .search_radio{padding: 0 0 0 4px;}
+
+#header .search_radio {
+    padding: 0 0 0 4px;
+}
 
 #header .search input[type=text] {
     width: 320px;
@@ -94,31 +111,32 @@ body {
     display: none;
 }
 
-#header .search input[type="radio"] + label span {
+#header .search input[type="radio"]+label span {
     display: inline-block;
     width: 18px;
     height: 18px;
     margin: -2px 5px 0 0;
-    vertical-align:middle;
+    vertical-align: middle;
     color: #333;
     background: url(../img/radiobutton.png) left 0 no-repeat;
     overflow: hidden;
 }
-#header .search input[type="radio"] + label{
+
+#header .search input[type="radio"]+label {
     font-size: 12px;
 }
 
-#header .search input[type="radio"]:checked+label span{
+#header .search input[type="radio"]:checked+label span {
     background: url(../img/radiobutton.png) -18px 0 no-repeat;
 }
 
-#header .search input[type="radio"]:checked+label{
+#header .search input[type="radio"]:checked+label {
     font-weight: bold;
     color: #004080;
 }
 
 #header .search input[type=submit] {
-    padding: 8px 12px;
+    padding: 7px 12px;
     vertical-align: middle;
     font-family: "Open Sans", sans-serif;
     font-size: 0.875rem;
@@ -254,7 +272,7 @@ body {
 .keyvisual .gallery li {
     float: left;
     width: 25%;
-    height:500px;
+    height: 500px;
 }
 
 .keyvisual .gallery li img {
@@ -275,37 +293,100 @@ body {
 .keyvisual .direction_nav li.right {
     right: 100px;
 }
-#content {clear:both; float:none; }
-#content .product_area { width:1200px; margin:0 auto;}
-#content .product_area .pro_buy, #content .product_area .pro_sell, #content .product_area .pro_now {
+
+#content {
+    clear: both;
+    float: none;
     width: 1200px;
-    border: 1px solid #111;
-}
-#content .product_area .pro_sell, #content .product_area .pro_now {
+    margin: 0 auto;
 }
 
-#content .product_area .pro_buy li, #content .product_area .pro_sell li, #content .product_area .pro_now li {
-    display:inline-block; width: 295px; background: #fff;
+/* 각 content 타이틀 공통 css */
+#content .title_wrap {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
 }
-#content .product_area .pro_buy li a, #content .product_area .pro_sell li a, #content .product_area .pro_now li a {
-    display:block;
+
+#content .title_wrap h1 {
+    margin: 30px 0 50px 0;
 }
-#content .product_area .pro_buy dl, #content .product_area .pro_sell dl,  #content .product_area .pro_now dl {
+
+#content .product_area {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#content .product_area .pro_buy,
+#content .product_area .pro_sell,
+#content .product_area .pro_now {
+    width: 1200px;
+    margin: 0 auto;
+}
+
+#content .product_area .pro_sell,
+#content .product_area .pro_now {
+    margin-top: 14px;
+}
+
+#content .product_area .pro_buy li,
+#content .product_area .pro_sell li,
+#content .product_area .pro_now li {
+    display: inline-block;
+    width: 235px;
 
 }
-#content .product_area .pro_buy dl dt, #content .product_area .pro_sell dl dt,  #content .product_area .pro_now dl dt {
-    font-size: 17px; font-weight: 600; text-indent: 5px; white-space: nowrap; text-overflow: ellipsis;
-}
-#content .product_area .pro_buy dl dd, #content .product_area .pro_sell dl dd,  #content .product_area .pro_now dl dd {
-    display: inline-block; font-size: 13px; text-indent: 5px;
-}
-#content .product_area .pro_buy dl .comment::after, #content .product_area .pro_sell dl .comment::after, #content .product_area .pro_now dl .comment::after,
-#content .product_area .pro_buy dl .contant::after, #content .product_area .pro_sell dl .contant::after, #content .product_area .pro_now dl .contant::after
-{content: "∙"; clear:both; float:none; margin-left:3px;}
 
-#content .product_area .pro_buy dl .comment_int, #content .product_area .pro_sell dl .comment_int, #content .product_area .pro_now dl .comment_int,
-#content .product_area .pro_buy dl .contant_int, #content .product_area .pro_sell dl .ontant_int, #content .product_area .pro_now dl .contant_int
-{margin-left: -5px;}
+#content .product_area .pro_buy li a,
+#content .product_area .pro_sell li a,
+#content .product_area .pro_now li a {
+    display: block;
+}
+
+#content .product_area .pro_buy dl,
+#content .product_area .pro_sell dl,
+#content .product_area .pro_now dl {
+    margin-top: 10px;
+}
+
+#content .product_area .pro_buy dl dt,
+#content .product_area .pro_sell dl dt,
+#content .product_area .pro_now dl dt {
+    font-size: 15px;
+    font-weight: 600;
+    text-indent: 5px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+#content .product_area .pro_buy dl dd,
+#content .product_area .pro_sell dl dd,
+#content .product_area .pro_now dl dd {
+    display: inline-block;
+    font-size: 12px;
+    text-indent: 5px;
+}
+
+#content .product_area .pro_buy dl .comment::after,
+#content .product_area .pro_sell dl .comment::after,
+#content .product_area .pro_now dl .comment::after,
+#content .product_area .pro_buy dl .contant::after,
+#content .product_area .pro_sell dl .contant::after,
+#content .product_area .pro_now dl .contant::after {
+    content: "∙";
+    clear: both;
+    float: none;
+    margin-left: 3px;
+}
+
+#content .product_area .pro_buy dl .comment_int,
+#content .product_area .pro_sell dl .comment_int,
+#content .product_area .pro_now dl .comment_int,
+#content .product_area .pro_buy dl .contant_int,
+#content .product_area .pro_sell dl .ontant_int,
+#content .product_area .pro_now dl .contant_int {
+    margin-left: -5px;
+}
 
 
 /* 
@@ -313,55 +394,174 @@ body {
 #content .product_area .pro_now {border: 1px solid #111;} */
 
 
-#content .user_area {clear:both; float:none; width:1200px; margin:0 auto; background: #a0a0a0;}
-#content .user_area .free_board_top, #content .user_area .free_board 
-{float:left; display:block; width:595px;}
+#content .user_area {
+    clear: both;
+    float: none;
+}
+
+#content .user_area .free_board_top,
+#content .user_area .free_board {
+    float: left;
+    display: block;
+    width: 595px;
+}
+
 /* #content .user_area .free_board_top ul, #content .user_area .free_board ul */
-#content .user_area .free_board_top li, #content .user_area .free_board li 
-{width:100%; margin-bottom:2px;}
-#content .user_area .free_board_top li a, #content .user_area .free_board li a 
-{width:49%; display:inline-block;} 
-#content .user_area .free_board_top li dl, #content .user_area .free_board li dl
-{width:49%; display:inline-block; text-align: right; font-size: 12px; font-weight: 600; letter-spacing: -0.5px;}
-#content .user_area .free_board_top dl dd, #content .user_area .free_board dl dd 
-{width:97px; display:inline; color: #4d4d4d;}
+#content .user_area .free_board_top li,
+#content .user_area .free_board li {
+    width: 100%;
+    margin-bottom: 8px;
+}
 
-#content .user_area .free_board_top .user_nick, #content .user_area .free_board_top .regi_date,
-#content .user_area .free_board_top .hits_int, #content .user_area .free_board .user_nick, 
-#content .user_area .free_board .regi_date, #content .user_area .free_board .hits_int
-{margin-left: 5px; font-weight: 400; color: #000000;}
+#content .user_area .free_board_top li a,
+#content .user_area .free_board li a {
+    width: 45%;
+    display: inline-block;
+}
 
-#content .user_area .free_board_top .user_nick::after, #content .user_area .free_board_top .regi_date::after,
-#content .user_area .free_board_top .hits_int::after, #content .user_area .free_board .user_nick::after, 
-#content .user_area .free_board .regi_date::after, #content .user_area .free_board .hits_int::after
-{content: "∙"; clear:both; float:none; margin-left:3px;}
+#content .user_area .free_board_top li dl,
+#content .user_area .free_board li dl {
+    width: 45%;
+    display: inline-block;
+    text-align: right;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+}
+
+#content .user_area .free_board_top dl dd,
+#content .user_area .free_board dl dd {
+    display: inline-block;
+    color: #4d4d4d;
+    font-weight: 400;
+    margin-left: -2px;
+}
+
+#content .user_area .free_board_top .user_nick::after,
+#content .user_area .free_board_top .regi_date::after,
+#content .user_area .free_board .user_nick::after,
+#content .user_area .free_board .regi_date::after {
+    content: "∙";
+    clear: both;
+    float: none;
+    margin-left: 2px;
+}
 
 
-#content .ad_zone  {clear:both; float:none; display:block; position:relative; width:100%; height:550px;}
-#content .ad_zone .ad_promo { display:block; width: 100%; height:350px; 
-    background-image:url(../img/promo__img.png); 
+.ad_zone {
+    clear: both;
+    float: none;
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 500px;
+}
+
+.ad_zone .ad_promo {
+    display: block;
+    width: 100%;
+    height: 450px;
+    background-image: url(../img/promo__img.png);
     background-repeat: no-repeat;
     background-position: center center;
-    background-size:contain;
-    background-attachment: fixed;}
-    /* .ad_promo에 마우스 올리면 a 활성화 js 추가 */
-#content .ad_zone .ad_promo a {display: none; position:absolute; left:50%; top:300px; margin-left:-115px; width:210px; height:40px; 
-    line-height:40px; text-align:center; letter-spacing: 2px; font-size:13px; font-weight:600; 
-    border: 1px solid #000; border-radius:20px;}
-#content .service_area {}
-#content .service_area .notice {}
-#content .service_area .cs_zone {} 
-#footer {clear:both; float:none; background-color: #1e1e1e;}
-#footer .footer_inner {width:1200px; margin: 0 auto; padding: 22px 0;}
-#footer .footer_inner .txt_copyright {display: block;
+    background-size: contain;
+    background-attachment: fixed;
+}
+
+/* .ad_promo에 마우스 올리면 a 활성화 js 추가 */
+.ad_zone .ad_promo a {
+    display: none;
+    position: absolute;
+    left: 50%;
+    top: 300px;
+    margin-left: -115px;
+    width: 210px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    letter-spacing: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #000;
+    border-radius: 20px;
+}
+.service_area {
+    width: 1200px;
+    margin: 0 auto;
+    background: #004080;
+}
+
+.service_area .notice,
+.service_area .qna,
+.service_area .cs_center {
+    float: left;
+    width: 32%;
+}
+.service_area .notice dl,
+.service_area .qna dl,
+.service_area .cs_center dl,
+.service_area .qna dl dt,
+.service_area .cs_center dl dt {
+    font-size: 25px;
+    margin-bottom: 10px;
+    font-weight: 400;
+}
+.service_area .notice tr, .service_area .notice td {font-size:12px;}
+.service_area .qna dl dt,
+.service_area .cs_center dl dt,
+.service_area .qna .sub_dt,
+.service_area .cs_center .sub_dt {
+    display: inline;
+}
+
+.service_area .qna dl .dd_point,
+.service_area .cs_center dl .dd_point {
+    font-size: 18px;
+    line-height: 25px;
+    margin-top:10px;
+}
+
+.service_area .qna dl dd,
+.service_area .cs_center dl dd {
+    font-size: 12px;
+}
+.service_area .cs_center dl dd a {
+    display:block; margin: 15px 2px; padding:3px 0;
+}
+
+#footer {
+    clear: both;
+    float: none;
+    background-color: #1e1e1e;
+}
+
+#footer .footer_inner {
+    width: 1200px;
+    margin: 0 auto;
+    padding: 37px 0;
+}
+#footer .footer_inner .footer_list li {position: relative; display:inline-block; margin-right:12px; margin-bottom: 10px;}
+
+#footer .footer_inner .footer_list li a{
+    margin-right: 8px;
+    font-size: 12px;
+    color: #aeaeae;}
+#footer .footer_inner .txt_copyright {
+    display: block;
     padding-top: 2px;
     font-size: 12px;
     color: #aeaeae;
     clear: both;
-    content: '';}
-#footer .footer_inner .txt_copyright a {padding-top: 2px;
-font-size: 12px;
-color: #aeaeae;}
-#footer .footer_inner .txt_copyright a:hover, #footer .footer_inner .txt_copyright a:focus{
-text-decoration: underline;
+    content: '';
+}
+
+#footer .footer_inner .txt_copyright a {
+    padding-top: 2px;
+    font-size: 12px;
+    color: #aeaeae;
+}
+
+#footer .footer_inner .txt_copyright a:hover,
+#footer .footer_inner .txt_copyright a:focus {
+    text-decoration: underline;
 }
