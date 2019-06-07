@@ -56,22 +56,79 @@ public class ReportControl extends HttpServlet {
 	}
 	protected void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReportService service = ReportService.getInstance();
-		ArrayList<ReportDTO> list = service.selectS(0, 1);
+		String pageStr = request.getParameter("pg");
+		
+		int rowCnt = 3;
+		int page = 1;
+		
+		if(pageStr!=null) {//page 가 초기값이 아닌 경우 저장
+			page = Integer.parseInt(pageStr);
+		}
+		
+		int begin =(page*rowCnt)-(rowCnt-1);// 2x5-4
+		int end =(page*rowCnt);//2x5 
+		
+		
+		int total = service.getTotalS();
+		int allPage = (int)Math.ceil(total/(double)rowCnt);
+		int block = 4;
+		
+		int fromPage= ((page-1)/block*block)+1;
+		int toPage = ((page-1)/block*block)+block;
+		if(toPage>allPage) {
+			toPage=allPage;
+		}
+		
+		ArrayList<ReportDTO> list = service.selectS(0, 1, begin, end);
 		request.setAttribute("list",  list);
+		request.setAttribute("page", page);
+		request.setAttribute("fromPage", fromPage);
+		request.setAttribute("toPage", toPage);
+		request.setAttribute("allPage", allPage);		
+		request.setAttribute("block", block);
+		
 		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
 		rd.forward(request, response);
 	}
 	protected void listC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ReportService service = ReportService.getInstance();
+		String pageStr = request.getParameter("pg");
+		
+		int rowCnt = 3;
+		int page = 1;
+		
+		if(pageStr!=null) {//page 가 초기값이 아닌 경우 저장
+			page = Integer.parseInt(pageStr);
+		}
+		
+		int begin =(page*rowCnt)-(rowCnt-1);// 2x5-4
+		int end =(page*rowCnt);//2x5 
+		
+		
+		int total = service.getTotalS();
+		int allPage = (int)Math.ceil(total/(double)rowCnt);
+		int block = 3;
+		
+		int fromPage= ((page-1)/block*block)+1;
+		int toPage = ((page-1)/block*block)+block;
+		if(toPage>allPage) {
+			toPage=allPage;
+		}
+		
 		ArrayList<ReportDTO> list = null;
 		String m = request.getParameter("m");
 
 		if(m.equals("listR")) {
-			list = service.selectS(0, 0);
+			list = service.selectS(0, 0, begin, end);
 		}else if(m.equals("listC")) {
-			list = service.selectS(1, 1);
+			list = service.selectS(1, 1, begin, end);
 		}
 		request.setAttribute("list",  list);
+		request.setAttribute("page", page);
+		request.setAttribute("fromPage", fromPage);
+		request.setAttribute("toPage", toPage);
+		request.setAttribute("allPage", allPage);		
+		request.setAttribute("block", block);
 		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
 		rd.forward(request, response);
 	}

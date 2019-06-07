@@ -14,7 +14,7 @@
 
 <form action="rBoard.do">
 <select name="m">
-<option value="list">--처리상태--</option>
+<option value="0">--처리상태--</option>
 <option value="list">모두보기</option>
 <option value="listR">처리중</option>
 <option value="listC">처리완료</option>
@@ -31,6 +31,14 @@
 <th>등록일</th>
 <th>처리상태</th>
 </tr>
+<%
+	int pg = (int) request.getAttribute("page");
+	int fromPage = (int) request.getAttribute("fromPage");
+	int toPage = (int) request.getAttribute("toPage");
+	int allPage = (int) request.getAttribute("allPage");
+	int block = (int) request.getAttribute("block");
+%>
+
 
 <c:if test="${list.size() == 0}">
 			<tr>
@@ -50,3 +58,46 @@
 </c:forEach>
 
 </table>
+
+
+
+<br>
+			 <div class="page_num">
+				<ul>					
+						<%
+							if (pg > block) { //처음, 이전 링크
+						%> 
+						<li><a href="rBoard.do?pg=1">◀◀</a></li> <li><a href="rBoard.do?pg=<%=fromPage - 1%>">◀</a></li>
+						<%
+							} else {
+						%><li><span style="color: gray">◀◀</span></li> <li><span	style="color: gray">◀</span></li>
+						<%
+							}
+						%> 
+						<%
+						 	for (int i = fromPage; i <= toPage; i++) {
+						 		if (i == pg) {
+						 %>
+						  <li><span><%=i%></span></li>
+						  <%
+						 		} else {
+						 %> 
+						 <li><a href="rBoard.do?pg=<%=i%>"><%=i%></a></li>
+						 <%
+						 		}
+						 	}
+						 %> 
+						 <%
+						 	if (toPage < allPage) { //다음, 이후 링크
+						 %>
+						  <li><a href="rBoard.do?pg=<%=toPage + 1%>">▶</a></li> <li><a href="rBoard.do?pg=<%=allPage%>">▶▶</a></li>
+						<%
+						 	} else {
+						 %> <li><span style="color: gray">▶</span></li> <li><span style="color: gray">▶▶</span></li> 
+						<%
+						 	}
+						 %>					
+				</ul>
+			</div>			
+		</div>
+	</div>

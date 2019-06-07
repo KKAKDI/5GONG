@@ -26,17 +26,23 @@ public class ReportDAO {
 		}catch(NamingException ne) {		
 		}
 	}
-	ArrayList<ReportDTO> select(int i, int k){
+	ArrayList<ReportDTO> select(int i, int k, int begin,int end){
 		ArrayList<ReportDTO> list = new ArrayList<>();
 		Connection con = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement pstmt, pstmtPage = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(ReportSQL.sqlS);
-			pstmt.setInt(1, i);
-			pstmt.setInt(2, k);
-			rs = pstmt.executeQuery();
+			//pstmt = con.prepareStatement(ReportSQL.sqlS);
+			pstmtPage = con.prepareStatement(ReportSQL.sqlS);
+			
+			pstmtPage.setInt(1, i);
+			pstmtPage.setInt(2, k);
+			pstmtPage.setInt(3, begin);
+			pstmtPage.setInt(4, end);
+			//rs = pstmt.executeQuery();
+			rs = pstmtPage.executeQuery();
+			System.out.println("sql : select R_NO, R_SUBJECT, R_CONTENT, R_FILE, R_FILE_COPY, R_EMAIL, R_NICK, R_WRITEDATE, R_STATE from REPORT where (R_STATE="+ i + " or R_STATE=" + k + ") and (ROWNUM>=" + begin +" AND ROWNUM<=" + end + ") order by R_NO desc");
 			while(rs.next()) {
 				int rNO = rs.getInt("R_NO");
 				String rSubject = rs.getString("R_SUBJECT");
@@ -47,17 +53,19 @@ public class ReportDAO {
 				String rNick = rs.getString("R_NICK");
 				java.sql.Date rWriteDate = rs.getDate("R_WRITEDATE");
 				String rState = rs.getString("R_STATE");
+				//System.out.println("sql : select " + rNO + rSubject + rContent + rFile + rFileCopy + rEmail + rNick + rWriteDate + rState + " from REPORT where R_STATE=" + i + " or R_STATE=" + k + " and ROWNUM>=" + begin + " AND ROWNUM<=" + end + " order by " + rNO + " desc");
 				ReportDTO dto = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState);
 				list.add(dto);
 			}
 			return list;
 		}catch(SQLException se) {
-			System.out.println(se);
+			System.out.println("sql¿À·ù1 : " + se);
 			return null;
 		}finally {
 			try {
 				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
+				//if(pstmt != null) pstmt.close();
+				if(pstmtPage != null) pstmtPage.close();
 				if(con != null) con.close();
 			}catch(SQLException se) {
 			}
@@ -142,5 +150,34 @@ public class ReportDAO {
 			}catch(SQLException se) {
 			}
 		}
+	}
+	
+	int getTotal() {
+		int cnt = 0;
+		Connection con = null;
+		Statement stmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = ds.getConnection();
+			stmt = con.createStatement();
+			rs = stmt.executeQuery(ReportSQL.sql_TOTAL);
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+			return cnt;
+		} catch (SQLException se) {		
+			return cnt;
+		} finally {
+			try {
+				if (rs != null)
+					rs.close();
+				if (stmt != null)
+					stmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		} 		
 	}
 }
