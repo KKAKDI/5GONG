@@ -32,98 +32,116 @@
 	<script src="js/main.js"></script>
 </head>
 <body>
-<div class="wrap">
-	<div id="skip_navi" class="skip_navi">
-		<div class="skip_wrap">
-			<a href="#content">본문 내용 바로가기</a>
-			<a href="#GNB">주 메뉴 바로가기</a>
+	<div class="wrap">
+		<div id="skip_navi" class="skip_navi">
+			<div class="skip_wrap">
+				<a href="#content">본문 내용 바로가기</a>
+				<a href="#GNB">주 메뉴 바로가기</a>
+			</div>
 		</div>
-	</div>
-	<header id="header">
-		<div class="logo"><a href=""><img src="images/logo.png" alt="logo"></a></div>
-		<div class="search">
-			<form name="search" action="검색서블릿" method="POST">
-				<div class="search_radio">
-					<label><input type="radio" name="radio">팝니다</label>
-					<label><input type="radio" name="radio">삽니다</label>
-				</div>
-				<div class="search_bar">
-					<input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
-				</div>
-				<div class="search_button">
-					<input type="submit" value="검색">
-				</div>
-			</form>	
- 		</div>
-		<div class="location">
+		<header id="header" class="clearflx">
+			<div class="logo"><a href=""><img src="images/logo.png" alt="logo"></a></div>
+			<div class="search">
+				<form action="검색서블릿" method="POST">
+					<div class="search_radio">
+						<input type="radio" id="ra_sell" name="radio">
+						<label for="ra_sell"><span class="span_sell"></span>팝니다</label>
+						<input type="radio" id="ra_buy" name="radio">
+						<label for="ra_buy"><span class="span_buy"></span>삽니다</label>
+						<!--radio 버튼을 숨기고 css로 효과를 label사용 id 부여 후 사용 용도에 맞게 id for 동기화-->
+					</div>
+					<div class="search_bar">
+						<input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
+					</div>
+					<div class="search_button">
+						<input type="submit" value="검색">
+					</div>
+				</form>	
+			 </div>
+			<div class="location">
+				<ul>
+					<li><a href="">Login</a></li>
+					<li><a href="">Join</a></li>
+					<li><a href="">absdrfe</a></li>
+					
+				</ul>
+			</div>
+		</header>
+		<nav id="GNB">
 			<ul>
-				<li><a href="">Login</a></li>
-				<li><a href="">Join</a></li>
-				<li><a href="">absdrfe</a></li>
-				
+				<li>
+					<a href="">새소식</a>
+					<ul class="sub">
+						<li><a href="">공지사항</a></li>
+						<li><a href="">이벤트</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">중고거래</a>
+					<ul class="sub">
+						<li><a href="">상품목록</a></li>
+						<li><a href="">상품등록</a></li>
+						<li><a href="">상품수정</a></li>
+						<li><a href="">상품삭제</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">자유게시판</a>
+					<ul class="sub">
+						<li><a href="">게시판목록</a></li>
+						<li><a href="">글 작성</a></li>
+						<li><a href="">글 수정</a></li>
+						<li><a href="">글 상세</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">고객센터</a>
+					<ul class="sub">
+						<li><a href="">FnA</a></li>
+						<li><a href="">신고목록</a></li>
+						<li><a href="">신고작성</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+		<div class="keyvisual">
+			<ul class="gallery">
+				<li><img src="images/key1.jpg" alt=""></li>
+				<li><img src="images/key2.jpg" alt=""></li>
+				<li><img src="images/key3.jpg" alt=""></li>
+				<li><img src="images/key4.jpg" alt=""></li>
+			</ul>
+			<ul class="direction_nav">
+				<li class="left"><a href="" title="left"><img src="images/btn_left.png"></a></li>
+				<li class="right"><a href="" title="right"><img src="images/btn_right.png"></a></li>
 			</ul>
 		</div>
-	</header>
-	<nav id="GNB">
-		<ul>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="">menu</a>
-				<ul class="sub">
-					<li><a href="">menu</a></li>
-					<li><a href="">menu</a></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-	<div class="keyvisual">
-		<ul class="gallery">
-			<li><img src="images/key1.jpg" alt=""></li>
-			<li><img src="images/key2.jpg" alt=""></li>
-			<li><img src="images/key3.jpg" alt=""></li>
-			<li><img src="images/key4.jpg" alt=""></li>
-		</ul>
-		<ul class="direction_nav">
-			<li class="left"><a href="" title="left"><img src="images/btn_left.png"></a></li>
-			<li class="right"><a href="" title="right"><img src="images/btn_right.png"></a></li>
-		</ul>
 	</div>
-</div>
+	<section id="content" class="clearflx">
+		<div class="product_area">
+			<div class="pro_buy"></div>
+			<div class="pro_sell"></div>
+			<div class="pro_now"></div>
+		</div>
+		<div class="user_area">
+			<div class="free_board_top"></div>
+			<div class="free_board"></div>
+		</div>
+		<div class="ad_zone">
+			<a href=""><img src="" alt="promo_product_image"></a>
+		</div>
+		<div class="service_area">
+			<div class="notice">
+
+			</div>
+			<div class="cs_zone">
+				
+			</div>
+		</div>
+	</section>
+	<footer id="footer">
+		<div class="footer_inner">
+		</div>
+	</footer>
 </body>
 </html>
