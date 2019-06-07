@@ -23,10 +23,13 @@ public class NewsService {
 	public void deleteD(int n_no) {
 		dao.delete(n_no);
 	}
-	public NewsDTO viewU(NewsDTO dto) {
-		return dao.view(dto);
+	public NewsDTO updateviewU(NewsDTO dto) {
+		return dao.updateview(dto);
 	}
 	public void updateU(NewsDTO dto) {
 		dao.update(dto);
 	}
+	public void viewU(int n_no) {
+	      dao.view(n_no);
+	   }
 }

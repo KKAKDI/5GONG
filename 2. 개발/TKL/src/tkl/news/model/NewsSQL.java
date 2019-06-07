@@ -7,6 +7,7 @@ public class NewsSQL {
 			+ "values(NEWS_n_no.nextval,?,?,?,0,SYSDATE,?)";
 	static final String sqlC = "select n_no, n_nick, n_subject, n_division, n_content from NEWS where n_no=?";
 	static final String sqlD = "delete from NEWS where n_no=?";
-	static final String sqlV = "select n_no, n_nick, n_subject, n_content , n_division from NEWS where n_no=?";
+	static final String sqlUV = "select n_no, n_nick, n_subject, n_content , n_division from NEWS where n_no=?";
 	static final String sqlU = "update NEWS set n_subject=?, n_content=? where n_no=?";
+	static final String sqlView = "update News set n_view = n_view+1 where n_no = ?";
 }
