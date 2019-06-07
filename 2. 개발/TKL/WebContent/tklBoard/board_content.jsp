@@ -1,74 +1,66 @@
-<%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.board.model.BoardDTO"%>
+<%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.board.model.BoardDTO,tkl.bReply.model.ReplyDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset='utf-8'>
 <center>
 <link rel="stylesheet" type="text/css" href="http://image.lgeshop.com/css/style_2005.css">
+
 <html>
   <head>
     <title>reboard_content.jsp</title>
-
   </head>
+  
   <body>
     <center>
-	  <hr width="600" color="Maroon" size="2" noshade>
-	    <font size="5" color="Navy">
+	  <hr>
+	    <font>
 		  <b>JSS board</b>
 		</font>
 		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  <a href="jboard.do">목록</a>
+		  <a href="board.do">목록</a>
 		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  <a href='index.do'>메인</a>
-		  
-	  <hr width="600" color="Maroon" size="2" noshade>
-	  
-	  
-<%
-	BoardDTO dto = (BoardDTO)request.getAttribute("dto");
-
-%>
-
-
+		  <a href='index.jsp'>메인</a>
+	  <hr>
 	  <table align="center" width="600" cellspacing="1" 
 	                          cellpadding="3" border="1" id="table">
 		<tr>
 		  <td align="center" width="15%"><b>순번</b></td>
-		  <td align="center" width="35%">&nbsp;<%=dto.getIdx() %></td>
+		  <td align="center" width="35%">&nbsp;${dto.bNo}</td>
 		  <td align="center" width="15%"><b>날짜</b></td>
 		  <td align="center" width="35%">
-			&nbsp;<%=dto.getWritedate() %>
+			&nbsp;${dto.bContent}
 		  </td>
 		</tr>
 		<tr>
-		  <td align="center" width="15%"><b>글쓴이</b></td>
-		  <td align="center" width="35%">
-			&nbsp; <%=dto.getWriter() %>
+		  <td><b>글쓴이</b></td>
+		  <td>
+			&nbsp;${dto.mNick}
 	      </td>
-		  <td align="center" width="15%"><b>HomePage</b></td>
-		  <td align="center" width="35%">
-		    &nbsp;<%=dto.getHomepage() %>
+		  <td><b>HomePage</b></td>
+		  <td>
+		    &nbsp;${dto.mNick}
 		  </td>
 		</tr>
 		<tr>
-		  <td colspan="3">&nbsp;</td>
-		  <td><b>조회수</b> : <%=dto.getReadnum() %></td>
+		  <td>&nbsp;</td>
+		  <td><b>조회수</b> : ${dto.bView}</td>
 		</tr>
 		<tr>
-		  <td colspan="2"><b>제목</b> : <%=dto.getSubject() %></td>
-		  <td colspan="2"><b>첨부파일</b>: <a href="jboard/download.jsp?filename=<%=dto.getFilename()%>"><%=dto.getOfilename() %></a>
+		  <td><b>제목</b> : ${dto.bSubject}</td>
+		  <td><b>첨부파일</b>: <a href="board.do?m=board_download&bImgCopy=${dto.bImgCopy}">${dto.bImg}</a>
 
 		  </td>
 		</tr>
 		<tr>
 
-		  <td colspan="4"><%=dto.getContent() %></td>
+		  <td><img src="image//${dto.bImg}"></img>
+		  <br/>${dto.bContent}</td>
 		</tr>
 		<tr>
-		  <td colspan="4" align="center">
-		    <hr width="550" color="Maroon" size="2" noshade>
-			<!----------------- re 변화 2 ---------------->
-			<a href="jboard.do?method=list">목록</a> | 
-			<a href="jboard.do?m=updateForm&idx=<%=dto.getIdx()%>">편집</a> | 
-			<a href="jboard.do?m=deleteForm&idx=<%=dto.getIdx()%>">삭제</a> | 
-			<a href="jboard.do?m=reply&idx=<%=dto.getIdx()%>&subject=<%=dto.getSubject()%>">답변</a>
+		  <td>
+		    <hr>
+			<!----------------- re 변화 2 ----------------> 
+			<a href="board.do?m=board_update_form&bNo=${dto.bNo}">편집</a> | 
+			<a href="board.do?m=board_delete&bNo=${dto.bNo}&bImgCopy=${dto.bImgCopy}">삭제</a>  
 		    <!-- <a href=
 	"reboard_rewrite.jsp?idx=13&ref=9&lev=0&sunbun=0&cp=1">
 			  답변
@@ -90,10 +82,10 @@
 
               }
           </script>
-		  <form name="f1" action="jboard.do?m=reply_check&idx=<%=dto.getIdx() %>&writer=<%=dto.getWriter() %>" method="post">
+		  <form name="f1" action="board.do?m=replyIn&bNo=${dto.bNo}" method="post">
 			  <td colspan="3">
 			     <input type="hidden" name="method" value="replySave">
-				 <input type="text" name="content_reply" size="50">
+				 <input type="text" name="brContent" size="50">
 				 &nbsp;&nbsp;비밀번호
 				 <input type="text" name="pwd_reply" size="10">
 				 <input type="button" value="등록" onclick="check()">
@@ -103,8 +95,15 @@
 	  </table>
 	  
 	  <br><hr width="600" color="Maroon" size="2" noshade><br>
-	  
-	  
+	  <!-- 추천 및 삭제 폼 -->
+		${dto.bLike}
+<div class="row">
+
+<div class="col-lg-6 mt-3">
+	
+	<a onclick="return confirm('추천하시겠습니까?')" href="board.do?m=board_like&bNo=${dto.bNo}&brNo=${rDto.brNo}&">추천</a> 
+</div>
+</div>
 <script language="javascript">     
       function replyDelCheck(idx_reply)
       {
@@ -117,8 +116,7 @@
              yesNo = confirm("로그인을 하시겠습니까?");
              if(yesNo)
              {
-                  location.href="/M2Project/login.do";   
-      
+                  location.href="/M2Project/login.do";
              }
              else
              {
@@ -134,39 +132,29 @@
           }
       }
 </script>
-		
       <table align="center" width="600" cellspacing="1" 
 	                          cellpadding="3" border="1"> 
-		 <tr align="center">
-		     <td colspan="2">
-			    <font color="red"><b>R E P L Y</b></font>
+		 <tr>
+		 	<c:forEach items="${rList}" var="rDto">
+	
+	
+	<tr>
+	<td>${rDto.mNick}</td>
+	<td>${rDto.brContent}</td>
+	<td>${rDto.brWriteDate}</td>
+	<td>${rDto.brLike}</td>
+	<td>${rDto.brDisLike}</td>
+	<td width="10%"> 
+		<a href="board.do?m=reply_delete&bNo=${dto.bNo}&brNo=${rDto.brNo}&"> 삭제</a>
+	</td>
+	</tr>
+	</c:forEach>
+		     <td>
+			    <font><b>R E P L Y</b></font>
 			 </td>
 		 </tr>
-		 
-<%
-		ArrayList<ReplyDTO> rdto = (ArrayList<ReplyDTO>)request.getAttribute("list");
-		for(ReplyDTO temp : rdto){			
-%>
-                     <tr align="center">
-                       <td width="90%">
-
-		<%=temp.getReplyContent()%><br>
-		(writer:<%=temp.getReplyId()%>, writedate:<%=temp.getReplyDate()%>)
-
-					   </td>
-					   <td width="10%"> 
-					     <a href="jboard.do?m=secretIn&replyIdx=<%=temp.getIdx()%>&idx=<%=dto.getIdx() %>&"> 삭제</a>
-					   </td>
-				     <tr>    
-<%
-		}
-%>
-
-
 	  </table>
 	  </div>
 	</center>
   </body>
 </html>
-
-
