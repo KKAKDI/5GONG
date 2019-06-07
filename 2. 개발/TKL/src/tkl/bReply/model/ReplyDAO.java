@@ -21,6 +21,7 @@ public class ReplyDAO {
 		}
 	}
 	void replyIn(int bNo, String brContent) {
+		System.out.println("replyIn()");
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {

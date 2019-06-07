@@ -14,11 +14,10 @@ public class BoardService {
 	public static BoardService getInstance() {
 		return instance;
 	}
-	public ArrayList<BoardDTO> boardList(){
-		
-		return dao.boardList();
-		
+	public ArrayList<BoardDTO> boardList(String sk, String sv){
+		return dao.boardList(sk,sv);
 	}
+
 	public void insertS(BoardDTO dto) {
 		dao.insert(dto);
 	}
@@ -30,6 +29,9 @@ public class BoardService {
 	}
 	public void boardDeleteS(int bNo) {
 		dao.boardDelete(bNo);
+	}
+	public void boardLikeS(int bNo) {
+		dao.boardLike(bNo);
 	}
 	public void boardUpdateS(int bNo, String bSubject, String bContent, String bImg, String bImgCopy) {
 		dao.boardUpdate(bNo, bSubject, bContent, bImg, bImgCopy);	

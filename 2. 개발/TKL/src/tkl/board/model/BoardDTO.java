@@ -13,9 +13,10 @@ public class BoardDTO {
 	private int bView;
 	private int bLike;
 	private Date bWriteDate;
+	private int CNT;
 	public BoardDTO() {}
 	public BoardDTO(int bNo, String mEmail, String mNick, String bSubject, String bContent, String bImg,
-			String bImgCopy, int bView, int bLike, Date bWriteDate) {
+			String bImgCopy, int bView, int bLike, Date bWriteDate, int CNT) {
 		super();
 		this.bNo = bNo;
 		this.mEmail = mEmail;
@@ -27,6 +28,7 @@ public class BoardDTO {
 		this.bView = bView;
 		this.bLike = bLike;
 		this.bWriteDate = bWriteDate;
+		this.CNT = CNT;
 	}
 	public int getbNo() {
 		return bNo;
@@ -88,6 +90,13 @@ public class BoardDTO {
 	public void setbWriteDate(Date bWriteDate) {
 		this.bWriteDate = bWriteDate;
 	}
+	public int getCNT() {
+		return CNT;
+	}
+	public void setCNT(int cNT) {
+		CNT = cNT;
+	}
+	
 	
 	
 	
