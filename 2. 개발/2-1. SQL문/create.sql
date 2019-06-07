@@ -16,8 +16,8 @@ ALTER TABLE MEMBER ADD CONSTRAINT PK_MEMBER PRIMARY KEY (M_EMAIL, M_NICK);
 -- 회원 금융 정보
 CREATE TABLE MONEY_MEMBER(
 	NAME	    VARCHAR2(40)          NOT NULL,   -- 본명
-	PHONE       VARCHAR2(40)   UNIQUE NOT NULL,   -- 번호
-	BANK        VARCHAR2(200)         NOT NULL,   -- 은행
+	PHONE       VARCHAR2(40)	  NOT NULL,   -- 번호
+	BANK        VARCHAR2(200) UNIQUE  NOT NULL,   -- 은행
 	ACT_NUMBER  VARCHAR2(100)         NOT NULL,   -- 계좌번호
 	ACT_HOLDER  VARCHAR2(40)          NOT NULL    -- 계좌주
 );
@@ -28,10 +28,10 @@ CREATE TABLE PRODUCT (
     PD_NO       NUMBER          NOT NULL,       --거래번호
     PD_EMAIL    VARCHAR2(40)    NULL,           --이메일
     PD_NICK     VARCHAR2(30)    NULL,           --닉네임
-    PD_STATUS   CHAR(2)         NULL,           --진행상태
+    PD_STATUS   VARCHAR2(30)    NULL,           --진행상태
     PD_BUYER    VARCHAR2(30)    NULL,           --구매자
     PD_NAME     VARCHAR2(100)   NULL,           --상품명
-    PD_CLASS    CHAR(2)         NULL,           --상품유형
+    PD_CLASS    VARCHAR2(30)    NULL,           --상품유형
     PD_PRICE    NUMBER          NULL,           --상품가격
     PD_SUBJECT  VARCHAR2(100)   NULL,           --상품제목
     PD_CONTENT  VARCHAR2(4000)  NULL,           --상품내용
