@@ -254,6 +254,7 @@ body {
 .keyvisual .gallery li {
     float: left;
     width: 25%;
+    height:500px;
 }
 
 .keyvisual .gallery li img {
@@ -268,9 +269,27 @@ body {
 }
 
 .keyvisual .direction_nav li.left {
-    left: 20px;
+    left: 100px;
 }
 
 .keyvisual .direction_nav li.right {
-    right: 20px;
+    right: 100px;
 }
+#content {background-color:#773dab;}
+#content .product_area {border: 1px solid #111;}
+#content .product_area .pro_buy, #content .product_area .pro_sell, #content .product_area .pro_now {
+    width:
+    border: 1px solid #111;
+}
+/* 
+#content .product_area .pro_sell {border: 1px solid #111;}
+#content .product_area .pro_now {border: 1px solid #111;} */
+#content .user_area {}
+#content .user_area .free_boaed_top {}
+#content .user_area .free_boaed {}
+#content .ad_zone {background-attachment: fixed;}
+#content .service_area {}
+#content .service_area .notice {}
+#content .service_area .cs_zone {}
+#footer {}
+#footer .footer_inner {}
