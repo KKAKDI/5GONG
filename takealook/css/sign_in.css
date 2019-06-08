@@ -1,14 +1,30 @@
 @charset "utf-8";
-div[id$="ck"]{display: none;}
+
+div[id$="ck"] {
+    display: none;
+}
+
 .login_page {
     position: absolute;
     left: 50%;
     top: 15%;
     z-index: 99999;
     width: 600px;
+    height: 650px;
     margin-left: -300px;
     text-align: center;
-    background: rgba(36, 121, 218, 0.829);
+    background: #f7f7f7;
+}
+
+.login_page .sign_in .upper a {
+    display: block;
+    margin: 70px 0 30px 0;
+}
+
+.login_page .sign_in .upper span {
+    display: block;
+    font-size: 13px;
+    letter-spacing: -0.3px;
 }
 
 .login_page .sign_in .login_box {
@@ -18,8 +34,8 @@ div[id$="ck"]{display: none;}
 }
 
 .login_page .sign_in .login_box p {
-
     text-align: right;
+    height: 30px;
 }
 
 .login_page .sign_in .login_box label {
@@ -33,21 +49,21 @@ div[id$="ck"]{display: none;}
 .login_page .sign_in .login_box input[type=text],
 .login_page .sign_in .login_box input[type=password] {
     display: inline-block;
-    width: 235px;
-    padding: 7px 0;
+    width: 225px;
+    padding: 7px 4px;
     font-family: "Open Sans", sans-serif;
     font-size: 14px;
     color: #000;
-    background: transparent;
+    background-color: #fff;
     outline: none;
     border: none;
-    transition: 0.3s;
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
 .login_page .sign_in .login_box input[type=text]:focus,
 .login_page .sign_in .login_box input[type=password]:focus {
-    background-color: #444;
-    color: #fff;
+    opacity: 1;
 }
 
 .login_page .sign_in input[type=text],
@@ -60,27 +76,48 @@ div[id$="ck"]{display: none;}
 
 .login_page .sign_in input[type=button],
 .login_page .sign_in input[type=submit] {
-    width: 250px;
+    width: 300px;
     padding: 10px 20px;
     vertical-align: middle;
     font-family: "Open Sans", sans-serif;
     font-size: 0.875rem;
-    background-color: transparent;
-    color: #444;
+    background-color: #fff;
+    color: #212121;
     border: none;
     cursor: pointer;
     -webkit-transition: 0.3s;
     transition: 0.3s;
+    opacity: 0.7;
+    transition: opacity 0.3s;
 }
 
 .login_page .sign_in input[type=button]:hover,
 .login_page .sign_in input[type=button]:focus,
 .login_page .sign_in input[type=submit]:hover,
 .login_page .sign_in input[type=submit]:focus {
-    
+    opacity: 1;
     font-weight: 600;
-    background-color: #444;
-    color: #ccc;
+    color: #e1e1e1;
+}
+
+.login_page .sign_in .bg_cos:hover,
+.login_page .sign_in .bg_cos:focus {
+    background-color: #212121;
+}
+
+.login_page .sign_in .kakao:hover,
+.login_page .sign_in .kakao:focus {
+    background-color: #3b1e1e;
+}
+
+.login_page .sign_in .google:hover,
+.login_page .sign_in .google:focus {
+    background-color: #1a73e8;
+}
+
+.login_page .sign_in .bg_newmem:hover,
+.login_page .sign_in .bg_newmem:focus {
+    background-color: #15005d;
 }
 
 .dim {
