@@ -25,11 +25,12 @@
 <body>
 	<h2>상품 수정</h2>
 	&nbsp;&nbsp;&nbsp;<a href='product.do'>상품목록</a>
+	&nbsp;&nbsp;&nbsp;<a href='product.do?m=content&pd_no=${update_form.pd_no}'>상품 상세정보</a>
 	<form name='f' method='post' action='product.do?m=update&pd_no=${update_form.pd_no}&pd_class=${update_form.pd_class}'>
 	<table>
 		<tr>
 			<td rowspan="7"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
-        <img id="blah" src="product.do?m=content_img&pd_img_copy=${update_form.pd_img_copy}" alt="이미지" /></td>
+        <img id="blah" src="product.do?m=content_img&pd_img_copy=${update_form.pd_img_copy}" alt="이미지를 넣어주세요" /></td>
 			<td colspan="2">상품번호 : ${update_form.pd_no}</td>
 		</tr>
 		<tr>

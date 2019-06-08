@@ -31,7 +31,7 @@
 <body onload="f.name.focus()">
 	<form name="f" method="post" action="../product.do?m=reg" enctype="multipart/form-data">
 		<input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png" multiple/><br/>
-        <img id="blah" src="#" alt="이미지" />
+        <img id="blah" src="#" alt="이미지를 넣어주세요" />
 		<table>
 			<tr>
 				<td>제목 : <input type="text" name="pd_subject"></td>
@@ -48,6 +48,7 @@
 					</select>
 				</td>
 			</tr>
+			<!--  
 			<tr>
 				<td>진행상태 : 
 					<select name="pd_status">
@@ -57,12 +58,9 @@
 						<option value="거래완료">거래완료</option>
 					</select>
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td>가격 : <input type="text" name="pd_price"></td>
-			</tr>
-			<tr>
-				<td>판매자 : <input type="text" name="pd_nick"></td>
 			</tr>
 			<tr>
 				<td colspan='2'>글내용 : <textarea name="pd_content" rows="10" cols="60"></textarea></td>

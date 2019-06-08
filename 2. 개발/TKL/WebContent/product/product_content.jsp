@@ -5,17 +5,12 @@
 <meta charset="utf-8">
 <title>상품 상세정보</title>
 </head>
-<!--  
-<script type="text/javascript">
-function showPopup() { window.open("product/product_reply_upForm.jsp", "댓글 수정", "width=400, height=300, left=100, top=50"); }
-</script>
--->
 <body>
 	<h2>상품 상세정보</h2>
 	<a href='product.do?m=update_form&pd_no=${con.pd_no}'>상품수정</a>
 	&nbsp;&nbsp;&nbsp;<a href='product.do?m=delete&pd_no=${con.pd_no}&pd_img_copy=${con.pd_img_copy}'>상품삭제</a>
 	&nbsp;&nbsp;&nbsp;<a href='product.do'>상품목록</a>
-	<form name="f" method="post" action="product.do?m=reply_reg">
+	<form name="f" method="post" action="product.do?m=buy_complete">
 	<input type='hidden' name='pd_no' value='${con.pd_no}'>
 	<table>
 		<tr>
@@ -24,6 +19,9 @@ function showPopup() { window.open("product/product_reply_upForm.jsp", "댓글 �
 		</tr>
 		<tr>
 			<td colspan="2">상품유형 : ${con.pd_class}</td>
+		</tr>
+		<tr>
+			<td colspan="2">진행상태 : ${con.pd_status}</td>
 		</tr>
 		<tr>
 			<td colspan="2">상품이름 : ${con.pd_name}</td>
@@ -38,8 +36,7 @@ function showPopup() { window.open("product/product_reply_upForm.jsp", "댓글 �
 			<td>조회수 : ${con.pd_view}</td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><input type="button" value="구매하기"
-				onclick="location.href='product.do?m=list' "></td>
+		<td><input type="submit" value="구매하기"></td>
 		</tr>
 	</table>
 	<table>
@@ -50,11 +47,10 @@ function showPopup() { window.open("product/product_reply_upForm.jsp", "댓글 �
 			</tr>
 			<c:forEach items="${reply_list}" var="dto">
 			<tr>
-				<td>${dto.m_nick}</td>
+				<td>${dto.pd_nick}</td>
 				<td>${dto.pr_comment}</td>
 				<td>${dto.pr_writedate}</td>
 				<td>
-				<!-- <input type="button" value="수정" onclick="showPopup();">-->
 				<input type="button" value="삭제" onclick="location.href='product.do?m=reply_delete&pd_no=${con.pd_no}&pr_no=${dto.pr_no}'">
 				</td>
 			</tr>

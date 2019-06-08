@@ -35,4 +35,10 @@ public class ProductService {
 	public ArrayList<ProductDTO> selectBuyS(){
 		return dao.selectBuy();
 	}
+	public void buyCompleteS(ProductDTO dto) {
+		dao.buyComplete(dto);
+	}
+	public int PagingRowNumS() {
+		return dao.PagingRowNum();
+	}
 }

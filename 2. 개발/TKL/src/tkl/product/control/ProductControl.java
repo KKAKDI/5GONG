@@ -25,6 +25,7 @@ import tkl.product.model.ProductService;
 import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
 import tkl.preply.model.PreplyDTO;
+import tkl.product.model.PagingDTO;
 
 @WebServlet("/product.do")
 public class ProductControl extends HttpServlet {
@@ -57,6 +58,8 @@ public class ProductControl extends HttpServlet {
 				list_sel(request, response);
 			}else if(m.equals("list_buy")) {
 				list_buy(request, response);
+			}else if(m.equals("buy_complete")) {
+				buy_complete(request, response);
 			}else {
 				list(request, response);
 			}
@@ -66,7 +69,57 @@ public class ProductControl extends HttpServlet {
 	}
 	
 	private void list(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String currentPageStr = request.getParameter("currentPage");
+		if (currentPageStr == null) {
+			int currentPage = 0;
+			request.setAttribute("currentPage", currentPage);
+		} else {
+			int currentPage = Integer.parseInt(currentPageStr);
+			request.setAttribute("currentPage", currentPage);
+		}
+		int curBlock = 0;
+		if (request.getParameter("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getParameter("curBlock"));
+		}
+		int curPage1 = 0;
+		if (request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int pageSizePerBlock = 1;
+		int curPage = (Integer)request.getAttribute("currentPage");
+		//int tableRowNum =(Integer)request.getAttribute("tableRowNum");
 		ProductService service = ProductService.getInstance();
+		int tableRowNum = service.PagingRowNumS();
+		//curBlock = 1;
+		if(request.getAttribute("curBlock") != null){
+			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
+		}
+		int totalRecodeSize = tableRowNum;
+		curPage1 = curBlock*pageSizePerBlock;
+		if(request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int recodeSizePerPage =2;
+		int beginNum = curPage1 * recodeSizePerPage;
+		int pageSize = (int)Math.ceil((double)totalRecodeSize/recodeSizePerPage);
+		int startPage = curBlock*pageSizePerBlock;
+		int endPage = startPage + pageSizePerBlock;
+		
+		
+		//tableRowNum = service.PagingRowNumS();
+		
+		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("tableRowNum", tableRowNum);
+		request.setAttribute("curBlock", curBlock);
+		request.setAttribute("totalRecodeSize", totalRecodeSize);
+		request.setAttribute("curPage1", curPage1);
+		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
+		request.setAttribute("beginNum", beginNum);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
 		ArrayList<ProductDTO> list = service.selectS();
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_list.jsp");
@@ -87,8 +140,12 @@ public class ProductControl extends HttpServlet {
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxPostSize, encoding, policy); 
 		String pd_img_copy = mr.getFilesystemName("pd_img_copy");
 		String pd_img = mr.getOriginalFileName("pd_img_copy");
+		String pd_email = mr.getParameter("pd_email");
+		pd_email = "aaa@naver.com";
 		String pd_nick = mr.getParameter("pd_nick");
+		pd_nick = "닉네임1";
 		String pd_status = mr.getParameter("pd_status");
+		pd_status = "판매중";
 		String pd_name = mr.getParameter("pd_name");
 		String pd_class = mr.getParameter("pd_class");
 		String pd_priceStr = mr.getParameter("pd_price");
@@ -99,6 +156,7 @@ public class ProductControl extends HttpServlet {
 		
 		ProductService service = ProductService.getInstance();
 		ProductDTO dto = new ProductDTO();
+		dto.setPd_email(pd_email);
 		dto.setPd_nick(pd_nick);
 		dto.setPd_status(pd_status);
 		dto.setPd_name(pd_name);
@@ -120,7 +178,6 @@ public class ProductControl extends HttpServlet {
 		String realFolder = context.getRealPath(saveFolder);
 		String filePath = realFolder + "\\" + pd_img_copy;
 		try{
-			//File file = new File(filePath);
 			byte b[] = new byte[4096];
 			response.reset();
 			response.setContentType("application/octet-stream");
@@ -212,10 +269,14 @@ public class ProductControl extends HttpServlet {
 	
 	private void reply_reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pd_no = getPd_no(request);
+		//String m_email = request.getParameter("m_email");
+		//String m_nick = request.getParameter("m_nick");
 		String pr_comment = request.getParameter("pr_comment");
 		PreplyService service = PreplyService.getInstance();
 		PreplyDTO dto = new PreplyDTO();
 		dto.setPd_no(pd_no);
+		//dto.setM_email(m_email);
+		//dto.setM_nick(m_nick);
 		dto.setPr_comment(pr_comment);
 		service.regS(dto);
 		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
@@ -229,6 +290,35 @@ public class ProductControl extends HttpServlet {
 		PreplyService service = PreplyService.getInstance();
 		service.deleteS(pr_no);
 		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
+	}
+	
+	private void list_sel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductService service = ProductService.getInstance();
+		ArrayList<ProductDTO> list_sel = service.selectSelS();
+		request.setAttribute("list_sel", list_sel);
+		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_sel.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void list_buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ProductService service = ProductService.getInstance();
+		ArrayList<ProductDTO> list_buy = service.selectBuyS();
+		request.setAttribute("list_buy", list_buy);
+		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_buy.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void buy_complete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int pd_no = getPd_no(request);
+		String pd_status = request.getParameter("pd_status");
+		pd_status = "판매완료";
+		System.out.println("pd_status : " + pd_status);
+		ProductDTO dto = new ProductDTO();
+		dto.setPd_no(pd_no);
+		dto.setPd_status(pd_status);
+		ProductService service = ProductService.getInstance();
+		service.buyCompleteS(dto);
+		response.sendRedirect("product.do");
 	}
 	
 	private int getPd_no(HttpServletRequest request) {
@@ -249,21 +339,5 @@ public class ProductControl extends HttpServlet {
 		}else {
 			return -1;
 		}
-	}
-	
-	private void list_sel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductService service = ProductService.getInstance();
-		ArrayList<ProductDTO> list_sel = service.selectSelS();
-		request.setAttribute("list_sel", list_sel);
-		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_sel.jsp");
-		rd.forward(request, response);
-	}
-	
-	private void list_buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProductService service = ProductService.getInstance();
-		ArrayList<ProductDTO> list_buy = service.selectBuyS();
-		request.setAttribute("list_buy", list_buy);
-		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_buy.jsp");
-		rd.forward(request, response);
 	}
 }

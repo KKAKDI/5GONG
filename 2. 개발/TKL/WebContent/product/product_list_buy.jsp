@@ -30,10 +30,10 @@
 				<td>${dto.pd_no}</td>
 				<td>${dto.pd_status}</td>
 				<td>
-				<span id="a" style="color:gray;">[${dto.pd_class}]</span>
+				<span style="color:gray;">[${dto.pd_class}]</span>
 				<a href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a>
 				<c:if test="${dto.cnt != 0}">
-				<span id="a" style="color:red;">[${dto.cnt}]</span>
+				<span style="color:red;">[${dto.cnt}]</span>
 				</c:if>
 				</td>
 				<td>${dto.pd_nick}</td>

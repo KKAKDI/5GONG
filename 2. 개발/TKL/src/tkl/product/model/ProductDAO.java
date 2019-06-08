@@ -66,17 +66,19 @@ class ProductDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ProductSQL.sqlReg);
-			pstmt.setString(1, dto.getPd_nick());
-			pstmt.setString(2, dto.getPd_status());
-			pstmt.setString(3, dto.getPd_name());
-			pstmt.setString(4, dto.getPd_class());
-			pstmt.setInt(5, dto.getPd_price());
-			pstmt.setString(6, dto.getPd_subject());
-			pstmt.setString(7, dto.getPd_content());
-			pstmt.setString(8, dto.getPd_img());
-			pstmt.setString(9, dto.getPd_img_copy());
+			pstmt.setString(1, dto.getPd_email());
+			pstmt.setString(2, dto.getPd_nick());
+			pstmt.setString(3, dto.getPd_status());
+			pstmt.setString(4, dto.getPd_name());
+			pstmt.setString(5, dto.getPd_class());
+			pstmt.setInt(6, dto.getPd_price());
+			pstmt.setString(7, dto.getPd_subject());
+			pstmt.setString(8, dto.getPd_content());
+			pstmt.setString(9, dto.getPd_img());
+			pstmt.setString(10, dto.getPd_img_copy());
 			pstmt.executeUpdate();
 		}catch(SQLException se) {
+			System.out.println("에러>>>" + se);
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
@@ -91,14 +93,12 @@ class ProductDAO {
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			//pstmt = con.prepareStatement(ProductSQL.sqlUpView);
-			//pstmt.setInt(1, pd_no);
-			//pstmt.executeUpdate();
 			pstmt = con.prepareStatement(ProductSQL.sqlContent);
 			pstmt.setInt(1, pd_no);
 			rs = pstmt.executeQuery();
 			rs.next();
 			int pd_no1 = rs.getInt("pd_no");
+			String pd_status = rs.getString("pd_status");
 			String pd_name = rs.getString("pd_name");
 			String pd_class = rs.getString("pd_class");
 			int pd_price = rs.getInt("pd_price");
@@ -107,6 +107,7 @@ class ProductDAO {
 			java.sql.Date pd_regdate = rs.getDate("pd_regdate");
 			ProductDTO dto = new ProductDTO();
 			dto.setPd_no(pd_no1);
+			dto.setPd_status(pd_status);
 			dto.setPd_name(pd_name);
 			dto.setPd_class(pd_class);
 			dto.setPd_price(pd_price);
@@ -185,11 +186,9 @@ class ProductDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		//String pd_class = null;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ProductSQL.sqlListSel);
-			//pstmt.setString(1, pd_class);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int pd_no = rs.getInt("pd_no");
@@ -228,11 +227,9 @@ class ProductDAO {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		//String pd_class = null;
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(ProductSQL.sqlListBuy);
-			//pstmt.setString(1, pd_class);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int pd_no = rs.getInt("pd_no");
@@ -262,6 +259,45 @@ class ProductDAO {
 				if(rs != null) rs.close();
 				if(pstmt != null) pstmt.close();
 				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
+	void buyComplete(ProductDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ProductSQL.sqlBuyComplete);
+			pstmt.setString(1, dto.getPd_status());
+			pstmt.setInt(2, dto.getPd_no());
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
+	int PagingRowNum() {
+		Statement stmt = null;
+		Connection con = null;
+		try {
+			con = ds.getConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(ProductSQL.sqlPaging);
+			rs.next();
+			int num = rs.getInt("COUNT(*)");
+			return num;
+		}catch(SQLException se) {
+			System.out.println("PagingRowNum se : "+se);
+			return -1;
+		}finally {
+			try {
+				if(stmt !=null)stmt.close();
+				if(con !=null)con.close();
 			}catch(SQLException se) {}
 		}
 	}
