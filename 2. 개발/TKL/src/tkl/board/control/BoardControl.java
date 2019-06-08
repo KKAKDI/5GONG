@@ -69,11 +69,11 @@ public class BoardControl extends HttpServlet {
 		String currentPageStr = request.getParameter("currentPage");
 		String sk = request.getParameter("sk");
 		String sv = request.getParameter("sv");
+		request.setAttribute("sk", sk);
+		request.setAttribute("sv", sv);
 
 		// 페이징 가즈아
-		////// 이거는 위에 리스트
 		int i = searchCheck(sk, sv);
-
 		if (currentPageStr == null) {
 			int currentPage = 0;
 			request.setAttribute("currentPage", currentPage);
@@ -84,7 +84,6 @@ public class BoardControl extends HttpServlet {
 		int curBlock = 0;
 		if (request.getParameter("curBlock") != null) {
 			curBlock = Integer.parseInt(request.getParameter("curBlock"));
-			System.out.println("curBlock");
 		}
 		int curPage = 0;
 		if (request.getParameter("curPage") != null) {
@@ -92,8 +91,6 @@ public class BoardControl extends HttpServlet {
 		}
 
 		int pageSizePerBlock = 3;
-		// int curPage = (Integer)request.getAttribute("currentPage");
-		// int curBlock = 1;
 		if (request.getAttribute("curBlock") != null) {
 			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
 		}
@@ -105,13 +102,11 @@ public class BoardControl extends HttpServlet {
 		int recodeSizePerPage = 2;
 		int beginNum = curPage * recodeSizePerPage;
 		int pageSize = (int) Math.ceil((double) totalRecodeSize / recodeSizePerPage);
-
-		///////// 이거는 번호///
-
 		int startPage = curBlock * pageSizePerBlock;
 		int endPage = startPage + pageSizePerBlock;
-
+		
 		///// 여기는 집어 넣는곳
+		
 		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
@@ -127,11 +122,7 @@ public class BoardControl extends HttpServlet {
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
-
-		/// 페이징 능력 !!!
-
-		request.setAttribute("sk", sk);
-		request.setAttribute("sv", sv);
+		
 
 		RequestDispatcher rd = request.getRequestDispatcher("board/board_list.jsp");
 		rd.forward(request, response);
@@ -153,14 +144,11 @@ public class BoardControl extends HttpServlet {
 		FileRenamePolicy policy = new DefaultFileRenamePolicy();
 		MultipartRequest mr = new MultipartRequest(request, saveDir, maxPostSize, encoding, policy);
 		String bImgCopy = mr.getFilesystemName("bImg");
-		System.out.println("bImgCopy : " + bImgCopy);
 		String bImg = mr.getOriginalFileName("bImg");
 		System.out.println("bImg: " + bImg);
 		String mNick = mr.getParameter("mNick");
-		System.out.println("mNick : " + mNick);
 		String eMail = mr.getParameter("eMail");
 		String bSubject = mr.getParameter("bSubject");
-		System.out.println("bSubejct : " + bSubject);
 		String bContent = mr.getParameter("bContent");
 		String homepage = mr.getParameter("homepage");
 		String pwd = mr.getParameter("pwd");
