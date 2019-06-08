@@ -67,7 +67,7 @@ $(document).ready(function(){
   });
 
   $("#signup").click(function(){
-    location.href("sign_up.jsp");
+    location.href="sign_up.jsp";
   });
   $("#find").click(function(){
     location.href("findMember.jsp");

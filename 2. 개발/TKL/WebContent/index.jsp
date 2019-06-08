@@ -84,7 +84,7 @@
          </div>
          <div class="location">
             <ul>
-               <li><a href="">Login</a></li>
+               <li><a href=""><%=sessionNick%></a></li>
                <li><a href="">Join</a></li>
                <li><a href="member.do?m=out">Logout</a></li>
             </ul>
