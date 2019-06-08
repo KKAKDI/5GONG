@@ -19,8 +19,10 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 import tkl.bReply.model.ReplyDTO;
 import tkl.bReply.model.ReplyService;
 import tkl.board.model.BoardDTO;
+import tkl.board.model.BoardSQL;
 import tkl.board.model.BoardService;
 import tkl.paging.model.PagingDTO;
+import tkl.paging.model.PagingService;
 
 @WebServlet("/board.do")
 public class BoardControl extends HttpServlet {
@@ -32,6 +34,24 @@ public class BoardControl extends HttpServlet {
 		if (m != null) {
 			m = m.trim();
 			if (m.equals("board_list")) {
+				if (cp == null) {
+					int currentPage = 0;
+					request.setAttribute("currentPage", currentPage);
+				} else {
+					int cp1 = Integer.parseInt(cp);
+					int currentPage = cp1;
+					request.setAttribute("currentPage", currentPage);
+				}
+				int curBlock = 0;
+				if (request.getParameter("curBlock") != null) {
+					curBlock = Integer.parseInt(request.getParameter("curBlock"));
+				}
+				int curPage1 = 0;
+				if (request.getParameter("curPage1") != null) {
+					curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+				}
+				request.setAttribute("curPage1", curPage1);
+				request.setAttribute("curBlock", curBlock);
 				boardList(request, response);
 			} else if (m.equals("board_input")) {
 				boardInform(request, response);
@@ -54,8 +74,6 @@ public class BoardControl extends HttpServlet {
 			} else if (m.equals("board_like")) {
 				boardLike(request, response);
 			}
-		} else {
-			boardList(request, response);
 		}
 	}
 
@@ -63,24 +81,25 @@ public class BoardControl extends HttpServlet {
 			throws ServletException, IOException {
 		BoardService service = BoardService.getInstance();
 		ReplyService rService = ReplyService.getInstance();
+		PagingService pService = PagingService.getInstance();
 
 		/// 여기서부터는 검색기능
 		String sk = request.getParameter("sk");
 		String sv = request.getParameter("sv");
 		System.out.println("sk : " + sk);
 		System.out.println("sv : " + sv);
-		///평범한 첫 리스트 
+		/// 평범한 첫 리스트
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
-		
-		///페이징 능력 !!!
-		//PagingDTO pDto = new PagingDTO();
-		//serivce.paging();
-		
-	
 
-		RequestDispatcher rd = request.getRequestDispatcher("board/board_list.jsp");
+		/// 페이징 능력 !!!
+		// PagingDTO pDto = new PagingDTO();
+		// serivce.paging();
+		int tableRowNum = pService.PagingRowNumS();
+		request.setAttribute("tableRowNum", tableRowNum);
+
+		RequestDispatcher rd = request.getRequestDispatcher("board/board_list2.jsp");
 		rd.forward(request, response);
 
 	}
@@ -89,7 +108,7 @@ public class BoardControl extends HttpServlet {
 			throws ServletException, IOException {
 		response.sendRedirect("board/board_input.jsp");
 	}
-	
+
 	private void boardIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
@@ -115,7 +134,7 @@ public class BoardControl extends HttpServlet {
 		BoardService service = BoardService.getInstance();
 		service.insertS(dto);
 		System.out.println("파일 업로드 성공");
-		response.sendRedirect("board.do");
+		response.sendRedirect("board.do?m=board_list");
 	}
 
 	private void boardContent(HttpServletRequest request, HttpServletResponse response)
@@ -282,5 +301,22 @@ public class BoardControl extends HttpServlet {
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		service.boardLikeS(bNo);
 		response.sendRedirect("board.do?m=board_content&bNo=" + bNo);
+	}
+	private int searchCheck(String sk, String sv) {
+		if((sk==null||sv==null)||(sk=="")) {
+			return 0;
+		}else {
+			if(sk.equals("M_NICK")) {
+				sv = sv.trim();
+				return 1;
+			}else if (sk.equals("B_SUBJECT")) {
+				sv = sv.trim();
+				return 2;
+			}else if(sk.equals("B_CONTENT")) {
+				sv = sv.trim();
+				return 3;
+			}
+		}
+		return 0;
 	}
 }
