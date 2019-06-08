@@ -1,21 +1,28 @@
 $(function(){
 	/* navigation */
-	$("#GNB > ul > li").hover(
-		function(){
-			$(this).parent().addClass("over");
-		},
-		function(){
-			$(this).parent().removeClass("over");
-		}
-	);
-	$("#GNB > ul > li").focusin(function(){
-		$(this).addClass("over");
-		$(this).parent().addClass("over");
+	$(function () {
+		$("#GNB > ul > li").hover(
+			function () {
+				$(this).parent("ul").stop().animate({ height: 202 }, 400);
+				$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 162 }, 400);
+			},
+			function () {
+				$(this).parent("ul").stop().animate({ height: 40 }, 400);
+				$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 0 }, 400);
+			}
+		);
+		$("#GNB > ul > li").focusin(function () {
+			$(this).find("li").addClass("active");
+			$(this).parent("ul").stop().animate({ height: 202 }, 400);
+			$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 162 }, 400);
+		});
+		$("#GNB > ul > li").focusout(function () {
+			$(this).find("li").removeClass("active");
+			$(this).parent("ul").stop().animate({ height: 40 }, 400);
+			$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 0 }, 400);
+		});
 	});
-	$("#GNB > ul > li").focusout(function(){
-		$(this).removeClass("over");
-		$(this).parent().removeClass("over");
-	});
+
 
 	/* keyvisual */
 	var w;
