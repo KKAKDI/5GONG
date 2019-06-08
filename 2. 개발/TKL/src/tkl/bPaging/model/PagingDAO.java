@@ -17,40 +17,67 @@ import tkl.board.model.BoardSQL;
 
 public class PagingDAO {
 	private DataSource ds;
-	PagingDAO(){
+
+	PagingDAO() {
 		try {
 			Context initContext = new InitialContext();
-			Context envContext  = (Context)initContext.lookup("java:/comp/env");
-			ds = (DataSource)envContext.lookup("jdbc/myoracle");	
-		}catch(NamingException ne) {	
+			Context envContext = (Context) initContext.lookup("java:/comp/env");
+			ds = (DataSource) envContext.lookup("jdbc/myoracle");
+		} catch (NamingException ne) {
 		}
 	}
-	
-	
+
 	PagingDTO Paging(PagingDTO rDto) {
 		return rDto;
-		
+
 	}
-	int PagingRowNum() {
-		Statement stmt = null;
+
+	int PagingRowNum(int i, String sv) {
+		PreparedStatement pstmt = null;
 		Connection con = null;
+		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery(PagingSQL.sqlA);
-			rs.next();
-			int num = rs.getInt("COUNT(*)");
-			return num;
-			
-			
-		}catch(SQLException se) {
-			System.out.println("PagingRowNum se : "+se);
+			if (i == 0) {
+				pstmt = con.prepareStatement(PagingSQL.sqlA);
+				rs = pstmt.executeQuery();
+				rs.next();
+				return rs.getInt("COUNT(*)");
+			} else if (i == 1) {
+				pstmt = con.prepareStatement(PagingSQL.sqlSN);
+				pstmt.setString(1, sv);
+				rs = pstmt.executeQuery();
+				rs.next();
+				return rs.getInt("COUNT(*)");
+
+			} else if (i == 2) {
+				pstmt = con.prepareStatement(PagingSQL.sqlSS);
+				pstmt.setString(1, sv);
+				rs = pstmt.executeQuery();
+				rs.next();
+				return rs.getInt("COUNT(*)");
+
+			} else if (i == 3) {
+				pstmt = con.prepareStatement(PagingSQL.sqlSC);
+				pstmt.setString(1, sv);
+				rs = pstmt.executeQuery();
+				rs.next();
+				return rs.getInt("COUNT(*)");
+
+			} else
+				return -1;
+
+		} catch (SQLException se) {
+			System.out.println("PagingRowNum se : " + se);
 			return -1;
-		}finally {
+		} finally {
 			try {
-				if(stmt !=null)stmt.close();
-				if(con !=null)con.close();
-			}catch(SQLException se) {}
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
 		}
 	}
 }

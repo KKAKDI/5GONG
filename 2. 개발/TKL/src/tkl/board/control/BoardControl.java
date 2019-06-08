@@ -30,28 +30,10 @@ public class BoardControl extends HttpServlet {
 
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String m = request.getParameter("m");
-		String cp = request.getParameter("currentPage");
+
 		if (m != null) {
 			m = m.trim();
 			if (m.equals("board_list")) {
-				if (cp == null) {
-					int currentPage = 0;
-					request.setAttribute("currentPage", currentPage);
-				} else {
-					int cp1 = Integer.parseInt(cp);
-					int currentPage = cp1;
-					request.setAttribute("currentPage", currentPage);
-				}
-				int curBlock = 0;
-				if (request.getParameter("curBlock") != null) {
-					curBlock = Integer.parseInt(request.getParameter("curBlock"));
-				}
-				int curPage1 = 0;
-				if (request.getParameter("curPage1") != null) {
-					curPage1 = Integer.parseInt(request.getParameter("curPage1"));
-				}
-				request.setAttribute("curPage1", curPage1);
-				request.setAttribute("curBlock", curBlock);
 				boardList(request, response);
 			} else if (m.equals("board_input")) {
 				boardInform(request, response);
@@ -74,6 +56,8 @@ public class BoardControl extends HttpServlet {
 			} else if (m.equals("board_like")) {
 				boardLike(request, response);
 			}
+		}else {
+				boardList(request, response);
 		}
 	}
 
@@ -82,26 +66,74 @@ public class BoardControl extends HttpServlet {
 		BoardService service = BoardService.getInstance();
 		ReplyService rService = ReplyService.getInstance();
 		PagingService pService = PagingService.getInstance();
+		String currentPageStr = request.getParameter("currentPage");
 		String sk = request.getParameter("sk");
 		String sv = request.getParameter("sv");
+
+		// 페이징 가즈아
+		////// 이거는 위에 리스트
 		int i = searchCheck(sk, sv);
 
+		if (currentPageStr == null) {
+			int currentPage = 0;
+			request.setAttribute("currentPage", currentPage);
+		} else {
+			int currentPage = Integer.parseInt(currentPageStr);
+			request.setAttribute("currentPage", currentPage);
+		}
+		int curBlock = 0;
+		if (request.getParameter("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getParameter("curBlock"));
+			System.out.println("curBlock");
+		}
+		int curPage = 0;
+		if (request.getParameter("curPage") != null) {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		}
 
-		
+		int pageSizePerBlock = 3;
+		// int curPage = (Integer)request.getAttribute("currentPage");
+		// int curBlock = 1;
+		if (request.getAttribute("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
+		}
+		int totalRecodeSize = pService.PagingRowNumS(i, sv);
+		curPage = curBlock * pageSizePerBlock;
+		if (request.getParameter("curPage") != null) {
+			curPage = Integer.parseInt(request.getParameter("curPage"));
+		}
+		int recodeSizePerPage = 2;
+		int beginNum = curPage * recodeSizePerPage;
+		int pageSize = (int) Math.ceil((double) totalRecodeSize / recodeSizePerPage);
+
+		///////// 이거는 번호///
+
+		int startPage = curBlock * pageSizePerBlock;
+		int endPage = startPage + pageSizePerBlock;
+
+		///// 여기는 집어 넣는곳
+		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
+		request.setAttribute("beginNum", beginNum);
+		request.setAttribute("totalRecodeSize", totalRecodeSize);
+		request.setAttribute("curBlock", curBlock);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("curBlock", curBlock);
+
 		/// 평범한 첫 리스트
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
 
-		
 		/// 페이징 능력 !!!
-		// PagingDTO pDto = new PagingDTO();
-		// serivce.paging();
-		int tableRowNum = pService.PagingRowNumS();
-		
-		request.setAttribute("tableRowNum", tableRowNum);
 
-		RequestDispatcher rd = request.getRequestDispatcher("board/board_list2.jsp");
+		request.setAttribute("sk", sk);
+		request.setAttribute("sv", sv);
+
+		RequestDispatcher rd = request.getRequestDispatcher("board/board_list.jsp");
 		rd.forward(request, response);
 
 	}
@@ -148,6 +180,11 @@ public class BoardControl extends HttpServlet {
 		// 쿠키변수를 만들어서 값을 저장. 쿠키변수에 값이 있으면 조회수 증가 실행 하지 않음
 		boolean isGet = false;
 		Cookie[] cookies = request.getCookies();
+		for (Cookie c : cookies) {//
+			// num쿠키가 있는 경우
+			System.out.println("쿠키이름 : " + c.getName());
+
+		}
 
 		if (cookies != null) {
 			for (Cookie c : cookies) {//
@@ -304,17 +341,18 @@ public class BoardControl extends HttpServlet {
 		service.boardLikeS(bNo);
 		response.sendRedirect("board.do?m=board_content&bNo=" + bNo);
 	}
+
 	private int searchCheck(String sk, String sv) {
-		if((sk==null||sv==null)||(sk=="")) {
+		if ((sk == null || sv == null) || (sk == "")) {
 			return 0;
-		}else {
-			if(sk.equals("M_NICK")) {
+		} else {
+			if (sk.equals("M_NICK")) {
 				sv = sv.trim();
 				return 1;
-			}else if (sk.equals("B_SUBJECT")) {
+			} else if (sk.equals("B_SUBJECT")) {
 				sv = sv.trim();
 				return 2;
-			}else if(sk.equals("B_CONTENT")) {
+			} else if (sk.equals("B_CONTENT")) {
 				sv = sv.trim();
 				return 3;
 			}

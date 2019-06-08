@@ -46,31 +46,22 @@ function check() {
 	<td align='center'>2019-06-09</td>
 	<td align='center'>9999999</td>
 	</tr>
-	<c:if test="${list.size() == 0}">
-	<tr>
-	<td>데이터가 하나도 없음</td>
-	</tr>
-	</c:if>
+	
+	<c:forEach var="list" items="${list}" begin="${beginNum}" end="${beginNum+recodeSizePerPage}" step="1">
 
-	<c:forEach items="${list}" var="dto">
+      <tr>
+         <td>${list.bNo}</td>
+         <td>${list.mNick}</td>
+         <td>${list.mEmail}</td>
+         <td>
+            <a href='board.do?m=board_content&bNo=${list.bNo}'>${list.bSubject}</a>
+            <span style="color: red;">[${list.CNT}]</span>
+         </td>
+         <td>${list.bWriteDate}</td>
+         <td>${list.bView}</td>
+      </tr>
+      </c:forEach>
 	
-	
-	
-	<tr>
-	<td>${dto.bNo}</td>
-	<td>${dto.mNick}</td>
-	<td><c:out value="${dto.mEmail}" escapeXml="true">email없음</c:out></td>
-	<td>
-	
-	<a href='board.do?m=board_content&bNo=${dto.bNo}'>${dto.bSubject}&nbsp;&nbsp;</a>
-	<c:if test="${dto.CNT != 0 }">
-	[${dto.CNT}]
-	</c:if>
-	</td>
-	<td>${dto.bWriteDate}</td>
-	<td>${dto.bView}</td>
-	</tr>
-	</c:forEach>
 	
 
 
@@ -86,4 +77,15 @@ function check() {
 	<input type="text" name="sv">
 	<input type="submit" value="검색">
 </form>
+
+<c:if test="${curBlock >0}">
+	<a href ="board.do?m=board_list&curBlock=${curBlock-1}&sk=${sk}&sv=${sv}">이전</a>
+</c:if>
+
+	<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
+       <td><a href ="board.do?m=board_list&curBlock=${curBlock}&curPage=${i}&sk=${sk}&sv=${sv}">${i+1} | </a></td>
+    </c:forEach>
+<c:if test="${curBlock < (pageSize/pageSizePerBlock)-1}">
+	<a href ="board.do?m=board_list&curBlock=${curBlock+1}&sk=${sk}&sv=${sv}">다음</a>
+</c:if>
 

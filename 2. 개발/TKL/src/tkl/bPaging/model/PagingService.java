@@ -17,7 +17,7 @@ public class PagingService {
 	public PagingDTO PagingS(PagingDTO rDto) {
 		return dao.Paging(rDto);
 	}
-	public int PagingRowNumS() {
-		return dao.PagingRowNum();
+	public int PagingRowNumS(int i, String sv) {
+		return dao.PagingRowNum(i, sv);
 	}
 }

@@ -39,8 +39,6 @@ public class BoardDAO {
 		PreparedStatement pstmt3 = null;
 		ResultSet rs = null;
 		ResultSet rs1 = null;
-		System.out.println("boardList sk : "+sk);
-		System.out.println("boardList sv : "+sv);
 		try {
 			con = ds.getConnection();
 			stmt = con.createStatement();
