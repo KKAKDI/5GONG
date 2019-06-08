@@ -18,28 +18,27 @@ tr, th, td {
 </head>
 <body>
 	<h2>글 수정</h2>
-	<a href='news/news_update.jsp'>상품수정</a>
-	<form name='f' method='post' action='news.do?m=update&n_no=${view.n_no}'>
+	<form name='f' method='post' action='news.do?m=update&n_no=${updateview.n_no}'>
 	<table>
 			<tr>
-				<td > 글 번호 : ${view.n_no}</td>
+				<td > 글 번호 : ${updateview.n_no}</td>
 			</tr>
 			
 			<tr>
-				<td >글 구분 : ${view.n_division}</td>
+				<td >글 구분 :  ${updateview.n_division}</td>
 			</tr>
 			
 			<tr>
-				<td >닉네임 : ${view.n_nick} </td>
+				<td >닉네임 : ${updateview.n_nick} </td>
 			</tr>
 			
 			<tr>
-				<td>글제목 : <input type = 'text' name='n_subject' size = '60' value = '${view.n_subject}'>
+				<td>글제목 : <input type = 'text' name='n_subject' size = '60' value = '${updateview.n_subject}'>
 				</td>
 			</tr>
 			
 			<tr >
-				<td >글내용 : <input type='text' name = 'n_content'  size='100' value = '${view.n_content}'>
+				<td >글내용 : <input type='text' name = 'n_content'  size='100' value = '${updateview.n_content}'>
 				</td>
 			</tr>
 	</table>

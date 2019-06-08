@@ -12,6 +12,7 @@ public class NewsDTO {
 	private Date n_writedate;
 	private String n_division;
 	
+	
 	public NewsDTO() {}
 
 	public NewsDTO(int n_no, String n_email, String n_nick, String n_subject, String n_content, int n_view,
@@ -26,6 +27,8 @@ public class NewsDTO {
 		this.n_writedate = n_writedate;
 		this.n_division = n_division;
 	}
+	
+	
 
 	public int getN_no() {
 		return n_no;

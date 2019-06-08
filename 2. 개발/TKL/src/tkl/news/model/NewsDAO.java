@@ -34,6 +34,7 @@ public class NewsDAO {
 				String n_content = rs.getString("n_content");
 				int n_view = rs.getInt("n_view");
 				Date n_writedate = rs.getDate("n_writedate");
+				String n_division = rs.getString("n_division");
 
 				NewsDTO dto = new NewsDTO();
 				dto.setN_no(n_no);
@@ -42,6 +43,7 @@ public class NewsDAO {
 				dto.setN_content(n_content);
 				dto.setN_writedate(n_writedate);
 				dto.setN_view(n_view);
+				dto.setN_division(n_division);
 				list.add(dto);
 			}
 			return list;
@@ -180,11 +182,8 @@ public class NewsDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(NewsSQL.sqlU);
 			pstmt.setString(1, dto.getN_subject());
-			System.out.println("1");
 			pstmt.setString(2, dto.getN_content());
-			System.out.println("2");
 			pstmt.setInt(3, dto.getN_no());
-			System.out.println("3");
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			System.out.println("update SQL error:" +se);
@@ -217,5 +216,86 @@ public class NewsDAO {
 	         }
 	      }
 	   }
+	public ArrayList<NewsDTO> selectnotice() {
+		ArrayList<NewsDTO> list = new ArrayList<NewsDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt= con.prepareStatement(NewsSQL.sqlnotice);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int n_no = rs.getInt("n_no");
+				String n_nick = rs.getString("n_nick");
+				String n_subject = rs.getString("n_subject");
+				String n_content = rs.getString("n_content");
+				int n_view = rs.getInt("n_view");
+				Date n_writedate = rs.getDate("n_writedate");
+				String n_division = rs.getString("n_division");
+				
+				NewsDTO dto = new NewsDTO();
+				dto.setN_no(n_no);
+				dto.setN_nick(n_nick);
+				dto.setN_subject(n_subject);
+				dto.setN_content(n_content);
+				dto.setN_view(n_view);
+				dto.setN_writedate(n_writedate);
+				dto.setN_division(n_division);
+				list.add(dto);
+				
+			}
+			return list;
+		} catch (SQLException se) {
+			return null;
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+			
+	}
+	public ArrayList<NewsDTO> selectevent() {
+		ArrayList<NewsDTO> list = new ArrayList<NewsDTO>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt= con.prepareStatement(NewsSQL.sqlevent);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int n_no = rs.getInt("n_no");
+				String n_nick = rs.getString("n_nick");
+				String n_subject = rs.getString("n_subject");
+				String n_content = rs.getString("n_content");
+				int n_view = rs.getInt("n_view");
+				Date n_writedate = rs.getDate("n_writedate");
+				String n_division = rs.getString("n_division");
+				
+				NewsDTO dto = new NewsDTO();
+				dto.setN_no(n_no);
+				dto.setN_nick(n_nick);
+				dto.setN_subject(n_subject);
+				dto.setN_content(n_content);
+				dto.setN_view(n_view);
+				dto.setN_writedate(n_writedate);
+				dto.setN_division(n_division);
+				list.add(dto);
+				
+			}
+			return list;
+		} catch (SQLException se) {
+			return null;
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
 }
 

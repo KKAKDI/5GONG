@@ -40,7 +40,7 @@ tr, th, td {
 		
 	</table>
 			<b> 
-			<a href='news.do?m=view&n_no=${con.n_no}'>수정</a>| 
+			<a href='news.do?m=updateview&n_no=${con.n_no}'>수정</a>| 
 			<a href='news.do?m=del&n_no=${con.n_no}'>삭제</a>| 
 			<a href='news.do?m=list'>목록</a>	
 			</b>

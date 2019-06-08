@@ -20,7 +20,12 @@
 				<td>글 제목 : <input type="text" name="n_subject" size="60"></td>
 			</tr>
 			<tr>
-				<td>글 구분 : <input type="text" name="n_division"></td>
+				<td>글 구분 : 
+						<select name="n_division">
+						<option>공지사항</option>
+						<option>이벤트</option>
+						</select>
+				</td>
 			</tr>
 		 	<!-- <tr>
 				<td>이메일 :<input type="text" name="n_email"></td>

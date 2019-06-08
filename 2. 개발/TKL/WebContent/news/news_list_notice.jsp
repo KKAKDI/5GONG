@@ -28,12 +28,12 @@
 			<th >조회수</th>
 			
 		</tr>
-		<c:if test="${list.size() == 0}">
+		<c:if test="${list_notice.size() == 0}">
 			<tr>
 				<td >데이터가 없습니다</td>
 			</tr>
 		</c:if>
-		<c:forEach items="${list}" var="dto">
+		<c:forEach items="${list_notice}" var="dto">
 		<tr>
 			<td>${dto.n_no}</td>
 			<td >${dto.n_nick}</td>

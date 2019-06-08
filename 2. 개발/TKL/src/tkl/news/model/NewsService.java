@@ -32,4 +32,12 @@ public class NewsService {
 	public void viewU(int n_no) {
 	      dao.view(n_no);
 	   }
+	public ArrayList<NewsDTO> selectnoticeS() {
+		return dao.selectnotice();
+	}
+	public ArrayList<NewsDTO> selecteventS() {
+		return dao.selectevent();
+	}
+
+	
 }

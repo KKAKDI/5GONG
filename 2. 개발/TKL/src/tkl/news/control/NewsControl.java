@@ -34,6 +34,10 @@ public class NewsControl extends HttpServlet {
 				updateview(request,response);
 			}else if(m.equals("update")) {
 				update(request,response);
+			}else if(m.equals("list_notice")){
+				list_notice(request,response);
+			}else if(m.equals("list_event")){
+				list_event(request,response);
 			}else {
 				list(request, response);
 			}
@@ -152,6 +156,20 @@ public class NewsControl extends HttpServlet {
 		service.updateU(dto);
 		response.sendRedirect("news.do");
 	}
+	private void list_notice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		NewsService service = NewsService.getInstance();
+		ArrayList<NewsDTO> list_notice = service.selectnoticeS();
+		request.setAttribute("list_notice", list_notice);
+		RequestDispatcher rd = request.getRequestDispatcher("news/news_list_notice.jsp");
+		rd.forward(request, response);
+	}
+	  private void list_event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		   NewsService service = NewsService.getInstance();
+		   ArrayList<NewsDTO> list_event = service.selecteventS();
+		   request.setAttribute("list_event", list_event);
+		   RequestDispatcher rd= request.getRequestDispatcher("news/news_list_event.jsp");
+		   rd.forward(request, response);
+	   }
 	private int getN_no(HttpServletRequest request) {
 		int n_no = -1;
 		String n_noStr = request.getParameter("n_no");
