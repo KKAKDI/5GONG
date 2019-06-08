@@ -1,0 +1,95 @@
+@charset "utf-8";
+div[id$="ck"]{display: none;}
+.login_page {
+    position: absolute;
+    left: 50%;
+    top: 15%;
+    z-index: 99999;
+    width: 600px;
+    margin-left: -300px;
+    text-align: center;
+    background: rgba(36, 121, 218, 0.829);
+}
+
+.login_page .sign_in .login_box {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+}
+
+.login_page .sign_in .login_box p {
+
+    text-align: right;
+}
+
+.login_page .sign_in .login_box label {
+    text-align: left;
+    margin-top: 3px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.login_page .sign_in .login_box input[type=text],
+.login_page .sign_in .login_box input[type=password] {
+    display: inline-block;
+    width: 235px;
+    padding: 7px 0;
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #000;
+    background: transparent;
+    outline: none;
+    border: none;
+    transition: 0.3s;
+}
+
+.login_page .sign_in .login_box input[type=text]:focus,
+.login_page .sign_in .login_box input[type=password]:focus {
+    background-color: #444;
+    color: #fff;
+}
+
+.login_page .sign_in input[type=text],
+.login_page .sign_in input[type=password],
+.login_page .sign_in input[type=button],
+.login_page .sign_in input[type=submit] {
+    display: block;
+    margin: 17px auto;
+}
+
+.login_page .sign_in input[type=button],
+.login_page .sign_in input[type=submit] {
+    width: 250px;
+    padding: 10px 20px;
+    vertical-align: middle;
+    font-family: "Open Sans", sans-serif;
+    font-size: 0.875rem;
+    background-color: transparent;
+    color: #444;
+    border: none;
+    cursor: pointer;
+    -webkit-transition: 0.3s;
+    transition: 0.3s;
+}
+
+.login_page .sign_in input[type=button]:hover,
+.login_page .sign_in input[type=button]:focus,
+.login_page .sign_in input[type=submit]:hover,
+.login_page .sign_in input[type=submit]:focus {
+    
+    font-weight: 600;
+    background-color: #444;
+    color: #ccc;
+}
+
+.dim {
+    position: fixed;
+    display: block;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 99998;
+    background: rgba(0, 0, 0, 0.3);
+}

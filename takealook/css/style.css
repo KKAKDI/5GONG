@@ -18,6 +18,7 @@ body {
     font-family: 'AppleSDGothicNeo';
     font-weight: 500;
     font-size: 16px;
+    vertical-align: top;
 }
 
 /* body.stop {
@@ -184,78 +185,81 @@ body {
     font-weight: 300;
 }
 
-#GNB {
+.nav_wrap {
     position: relative;
-    min-width: 1019px;
+    width: 100%;
+
+}
+
+#GNB {
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    font-size: 0.875em;
+    background-color: #fff;
 }
 
 #GNB>ul {
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: 100;
-    width: 100%;
-    height: 54px;
-    overflow: hidden;
+    height: 40px;
     text-align: center;
-    background: url(../images/bg_gnb.gif) repeat-x 0 0;
-    -webkit-transition: height 0.3s;
-    transition: height 0.3s;
-}
-
-#GNB>ul.over {
-    height: 185px;
+    overflow: hidden;
 }
 
 #GNB>ul>li {
     display: inline-block;
-    position: relative;
-    padding: 0 20px;
-    height: 185px;
-    overflow: hidden;
-}
-
-#GNB>ul>li:first-child {
-    margin-left: 0;
+    vertical-align: top;
 }
 
 #GNB>ul>li>a {
     display: block;
-    padding: 0 40px;
-    line-height: 54px;
-    text-decoration: none;
-    font-size: 14px;
-    color: #2f2f2f;
+    padding: 0 60px;
+    height: 40px;
+    line-height: 40px;
+    font-weight: 600;
+    background-color: #fff;
+    color: #666;
 }
 
-#GNB>ul>li:hover>a,
-#GNB>ul>li.over>a {
-    color: #b4252d;
-}
-
-#GNB .sub {
-    position: absolute;
-    left: 50%;
-    margin-left: -20px;
-    padding-top: 14px;
-    height: 131px;
-    text-align: center;
-}
-
-#GNB .sub a {
+#GNB ul ul a {
     display: block;
-    padding: 6px 0 7px;
-    line-height: 1;
-    text-align: left;
-    text-decoration: none;
-    font-size: 12px;
-    color: #a0a0a0;
+    padding: 0 35px 0 40px;
+    line-height: 38px;
+    font-weight: 400;
+    color: #ccc;
+    -webkit-transition: all 300ms;
+    transition: all 300ms;
 }
 
-#GNB .sub a:hover,
-#GNB .sub a:focus {
+#GNB ul ul li:first-child a {
+    padding-top: 5px;
+}
+
+#GNB ul ul li:last-child a {
+    padding-bottom: 5px;
+}
+
+.nav_wrap .sub_shadow {
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 10;
+    width: 100%;
+    height: 0;
+    background-color: #999;
+
+}
+
+#GNB>ul>li:hover ul li,
+#GNB li li.active {
+    background-color: #888;
+}
+
+#GNB ul ul a:hover,
+#GNB ul ul a:focus {
     text-decoration: underline;
-    color: #000;
+    color: #fff;
 }
 
 .keyvisual {
@@ -341,6 +345,14 @@ body {
 #content .product_area .pro_sell li a,
 #content .product_area .pro_now li a {
     display: block;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+#content .product_area .pro_buy li a:hover,
+#content .product_area .pro_sell li a:hover,
+#content .product_area .pro_now li a:hover {
+    opacity: 1;
 }
 
 #content .product_area .pro_buy dl,
@@ -485,6 +497,7 @@ body {
     border: 1px solid #000;
     border-radius: 20px;
 }
+
 .service_area {
     width: 1200px;
     margin: 0 auto;
@@ -497,6 +510,7 @@ body {
     float: left;
     width: 32%;
 }
+
 .service_area .notice dl,
 .service_area .qna dl,
 .service_area .cs_center dl,
@@ -506,7 +520,12 @@ body {
     margin-bottom: 10px;
     font-weight: 400;
 }
-.service_area .notice tr, .service_area .notice td {font-size:12px;}
+
+.service_area .notice tr,
+.service_area .notice td {
+    font-size: 12px;
+}
+
 .service_area .qna dl dt,
 .service_area .cs_center dl dt,
 .service_area .qna .sub_dt,
@@ -518,15 +537,18 @@ body {
 .service_area .cs_center dl .dd_point {
     font-size: 18px;
     line-height: 25px;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 .service_area .qna dl dd,
 .service_area .cs_center dl dd {
     font-size: 12px;
 }
+
 .service_area .cs_center dl dd a {
-    display:block; margin: 15px 2px; padding:3px 0;
+    display: block;
+    margin: 15px 2px;
+    padding: 3px 0;
 }
 
 #footer {
@@ -540,12 +562,20 @@ body {
     margin: 0 auto;
     padding: 37px 0;
 }
-#footer .footer_inner .footer_list li {position: relative; display:inline-block; margin-right:12px; margin-bottom: 10px;}
 
-#footer .footer_inner .footer_list li a{
+#footer .footer_inner .footer_list li {
+    position: relative;
+    display: inline-block;
+    margin-right: 12px;
+    margin-bottom: 10px;
+}
+
+#footer .footer_inner .footer_list li a {
     margin-right: 8px;
     font-size: 12px;
-    color: #aeaeae;}
+    color: #aeaeae;
+}
+
 #footer .footer_inner .txt_copyright {
     display: block;
     padding-top: 2px;

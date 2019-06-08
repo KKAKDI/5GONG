@@ -1,0 +1,75 @@
+@charset "utf-8";
+
+fieldset {
+    border: none;
+
+}
+
+div[id$="ck"] {
+    display: none;
+    font-size: 12px;
+    font-weight: 600;
+    margin: 3px 0 3px 0;
+    letter-spacing: -0.5px;
+}
+
+#tkl_signup {
+    width: 500px;
+    border:1px solid #111;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    width: 125px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -1px;
+    vertical-align: middle;
+    text-indent: 5px;
+    margin-top: 30px;
+}
+
+input[type=text],
+input[type=password] {
+    outline: none;
+    border: none;
+    border-bottom: 2px solid #03ac799a;
+    background: #fdfdfd;
+    padding: 7px 5px;
+    width: 200px;
+}
+
+input[type=text] {
+    text-align: left;
+}
+
+input[type=password] {
+    text-align: left;
+}
+
+input[type=button] {
+    text-align: center;
+}
+
+input[type=button],
+input[type=submit] {
+    padding: 4px 5px;
+    color: #202020;
+    background: #eaeaea;
+    border: none;
+    border-radius: 5px;
+
+}
+
+div[class^="tkl_"] {
+    width: 100%;
+    height: 55px;
+    display: block;
+}
+.agree {
+    display: block;
+    text-align: center;
+}
+
+.agree span{ display:inline-block; font-size:14px; font-weight: 600;}

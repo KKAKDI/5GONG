@@ -1,8 +1,5 @@
 @charset "utf-8";
 
-html,
-body {}
-
 .login_page {
     position: absolute;
     left: 50%;
@@ -90,5 +87,5 @@ body {}
     top: 0;
     bottom: 0;
     z-index: 99998;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.3);
 }
