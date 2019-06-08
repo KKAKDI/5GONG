@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/sign_in.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script src="js/signin.js"></script>
 <title>Take A Look Sign In</title>
 <style>
@@ -17,6 +18,7 @@
 		display:none;
 	}
 </style>
+
 </head>
 <body>
    <div class="login_page">
@@ -37,7 +39,33 @@
                   </p>
                </div>
                <input type='submit' value='로그인'> 
-               <input type='button' id='kakao' value='카카오 아이디 로그인'>
+               <a id='kakao-login-btn'></a>
+               <script type='text/javascript'>
+				  //<![CDATA[
+				    // 사용할 앱의 JavaScript 키를 설정해 주세요.
+				    Kakao.init('8def6bb52c88c5d02955e69d07bf963f');
+				    // 카카오 로그인 버튼을 생성합니다.
+				    Kakao.Auth.createLoginButton({
+				      container: '#kakao-login-btn',
+				      success: function(authObj) {
+				        // 로그인 성공시, API를 호출합니다.
+				        Kakao.API.request({
+				          url: '/v2/user/me',
+				          success: function(res) {
+				            //alert(JSON.stringify(res));
+				            location.href="./index.do?m=kakao&nick="+res.properties.nickname;
+				          },
+				          fail: function(error) {
+				            alert(JSON.stringify(error));
+				          }
+				        });
+				      },
+				      fail: function(err) {
+				        alert(JSON.stringify(err));
+				      }
+				    });
+				  //]]>
+				</script>
                <input type='button' id='google'value='구글 아이디 로그인'> 
                <input type='button' id='find' value='ID/PW 찾기'> 
                <input type='button' id='signup' value='회원가입'>

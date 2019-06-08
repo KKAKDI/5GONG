@@ -28,6 +28,8 @@ public class MemberControl extends HttpServlet {
 				insert(request,response);
 			}else if(m.equals("signin")) {
 				signIn(request,response);
+			}else if (m.equals("out")) {
+				logout(request, response);
 			}
 		}else {			
 		}
@@ -64,6 +66,11 @@ public class MemberControl extends HttpServlet {
 		MemberService service = MemberService.getInstance();
 		service.insertS(dto);
 		response.sendRedirect("index.do");		
+	}
+	public void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		response.sendRedirect("index.do");
 	}
 	
 	protected void signIn(HttpServletRequest request, HttpServletResponse response)
