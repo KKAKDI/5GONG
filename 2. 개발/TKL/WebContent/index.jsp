@@ -30,6 +30,27 @@
 	<script src="js/gnb.js"></script> -->
 	<!--<![endif]-->
 	<script src="js/main.js"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+	<script>
+	function logout(){
+		location.href="sign_in.jsp";
+	}
+	<%
+	
+	String sessionNick  = (String)session.getAttribute("session_nick");
+		if(sessionNick==null){
+	%>	
+		alert("session 없음");		
+		Kakao.cleanup();	
+		logout();
+	<% 		
+		}else{
+	%>			
+		alert("session : <%=sessionNick%>");	
+	<%
+		}	
+	%>
+	</script>	
 </head>
 <body>
 	<div class="wrap">
@@ -62,7 +83,7 @@
 				<ul>
 					<li><a href="">Login</a></li>
 					<li><a href="">Join</a></li>
-					<li><a href="">absdrfe</a></li>
+					<li><a href="member.do?m=out">Logout</a></li>
 
 				</ul>
 			</div>
