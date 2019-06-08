@@ -46,9 +46,19 @@ public class JsonDAO {
 			while(rs.next()) {
 				String mNick = rs.getString("M_NICK");
 				String mEmail = rs.getString("M_EMAIL");
+				String mPhone = rs.getString("M_PHONE");
+				String mName = rs.getString("M_NAME");
+				String mAct = rs.getString("M_ACCOUNT");
+				String mBank = rs.getString("M_BANK");
+				String mPwd = rs.getString("M_PASSWORD");
 				memInfo = new JSONObject();	
 				memInfo.put("email",mEmail);
+				memInfo.put("pwd",mPwd);
 				memInfo.put("nick",mNick);
+				memInfo.put("name",mName);
+				memInfo.put("phone",mPhone);
+				memInfo.put("bank",mBank);
+				memInfo.put("actnum",mAct);
 				memArray.add(memInfo);				
 				jsobj.put("member", memArray);							
 			}			

@@ -9,21 +9,31 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="js/signin.js"></script>
 <title>Take A Look Sign In</title>
+<style>
+	#emailck{
+		display:none;
+	}
+	#pwdck{
+		display:none;
+	}
+</style>
 </head>
 <body>
    <div class="login_page">
       <div class="sign_in">
-         <form action='member.do?m=signin' method='post'>
+         <form name='signin' id='signin' action='member.do?m=signin' method='post'>
             <fieldset>
                <legend><a href=""><img src='img/icon.png'></a></legend>
                <div class="login_box">
                   <p>
                      <label for="u_email">이메일</label>
                      <input type='text' name='email' id='u_email' placeholder="Email address">
+                     <div id='emailck'></div>
                   </p>
                   <p>
                      <label for="u_pwd">비밀번호</label>
-                     <input type='password' id='u_pwd' placeholder="Password"> 
+                     <input type='password' name='pwd' id='u_pwd' placeholder="Password"> 
+                     <div id='pwdck'></div>
                   </p>
                </div>
                <input type='submit' value='로그인'> 

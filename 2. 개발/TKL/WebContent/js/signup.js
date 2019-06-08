@@ -1,6 +1,4 @@
-//유효성 검사(이메일 유형, 비밀번호 유형 etc)
-//이메일 , 본인, 계좌 JSON 만들어서 인증하기
-//인증유효성 검사
+//이미 있는 핸드폰 번호, 이미 있는 계좌정보 거르기 추가하기
 var emailCheck = false;
 var phoneCheck = false;
 var pwdCheck = false;
@@ -18,7 +16,7 @@ $(document).ready(function(){
 	var timerId = setInterval(checklist,1000);
 
 	function checklist(){
-		console.log("틱톡");
+		console.log("tic-tok");
 		if(emailCheck==true&&phoneCheck==true&&pwdCheck==true&&nickCheck==true&&actCheck==true&&terms1Check==true&&terms2Check==true){
 				$("#submit").attr("disabled",false);
 		}else{
@@ -63,6 +61,7 @@ $(document).ready(function(){
 						$("#emailck").show();
 						$("#emailck").css("color", "green");
 						$("#emailck").text("이메일 인증 완료.");
+						$("#email").css("border","1px solid #49ff86");
 						emailCheck = true;
 					}
 				}
@@ -95,6 +94,8 @@ $(document).ready(function(){
 						$("#namefix").show();
 						$("#namefix").css("color", "green");
 						$("#namefix").text("본인 인증 완료.");
+						$("#name").css("border","1px solid #49ff86");
+						$("#phone").css("border","1px solid #49ff86");
 						$("#name").val(actlist[i].name);
 						$("#actname").val(actlist[i].name);
 						$("#actname").attr("disabled",true);
@@ -144,6 +145,7 @@ $(document).ready(function(){
 						$("#nickck").show();
 						$("#nickck").css("color", "green");
 						$("#nickck").text("닉네임 중복확인.");
+						$("#nick").css("border","1px solid #49ff86");
 						nickCheck = true;
 					}
 				}
@@ -158,6 +160,7 @@ $(document).ready(function(){
 			$("#pwdck").text("숫자+영문자+특수문자 조합 8자리 이상 사용해야 합니다.");
 		}else{
 			$("#pwdck").css("display", "none");
+			$("#pwd1").css("border","1px solid #49ff86");
 		}
 		var ckNumber = pwd1.search(/[0-9]/g);
     var ckEnglish = pwd1.search(/[a-z]/ig);
@@ -185,10 +188,12 @@ $(document).ready(function(){
 			if($("#pwd2ck").css('display')=='none'){
 				$("#pwdck").show();
 				$("#pwd2ck").css("color", "green");
+				$("#pwd2").css("border","1px solid #49ff86");
 				$("#pwd2ck").text("비밀번호가 일치합니다.");
 				pwdCheck = true;
 			}else{
 				$("#pwd2ck").css("color", "green");
+				$("#pwd2").css("border","1px solid #49ff86");
 				$("#pwd2ck").text("비밀번호가 일치합니다.");
 				pwdCheck = true;
 			}
@@ -218,6 +223,8 @@ $(document).ready(function(){
 						$("#actck").show();
 						$("#actck").css("color", "green");
 						$("#actck").text("계좌 인증 완료.");
+						$("#actnum").css("border","1px solid #49ff86");
+						$("#actname").css("border","1px solid #49ff86");
 						actCheck = true;
 						return;
 					}else{

@@ -6,8 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tkl.member.model.MamberDTO;
+import tkl.member.model.MemberDAO;
 import tkl.member.model.MemberService;
 
 
@@ -24,6 +26,8 @@ public class MemberControl extends HttpServlet {
 			m = m.trim();
 			if(m.equals("insert")) {
 				insert(request,response);
+			}else if(m.equals("signin")) {
+				signIn(request,response);
 			}
 		}else {			
 		}
@@ -64,6 +68,20 @@ public class MemberControl extends HttpServlet {
 	
 	protected void signIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		String email = request.getParameter("email");
+		String pwd = request.getParameter("pwd");	
+		MamberDTO inMem = new MamberDTO();
+		inMem.setEmail(email);
+		inMem.setPwd(pwd);
+		MemberDAO dao = new MemberDAO();
+		MamberDTO outMem = dao.getMem(inMem);		
+		if(outMem==null) {
+			response.sendRedirect("sign_in.jsp?e=1");
+		}else {
+			HttpSession session = request.getSession();
+			session.setAttribute("session_email", outMem.getEmail());
+			session.setAttribute("session_nick",outMem.getNick());
+			response.sendRedirect("index.do");
+			}
 	}
 }

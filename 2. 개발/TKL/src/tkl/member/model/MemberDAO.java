@@ -2,6 +2,7 @@ package tkl.member.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.naming.Context;
@@ -9,15 +10,47 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-class MemberDAO {
+
+public class MemberDAO {
 	private DataSource ds;
 	
-	MemberDAO(){
+	public MemberDAO(){
 		try {
 			Context initContext = new InitialContext();
 			Context envContext = (Context) initContext.lookup("java:/comp/env");
 			ds = (DataSource) envContext.lookup("jdbc/myoracle");
 		}catch(NamingException ne) {}
+	}
+	
+	public MamberDTO getMem(MamberDTO mem) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MamberDTO outMem = null;
+		try {
+			con = ds.getConnection();			
+			pstmt = con.prepareStatement(MemberSQL.SQL_SEL);
+			pstmt.setString(1, mem.getEmail());
+			pstmt.setString(2, mem.getPwd());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				System.out.println("1");
+				outMem = new MamberDTO();
+				System.out.println(rs.getString("M_EMAIL")+"/"+rs.getString("M_NICK"));
+				outMem.setEmail(rs.getString("M_EMAIL"));
+				outMem.setNick(rs.getString("M_NICK"));
+				outMem.setPwd(null);				
+			}			
+		} catch (SQLException se) {
+			System.out.println(se);
+		} finally {
+			try {
+				if(rs!=null)rs.close();
+				if(pstmt!=null)pstmt.close();
+				if(con!=null)con.close();
+			} catch (SQLException se) {}			
+		}
+		return outMem;
 	}
 	
 	void insert(MamberDTO dto) {
