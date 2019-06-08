@@ -11,18 +11,28 @@
 <title>Take A Look Sign In</title>
 </head>
 <body>
-	<img src='img/icon.png'>
-	<form name='signin' action='member.do?m=signin' method='post'>
-		<fieldset>
-			<legend> 로 그 인 </legend>
-			<input type='text' name='email' id='email'
-				placeholder="Email address" /> <br> <input type='password'
-				id='pwd' placeholder="Password" /> <br> <input type='submit'
-				value='로그인'> <br> <input type='button' id='kakao'
-				value='카카오 아이디 로그인' /> <br> <input type='button' id='google'
-				value='구글 아이디 로그인' /> <br> <input type='button' id='find'
-				value='ID/PW 찾기' /> <input type='button' id='signup' value='회원가입' />
-		</fieldset>
-	</form>
+   <div class="login_page">
+      <div class="logo"><a href=""><img src='img/icon.png'></a></div>
+      <div class="sign_in">
+         <form action='member.do?m=signin' method='post'>
+            <fieldset>
+               <legend> 로 그 인 </legend>
+               <div class="login_u_em">
+                  <label for="u_email">이메일</label>
+                  <input type='text' name='email' id='u_email'placeholder="Email address"> 
+               </div>
+               <div class="login_u_pw">
+                  <label for="u_pwd">비밀번호</label>
+                  <input type='password' id='u_pwd' placeholder="Password"> 
+               </div>
+               <input type='submit' value='로그인'> 
+               <input type='button' id='kakao' value='카카오 아이디 로그인'>
+               <input type='button' id='google'value='구글 아이디 로그인'> 
+               <input type='button' id='find' value='ID/PW 찾기'> 
+               <input type='button' id='signup' value='회원가입'>
+            </fieldset>
+         </form>
+      </div>
+   </div>
 </body>
 </html>
