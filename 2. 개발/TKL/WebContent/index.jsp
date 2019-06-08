@@ -1,72 +1,468 @@
 <%@ page contentType="text/html;charset=utf-8"%>
-<!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset='utf-8'>
-<link rel='stylesheet'
-	href='https://fonts.googleapis.com/css?family=Baloo+Bhai'>
-<link rel='stylesheet'
-	href='https://fonts.googleapis.com/css?family=Jua&amp;subset=korean'>
+	<title>TAKE A LOOK</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1, width=device-width">
+	<!-- <link rel="shortcut icon" href="favicon.ico"> -->
+	<!-- <link href="https://fonts.googleapis.com/css?family=Titillium+Web:400,600,700" rel="stylesheet"> -->
+	<!-- <link rel="stylesheet" href="css/font.css"> -->
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="css/style.css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<!--[if IE 9]>
+	<script src="js/main_ie9.js"></script>
+	<script src="js/gnb.js"></script>
+	<link rel="stylesheet" href="css/ie9.css">
+	<![endif]-->
 
-<title>Take A Look</title>
+	<!--[if IE 8]>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.js"></script>
+	<script src="js/main_ie8.js"></script>
+	<script src="js/gnb.js"></script>
+	<link rel="stylesheet" href="css/ie8.css">
+	<![endif]-->
 
+	<!--[if gt IE 9]><!-->
+	<!-- <script src="js/main.js"></script>
+	<script src="js/gnb.js"></script> -->
+	<!--<![endif]-->
+	<script src="js/main.js"></script>
 </head>
-
 <body>
-	<div class='container'>
-		<header id='header'>
-			<div class='title'>
-				<img src='img/icon.png'>
-				<form name='serch' action='검색서블릿' method='post'>
-					<input type='radio' name='serch' value='sell'/>팝니다
-					<input type='radio' name='serch' value='buy'/>삽니다				
-					<input type='text' name='serchdeal'/>
-					<input type='submit' value='검색'>
+	<div class="wrap">
+		<div id="skip_navi" class="skip_navi">
+			<div class="skip_wrap">
+				<a href="#content">본문 내용 바로가기</a>
+				<a href="#GNB">주 메뉴 바로가기</a>
+			</div>
+		</div>
+		<header id="header" class="clearflx">
+			<div class="logo"><a href=""><img src="images/logo.png" alt="logo"></a></div>
+			<div class="search">
+				<form action="검색서블릿" method="POST">
+					<div class="search_radio">
+						<input type="radio" id="ra_sell" name="radio">
+						<label for="ra_sell"><span class="span_sell"></span>팝니다</label>
+						<input type="radio" id="ra_buy" name="radio">
+						<label for="ra_buy"><span class="span_buy"></span>삽니다</label>
+						<!--radio 버튼을 숨기고 css로 효과를 label사용 id 부여 후 사용 용도에 맞게 id for 동기화-->
+					</div>
+					<div class="search_bar">
+						<input type="text" id="search_t" class="search_text" name="" value="" placeholder="아이폰7">
+					</div>
+					<div class="search_button">
+						<input type="submit" value="검색">
+					</div>
 				</form>
+			 </div>
+			<div class="location">
+				<ul>
+					<li><a href="">Login</a></li>
+					<li><a href="">Join</a></li>
+					<li><a href="">absdrfe</a></li>
+
+				</ul>
 			</div>
-			<div class='upper'>
-				<%
-					String id = (String)session.getAttribute("session_id");
-					if(id==null){
-				%>
-					<a href='login.do?m=in'>로그인</a>
-				<%
-					}
-					else{
-				%>
-					<a href=''><%=id %> 님</a>
-					<a href='#'>회원정보수정</a>
-				<%
-					}
-				%>
-					<a href='login.do?m=out'>로그아웃</a>
-				
-			</div>			
-	</div>
-	<div id='GNBBOX'>
-		<nav id='GNB' class='clearfix'>
+		</header>
+		<nav id="GNB">
 			<ul>
-				<li><a href='index.do'>새소식</a></li>
-				<li><a href=''>중고거래</a></li>
-				<li><a href=''>자유게시판</a></li>
-				<li><a href=''>고객센터</a></li>
+				<li>
+					<a href="">새소식</a>
+					<ul class="sub">
+						<li><a href="">공지사항</a></li>
+						<li><a href="">이벤트</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">중고거래</a>
+					<ul class="sub">
+						<li><a href="">상품목록</a></li>
+						<li><a href="">상품등록</a></li>
+						<li><a href="">상품수정</a></li>
+						<li><a href="">상품삭제</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">자유게시판</a>
+					<ul class="sub">
+						<li><a href="">게시판목록</a></li>
+						<li><a href="">글 작성</a></li>
+						<li><a href="">글 수정</a></li>
+						<li><a href="">글 상세</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="">고객센터</a>
+					<ul class="sub">
+						<li><a href="">FnA</a></li>
+						<li><a href="">신고목록</a></li>
+						<li><a href="">신고작성</a></li>
+					</ul>
+				</li>
 			</ul>
+		</nav>
+		<div class="keyvisual">
+			<ul class="gallery">
+				<li><img src="img/key1.jpg" alt=""></li>
+				<li><img src="img/key2.jpg" alt=""></li>
+				<li><img src="img/key3.jpg" alt=""></li>
+				<li><img src="img/key4.jpg" alt=""></li>
+			</ul>
+			<ul class="direction_nav">
+				<li class="left"><a href="" title="left"><img src="images/btn_left.png"></a></li>
+				<li class="right"><a href="" title="right"><img src="images/btn_right.png"></a></li>
+			</ul>
+		</div>
 	</div>
-
-	</header>
-	<div class='container clearfix'>
-		<section id='content'>
-			<div class='data_box'>
-
+	<section id="content" class="clearflx">
+		<div class="product_area">
+         <div class="title_wrap"><h1 class="product_title">Take a look!</h1></div>
+			<div class="pro_buy">
+				<ul>
+					<li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>인성 팝니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+					</li>
+					<li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>정신머리 팝니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+					</li>
+					<li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>영혼 팝니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+               </li>
+               <li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>월요일 팝니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>근윽 팝니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+				</ul>
 			</div>
-		</section>
-	</div>
-	<footer id='footer' class='clearfix'>
-		<div class='footerinner'>
-			<div class='copyright'>
-				<p>COPYRIGHT 5GONG ALL RIGHTS RESERVED.</p>
+			<div class="pro_sell">
+            <ul>
+               <li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>출근자 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>여포 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                     <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>주말 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                     <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>머리카락 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                     <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>저는 서울 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+            </ul>
+         </div>
+			<div class="pro_now">
+            <ul>
+					<li>
+						<a href="">
+                     <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>주말 삽니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+					</li>
+					<li>
+						<a href="">
+                     <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>정신머리 팝니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+					</li>
+					<li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+							<dl>
+								<dt>룰루랄라 삽니다</dt>
+								<dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+							</dl>
+						</a>
+               </li>
+               <li>
+                  <a href="">
+                        <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>노래주머니 팝니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+               <li>
+                  <a href="">
+                     <img src="img/demo_img.png" alt="demo">
+                     <dl>
+                        <dt>전 잘 삽니다</dt>
+                        <dd class="comment">댓글</dd>
+                        <dd class="comment_int">00</dd>
+                        <dd class="contant">연락</dd>
+                        <dd class="contant_int">00</dd>
+                     </dl>
+                  </a>
+               </li>
+				</ul>
 			</div>
-			<p class='contact_k'>BITCAMP 119 GROUP 5GONG</p>
+		</div>
+		<div class="user_area clearflx"">
+         <div class="title_wrap"><h1 class="free_title">떼껄룩의 꿀팁!</h1></div>
+			<div class="free_board_top">
+            <ul>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                    <dd class="user_nick">촉촉란</dd>
+                    <dd class="regi_date">0000.00.00</dd>
+                    <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+            </ul>
+         </div>
+			<div class="free_board">
+            <ul>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                 </dl>
+               </li>
+               <li>
+                  <a href="">글제목</a>
+                  <dl>
+                     <dd class="user_nick">촉촉란</dd>
+                     <dd class="regi_date">0000.00.00</dd>
+                     <dd class="hits_int">00</dd>
+                  </dl>
+               </li>
+            </ul>
+         </div>
+      </div>
+      </section>
+		<div class="ad_zone">
+         <div class="ad_promo">
+            <a href="">프로모션 보러가기</a>
+         </div>
+		</div>
+		<div class="service_area clearflx">
+			<div class="notice">
+               <dl>
+                  <dt>Notice</dt>
+               </dl>
+            <table>
+                  <tr class=>
+                     <td><a href="">상반기 프로모션 안내</a></td>
+                     <td>0000.00.00</td>
+                  </tr>
+                  <tr class=>
+                     <td><a href="">서비스 점검 안내</a></td>
+                     <td>0000.00.00</td>
+                  </tr>
+                  <tr class=>
+                     <td><a href="">개인정보 처리방침 변경 안내</a></td>
+                     <td>0000.00.00</td>
+                  </tr>
+            </table>
+         </div>
+         <div class="qna">
+            <dl>
+               <dt>Q&A</dt>
+               <dd class="sub_dt">친절하게 답변해 드리겠습니다.</dd>
+               <dd class="dd_point">02)6203-5370</dd>
+               <dd>평일 10:00 ~ 18:00
+               <br>점심 12:30 ~ 13:30</dd>
+            </dl>
+         </div>
+         <div class="cs_center">
+            <dl>
+               <dt>CS Center</dt>
+               <dd class="sub_dt">토/일요일, 공휴일 휴무</dd>
+               <dd class="dd_point">무엇이든 물어보세요!</dd>
+               <dd><a href="">문의하기</a></dd>
+            </dl>
+         </div>
+		</div>
+
+	<footer id="footer">
+		<div class="footer_inner">
+         <div class="footer_list">
+            <ul>
+               <li><a href="">이용약관</a></li>
+               <li><a href="">개인정보 취급방침</a></li>
+               <li><a href="">위치기반서비스 이용약관</a></li>
+               <li><a href="">광고주 센터</a></li>
+               <li><a href="">신고리스트</a></li>
+            </ul>
+         </div>
+         <small class="txt_copyright">
+               Copyright © <a href="https://github.com/KKAKDI/5GONG.git">Team.5GONG</a> All rights reserved.
+         </small>
 		</div>
 	</footer>
 </body>
