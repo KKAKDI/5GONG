@@ -16,13 +16,13 @@ import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
+import tkl.bPaging.model.PagingDTO;
+import tkl.bPaging.model.PagingService;
 import tkl.bReply.model.ReplyDTO;
 import tkl.bReply.model.ReplyService;
 import tkl.board.model.BoardDTO;
 import tkl.board.model.BoardSQL;
 import tkl.board.model.BoardService;
-import tkl.paging.model.PagingDTO;
-import tkl.paging.model.PagingService;
 
 @WebServlet("/board.do")
 public class BoardControl extends HttpServlet {
@@ -82,21 +82,23 @@ public class BoardControl extends HttpServlet {
 		BoardService service = BoardService.getInstance();
 		ReplyService rService = ReplyService.getInstance();
 		PagingService pService = PagingService.getInstance();
-
-		/// 여기서부터는 검색기능
 		String sk = request.getParameter("sk");
 		String sv = request.getParameter("sv");
-		System.out.println("sk : " + sk);
-		System.out.println("sv : " + sv);
+		int i = searchCheck(sk, sv);
+
+
+		
 		/// 평범한 첫 리스트
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
 
+		
 		/// 페이징 능력 !!!
 		// PagingDTO pDto = new PagingDTO();
 		// serivce.paging();
 		int tableRowNum = pService.PagingRowNumS();
+		
 		request.setAttribute("tableRowNum", tableRowNum);
 
 		RequestDispatcher rd = request.getRequestDispatcher("board/board_list2.jsp");
