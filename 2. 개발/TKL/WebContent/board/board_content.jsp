@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.board.model.BoardDTO,tkl.bReply.model.ReplyDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset='utf-8'>
-<center>
 <link rel="stylesheet" type="text/css" href="http://image.lgeshop.com/css/style_2005.css">
 
 <html>
@@ -10,76 +9,32 @@
   </head>
   
   <body>
-    <center>
-	  <hr>
 	    <font>
 		  <b>JSS board</b>
 		</font>
 		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		  <a href="board.do">목록</a>
 		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		  <a href='index.jsp'>메인</a>
-	  <hr>
-	  <table align="center" width="600" cellspacing="1" 
-	                          cellpadding="3" border="1" id="table">
-		<tr>
-		  <td align="center" width="15%"><b>순번</b></td>
-		  <td align="center" width="35%">&nbsp;${dto.bNo}</td>
-		  <td align="center" width="15%"><b>날짜</b></td>
-		  <td align="center" width="35%">
-			&nbsp;${dto.bContent}
-		  </td>
-		</tr>
-		<tr>
-		  <td><b>글쓴이</b></td>
-		  <td>
-			&nbsp;${dto.mNick}
-	      </td>
-		  <td><b>HomePage</b></td>
-		  <td>
-		    &nbsp;${dto.mNick}
-		  </td>
-		</tr>
-		<tr>
-		  <td>&nbsp;</td>
-		  <td><b>조회수</b> : ${dto.bView}</td>
-		</tr>
-		<tr>
-		  <td><b>제목</b> : ${dto.bSubject}</td>
-		  <td><b>첨부파일</b>: <a href="board.do?m=board_download&bImgCopy=${dto.bImgCopy}">${dto.bImg}</a>
-
-		  </td>
-		</tr>
-		<tr>
-
+		  <a href='index.jsp'>메인</a><br/><br/>
+		  
+		  <td><b>순번 : </b>${dto.bNo}</td><br/><br/>
+		  <td><b>날짜 : </b>${dto.bWriteDate}</td><br/><br/>
+		  <td><b>글쓴이 : </b>&nbsp;${dto.mNick}</td><br/><br/>
+		  <td><b>조회수 : </b>${dto.bView}</td><br/><br/>
+		  <td><b>제목 : </b>${dto.bSubject}</td><br/><br/>
+		  <td><b>첨부파일</b>: <a href="board.do?m=board_download&bImgCopy=${dto.bImgCopy}">${dto.bImg}</a></td><br/><br/>
 		  <td><img src="image//${dto.bImg}"></img>
-		  <br/>${dto.bContent}</td>
-		</tr>
-		<tr>
+		  <b>내용 : </b>${dto.bContent}</td><br/><br/>
 		  <td>
-		    <hr>
-			<!----------------- re 변화 2 ----------------> 
 			<a href="board.do?m=board_update_form&bNo=${dto.bNo}">편집</a> | 
 			<a href="board.do?m=board_delete&bNo=${dto.bNo}&bImgCopy=${dto.bImgCopy}">삭제</a>  
-		    <!-- <a href=
-	"reboard_rewrite.jsp?idx=13&ref=9&lev=0&sunbun=0&cp=1">
-			  답변
-		    </a> -->
-			
-			<!-------------------------------------------->
 		  </td>
-		</tr>
-		<tr align="center" id="ta">
 		  <td>
-		     리플달기 
 		  </td>
-
           <script language="javascript">
               function check()
               {
-
                   	  f1.submit();
-
               }
           </script>
 		  <form name="f1" action="board.do?m=replyIn&bNo=${dto.bNo}" method="post">
@@ -93,15 +48,9 @@
 		  </form>
 		</tr>
 	  </table>
-	  
-	  <br><hr width="600" color="Maroon" size="2" noshade><br>
-	  <!-- 추천 및 삭제 폼 -->
 		${dto.bLike}
-<div class="row">
-
-<div class="col-lg-6 mt-3">
-	
-	<a onclick="return confirm('추천하시겠습니까?')" href="board.do?m=board_like&bNo=${dto.bNo}&brNo=${rDto.brNo}&">추천</a> 
+	<a onclick="return confirm('추천하시겠습니까?')" href="board.do?m=board_like&bNo=${dto.bNo}&brNo=${rDto.brNo}&">추천</a><br/><br/> 
+	<b>R E P L Y</b>
 </div>
 </div>
 <script language="javascript">     
@@ -132,29 +81,23 @@
           }
       }
 </script>
-      <table align="center" width="600" cellspacing="1" 
-	                          cellpadding="3" border="1"> 
-		 <tr>
+      <table> 
 		 	<c:forEach items="${rList}" var="rDto">
-	
-	
-	<tr>
 	<td>${rDto.mNick}</td>
-	<td>${rDto.brContent}</td>
+	<td> &nbsp;&nbsp;${rDto.brContent}</td>
 	<td>${rDto.brWriteDate}</td>
-	<td>${rDto.brLike}</td>
-	<td>${rDto.brDisLike}</td>
-	<td width="10%"> 
+	<!--<td>${rDto.brLike}</td>
+	<td>${rDto.brDisLike}</td>-->
+	<td> 
 		<a href="board.do?m=reply_delete&bNo=${dto.bNo}&brNo=${rDto.brNo}&"> 삭제</a>
 	</td>
 	</tr>
 	</c:forEach>
 		     <td>
-			    <font><b>R E P L Y</b></font>
+			    
 			 </td>
 		 </tr>
 	  </table>
 	  </div>
-	</center>
   </body>
 </html>

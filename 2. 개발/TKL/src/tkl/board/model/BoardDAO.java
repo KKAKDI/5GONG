@@ -192,11 +192,12 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(BoardSQL.sqlI);
-
-			pstmt.setString(2, dto.getbSubject());
-			pstmt.setString(3, dto.getbContent());
-			pstmt.setString(4, dto.getbImg());
-			pstmt.setString(5, dto.getbImgCopy());
+			pstmt.setString(1, "ccc@daum.net");
+			pstmt.setString(2, "´Ð³×ÀÓ3");
+			pstmt.setString(3, dto.getbSubject());
+			pstmt.setString(4, dto.getbContent());
+			pstmt.setString(5, dto.getbImg());
+			pstmt.setString(6, dto.getbImgCopy());
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			System.out.println("insert() se : " + se);
@@ -231,10 +232,12 @@ public class BoardDAO {
 			System.out.println();
 			int bView = rs.getInt("B_VIEW");
 			int bLike = rs.getInt("B_LIKE");
-			BoardDTO dto = new BoardDTO(bNo, null, mNick, bSubject, bContent, bImg, bImgCopy, bView, bLike, null, -1);
+			java.sql.Date bWriteDate = rs.getDate("B_WRITEDATE");
+			System.out.println("bWriteDate : "+bWriteDate);
+			BoardDTO dto = new BoardDTO(bNo, null, mNick, bSubject, bContent, bImg, bImgCopy, bView, bLike, bWriteDate, -1);
 			return dto;
 		} catch (SQLException se) {
-			System.out.println("se: " + se);
+			System.out.println("boardContent se: " + se);
 			return null;
 		} finally {
 			try {

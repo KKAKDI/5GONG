@@ -38,6 +38,14 @@ function check() {
 	<th>날짜</th>
 	<th>조회수</th>
 	</tr>
+	<tr>
+	<td align='center'><img src="image/notice_icon.jpg" border=0 alt="notice" /></td>
+	<td align='center'>운영자</td>
+	<td align='center'>GM</td>
+	<td align='center'>오늘부터 사이트 폐지합니다.</td>
+	<td align='center'>2019-06-09</td>
+	<td align='center'>9999999</td>
+	</tr>
 	<c:if test="${list.size() == 0}">
 	<tr>
 	<td>데이터가 하나도 없음</td>
@@ -45,6 +53,7 @@ function check() {
 	</c:if>
 
 	<c:forEach items="${list}" var="dto">
+	
 	
 	
 	<tr>

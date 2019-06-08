@@ -20,6 +20,7 @@ import tkl.bReply.model.ReplyDTO;
 import tkl.bReply.model.ReplyService;
 import tkl.board.model.BoardDTO;
 import tkl.board.model.BoardService;
+import tkl.paging.model.PagingDTO;
 
 @WebServlet("/board.do")
 public class BoardControl extends HttpServlet {
@@ -68,22 +69,27 @@ public class BoardControl extends HttpServlet {
 		String sv = request.getParameter("sv");
 		System.out.println("sk : " + sk);
 		System.out.println("sv : " + sv);
-		
+		///평범한 첫 리스트 
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
+		
+		///페이징 능력 !!!
+		//PagingDTO pDto = new PagingDTO();
+		//serivce.paging();
+		
+	
 
-		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_list.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/board_list.jsp");
 		rd.forward(request, response);
 
 	}
 
 	private void boardInform(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_input.jsp");
-		rd.forward(request, response);
+		response.sendRedirect("board/board_input.jsp");
 	}
-
+	
 	private void boardIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
@@ -145,7 +151,7 @@ public class BoardControl extends HttpServlet {
 		ArrayList<ReplyDTO> list = rService.replyListS(bNo);
 
 		request.setAttribute("rList", list);
-		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_content.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/board_content.jsp");
 		rd.forward(request, response);
 
 	}
@@ -157,7 +163,7 @@ public class BoardControl extends HttpServlet {
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		BoardDTO dto = service.boardContentS(bNo);
 		request.setAttribute("dto", dto);
-		RequestDispatcher rd = request.getRequestDispatcher("tklBoard/board_update.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("board/board_update.jsp");
 		rd.forward(request, response);
 
 	}

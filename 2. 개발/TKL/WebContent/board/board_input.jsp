@@ -3,7 +3,7 @@
 <meta charset='utf-8'>
 <html>
   <head>
-    <title>reboard_write.jsp</title>
+    <title>TKL</title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script language="javascript">
     $(document).ready(function(){
@@ -44,36 +44,19 @@
 		  alert("이름을 입력해주세요");
 		  return false;
 		}
-		if(document.input.eMail.value == "")
-		{
-		  alert("이메일을 입력해주세요");
-		  return false;
-		}
-		if(document.input.pwd.value == "")
-		{
-		  alert("비밀번호를 입력해주세요");
-		  return false;
-		}
 		document.input.submit();
 	  }
 	</script>
   </head>
   <body>
-    <center>
-	  <hr>
 	    <font><b>글 쓰 기</b></font>
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="board.do">목록</a>
+		<a href="../board.do">목록</a>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href='index.jsp'>메인</a>
-	  <hr>
-      <!-------------------- re 변화 1 ------------------------------->
-	  <form name="input" action="board.do?m=board_in" method="post"
+		<a href='../index.jsp'>메인</a>
+	  <form name="input" action="../board.do?m=board_in" method="post"
 	                                     enctype="multipart/form-data">
-	  <!-------------------------------------------------------------->
-	    <!-- <input type="hidden"  name="method" value="writeOk"> -->
-	    <table align="center" width="600" cellspacing="1" 
-		                                  cellpadding="3" border="1">
+	    <table>
 		  <tr>
 		    <td>제목</td>
 			<td>
@@ -83,7 +66,6 @@
 		  <tr>
 		    <td>내용</td>
 			<td>
-			
 			<img id="blah" src="" alt="미리보기" />
 			  <textarea name="bContent"></textarea>
 			</td>
@@ -91,30 +73,12 @@
 		  <tr>
 		    <td>작성자</td>
 			<td>
-			  <input type="text" name="mNick">
+			  <input type="text" name="mNick" value="세션으로 닉네임 받아야됨"disabled>
 			</td>
 		  </tr>
 		  <tr>
-		    <td>이메일</td>
+		    <td>첨부파일</td>
 			<td>
-			  <input type="text" name="eMail">
-			</td>
-		  </tr>
-		  <tr>
-		    <td align="center" width="20%">홈페이지</td>
-			<td align="center" width="80%">
-			  <input type="text" name="homepage">
-			</td>
-		  </tr>
-		  <tr>
-		    <td align="center" width="20%">패스워드</td>
-			<td align="center" width="80%">
-			  <input type="text" name="pwd">
-			</td>
-		  </tr>
-		  <tr>
-		    <td align="center" width="20%">첨부파일</td>
-			<td align="center" width="80%">
 			<input type='file' id="imgInp" name="filename" multiple/><br/>
 			  <input type="file" name="bImg">
 			</td>
@@ -127,7 +91,5 @@
 		  </tr>
 		</table>
 	  </form>
-	  <hr>
-	</center>
   </body>
 </html>
