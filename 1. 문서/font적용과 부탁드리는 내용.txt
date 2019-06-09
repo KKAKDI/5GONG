@@ -1,0 +1,28 @@
+﻿html 파일 안
+<head>
+<meta charset='utf-8'>
+<title>각페이지를 한눈에알수있는</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/각html파일이름.css">
+</head>
+<body>
+</body>
+
+css/각html파일이름.css 안
+
+html {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+*폼 사용하시는 분들 (input~~ 각 input마다 적용 필요*)
+{
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+
+html 안에서 tr style=center어쩌구 다 지워주세요 이마가 머리보다 앞서갑니다 <br제발 ㄴ
