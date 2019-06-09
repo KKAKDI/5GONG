@@ -19,10 +19,10 @@ insert into PRODUCT values(3, 'eee@google.com', '닉네임5', '거래완료', '닉네임3'
 insert into PRODUCT values(4, 'ddd@naver.com', '닉네임4', '판매중', '닉네임5', '컨버스 단화', '삽니다', 80000, '컨버스 단화', '컨버스 단화 8만원에 팝니다', 0, 'a4.jsp', 'a4_copy04.jsp', SYSDATE);
 
 --결제
-insert into PAYMENT values(1, 1, '닉네임3', 777788889999, '닉네임4', 123456789012, 100000, 100000, SYSDATE, '서울시 양천구 월정로 29길 22 태산주택 502호' , '구매확인', '판매확인');
-insert into PAYMENT values(2, 2, '닉네임4', 123456789012, null, null, 150000, null, SYSDATE, '화곡역 5번 출구', '구매확인', '판매확인');
-insert into PAYMENT values(3, 3, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, 120000, SYSDATE, '서울대역', '구매안함', '판매확인');
-insert into PAYMENT values(4, 4, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, 80000, SYSDATE, '비트캠프', '구매확인', '판매안함');
+insert into PAYMENT values(1, 1, '닉네임3',null, 777788889999, '닉네임4',null, 123456789012, 100000, 100000, SYSDATE, '서울시 양천구 월정로 29길 22 태산주택 502호' , '구매확인', '판매확인');
+insert into PAYMENT values(2, 2, '닉네임4',null, 123456789012, null,null, null, 150000, null, SYSDATE, '화곡역 5번 출구', '구매확인', '판매확인');
+insert into PAYMENT values(3, 3, '닉네임5',null, 987654321234, '닉네임3',null, 777788889999, 120000, 120000, SYSDATE, '서울대역', '구매안함', '판매확인');
+insert into PAYMENT values(4, 4, '닉네임4',null, 123456789012, '닉네임5',null, 987654321234, 80000, 80000, SYSDATE, '비트캠프', '구매확인', '판매안함');
 
 --거래기록
 insert into HISTORY values(1, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, SYSDATE);

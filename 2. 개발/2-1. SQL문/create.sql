@@ -130,8 +130,10 @@ CREATE TABLE PAYMENT (
 	PM_NO        NUMBER       NOT NULL, -- 결제번호
 	PD_NO        NUMBER       NOT NULL, -- 거래번호
 	PM_SELLER    VARCHAR2(30) NULL,     -- 판매자
+	PM_S_BANK	VARCHAR2(30) NULL,  -- 판매자은행
 	PM_S_ACCOUNT NUMBER       NULL,     -- 판매자계좌
 	PM_BUYER     VARCHAR2(30) NULL,     -- 구매자
+	PM_B_BANK	VARCHAR2(30) NULL,  -- 구매자은행
 	PM_B_ACCOUNT NUMBER       NULL,     -- 구매자계좌
 	PM_S_AMOUNT  NUMBER       NULL,     -- 판매금액
 	PM_B_AMOUNT  NUMBER       NULL,     -- 구매금액
