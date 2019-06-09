@@ -11,11 +11,10 @@
 	</h1>
 	<br/>
 	&nbsp;&nbsp;&nbsp;<a href='news.do?&m=list'>새소식 전체</a>
-	&nbsp;&nbsp;&nbsp;<a href='news.do?&m=list_notice'>공지사항</a>
-   &nbsp;&nbsp;&nbsp;<a href='news.do?&m=list_event'>이벤트</a>
-	<br><br>
+	&nbsp;&nbsp;&nbsp;<a href='news.do?&m=news_notice'>공지사항</a>
+   &nbsp;&nbsp;&nbsp;<a href='news.do?&m=news_event'>이벤트</a><br/><br/>
 	<div >
-	<a href='news/news_reg.jsp'>공지등록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href='news/news_reg.jsp'>새소식 등록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<br><br>
 	</div>
 	<table>
@@ -28,12 +27,12 @@
 			<th >조회수</th>
 			
 		</tr>
-		<c:if test="${list_event.size() == 0}">
+		<c:if test="${list_notice.size() == 0}">
 			<tr>
 				<td >데이터가 없습니다</td>
 			</tr>
 		</c:if>
-		<c:forEach items="${list_event}" var="dto">
+		<c:forEach items="${list_notice}" var="dto">
 		<tr>
 			<td>${dto.n_no}</td>
 			<td >${dto.n_nick}</td>

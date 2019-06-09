@@ -11,7 +11,7 @@
 	<form name="f" method="post" action="../news.do?m=in" >
 <br/><br/><br/>
 	
-	<b>공지글 작성</b>
+	<b>새소식 글 작성</b>
 
 
 	<br/><br/>
@@ -29,8 +29,8 @@
 			</tr>
 		 	<!-- <tr>
 				<td>이메일 :<input type="text" name="n_email"></td>
-			</tr>
-			<tr> -->
+			</tr> -->
+			<tr> 
 				<td>닉네임 : <input type="text" name="n_nick" ></td>
 			</tr>
 			<tr>

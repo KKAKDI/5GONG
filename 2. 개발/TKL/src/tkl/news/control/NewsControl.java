@@ -1,6 +1,7 @@
 package tkl.news.control;
 
 import java.io.IOException;  
+
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -34,10 +35,10 @@ public class NewsControl extends HttpServlet {
 				updateview(request,response);
 			}else if(m.equals("update")) {
 				update(request,response);
-			}else if(m.equals("list_notice")){
-				list_notice(request,response);
-			}else if(m.equals("list_event")){
-				list_event(request,response);
+			}else if(m.equals("news_notice")){
+				news_notice(request,response);
+			}else if(m.equals("news_event")){
+				news_event(request,response);
 			}else {
 				list(request, response);
 			}
@@ -47,7 +48,53 @@ public class NewsControl extends HttpServlet {
 	}
 	public void list (HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
+		String currentPageStr = request.getParameter("currentPage");
+		if (currentPageStr == null) {
+			int currentPage = 0;
+			request.setAttribute("currentPage", currentPage);
+		} else {
+			int currentPage = Integer.parseInt(currentPageStr);
+			request.setAttribute("currentPage", currentPage);
+		}
+		int curBlock = 0;
+		if (request.getParameter("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getParameter("curBlock"));
+		}
+		int curPage1 = 0;
+		if (request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int pageSizePerBlock = 1;
+		int curPage = (Integer)request.getAttribute("currentPage");
 		NewsService service = NewsService.getInstance();
+		int tableRowNum = service.PagingRowNumS();
+		if(request.getAttribute("curBlock") != null){
+			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
+		}
+		int totalRecodeSize = tableRowNum;
+		curPage1 = curBlock*pageSizePerBlock;
+		if(request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int recodeSizePerPage =2;
+		int beginNum = curPage1 * recodeSizePerPage;
+		int pageSize = (int)Math.ceil((double)totalRecodeSize/recodeSizePerPage);
+		int startPage = curBlock*pageSizePerBlock;
+		int endPage = startPage + pageSizePerBlock;
+		
+		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("tableRowNum", tableRowNum);
+		request.setAttribute("curBlock", curBlock);
+		request.setAttribute("totalRecodeSize", totalRecodeSize);
+		request.setAttribute("curPage1", curPage1);
+		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
+		request.setAttribute("beginNum", beginNum);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		
+		
 		ArrayList<NewsDTO> list = service.selectS();
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("news/news_list.jsp");
@@ -156,18 +203,18 @@ public class NewsControl extends HttpServlet {
 		service.updateU(dto);
 		response.sendRedirect("news.do");
 	}
-	private void list_notice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void news_notice(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		NewsService service = NewsService.getInstance();
 		ArrayList<NewsDTO> list_notice = service.selectnoticeS();
 		request.setAttribute("list_notice", list_notice);
-		RequestDispatcher rd = request.getRequestDispatcher("news/news_list_notice.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("news/news_notice.jsp");
 		rd.forward(request, response);
 	}
-	  private void list_event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  private void news_event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		   NewsService service = NewsService.getInstance();
 		   ArrayList<NewsDTO> list_event = service.selecteventS();
 		   request.setAttribute("list_event", list_event);
-		   RequestDispatcher rd= request.getRequestDispatcher("news/news_list_event.jsp");
+		   RequestDispatcher rd= request.getRequestDispatcher("news/news_event.jsp");
 		   rd.forward(request, response);
 	   }
 	private int getN_no(HttpServletRequest request) {

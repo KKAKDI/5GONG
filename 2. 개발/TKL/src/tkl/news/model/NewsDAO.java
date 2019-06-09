@@ -297,5 +297,25 @@ public class NewsDAO {
 			}catch(SQLException se) {}
 		}
 	}
+	int PagingRowNum() {
+		Statement stmt = null;
+		Connection con = null;
+		try {
+			con = ds.getConnection();
+			stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(NewsSQL.sqlPaging);
+			rs.next();
+			int num = rs.getInt("COUNT(*)");
+			return num;
+		}catch(SQLException se) {
+			System.out.println("PagingRowNum se : "+se);
+			return -1;
+		}finally {
+			try {
+				if(stmt !=null)stmt.close();
+				if(con !=null)con.close();
+			}catch(SQLException se) {}
+		}
+	}
 }
 

@@ -38,6 +38,9 @@ public class NewsService {
 	public ArrayList<NewsDTO> selecteventS() {
 		return dao.selectevent();
 	}
+	public int PagingRowNumS() {
+		return dao.PagingRowNum();
+	}
 
 	
 }
