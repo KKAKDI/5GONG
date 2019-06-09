@@ -1,0 +1,70 @@
+<%@ page contentType="text/html; charset=utf-8" import="java.util.*,tkl.report.model.ReportDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/report.css">
+</head>
+
+<div class="report_board">
+    <iframe id="ifrm_filedown"></iframe>
+
+    <h2>Simple Board with Servlet(MINI)</h2>
+
+    <a href='rBoard.do?m=in_form'><b>신고하기</b></a>
+ 
+    <table cellpadding='3'>
+    <tr>
+        <th class="report_title">글번호</th>
+        <td cldss="report_c_no">${dtoContent.rNO}</td>
+        <th class="report_title">글쓴이</th>
+        <td class="report_u_nick">${dtoContent.rNick}</td>
+        <th class="report_title">등록일</th>
+        <td class="report_c_wd">${dtoContent.rWriteDate}</td>
+    </tr>
+    <tr>
+    <th class="report_title">제목</th>
+    <td class="report_c_sj" colspan="3">${dtoContent.rSubject}</td>
+    <th class="report_title">처리현황</th>
+    <td class="report_c_rs">${dtoContent.rState}</td>
+    </tr>
+    <tr>
+    <th class="report_title">글내용</th>
+    <td class=".report_c_rs" colspan="5">${dtoContent.rContent}</td>
+    </tr>
+
+    <tr>
+    <th>첨부파일</th>
+    <td colspan="5"><a href="rBoard.do?m=fileDownLoad&rFile=${dtoContent.rFile}">${dtoContent.rFile}</a></td>
+    </tr>
+    </table>
+    <!-- <hr width='600' size='2' noshade> -->
+    <b>
+
+    <a href='rBoard.do?m=del&rNO=${dtoContent.rNO}&rFile=${dtoContent.rFileCopy}'>삭제</a>
+
+    <a href='rBoard.do?m=list'>목록</a>
+
+    </b>
+
+
+    <table cellpadding='3'>
+
+    <form name="rInput" method="post" action="rBoard.do?m=rIn">
+    <input type='hidden' name='rNO' value='${dtoContent.rNO}'>
+   
+    <tr>
+    <th class="report_title">답변</th>
+    <td colspan="5" width="85%"><textarea name="rReply" rows="5" cols="53"></textarea>
+        <input type="submit" value="확인"/></td>
+    </tr>
+    </form>
+
+ </table>
+</div>
+ 
