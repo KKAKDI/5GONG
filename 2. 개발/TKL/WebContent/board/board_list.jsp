@@ -39,7 +39,7 @@ function check() {
 	<th>조회수</th>
 	</tr>
 	<tr>
-	<td align='center'><img src="image/notice_icon.jpg" border=0 alt="notice" /></td>
+	<td align='center'><img src="img/notice_icon.jpg" border=0 alt="notice" /></td>
 	<td align='center'>운영자</td>
 	<td align='center'>GM</td>
 	<td align='center'>오늘부터 사이트 폐지합니다.</td>
