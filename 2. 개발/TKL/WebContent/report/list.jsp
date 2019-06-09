@@ -13,7 +13,7 @@
 &nbsp;&nbsp;&nbsp;
 
 <form action="rBoard.do">
-<select name="m">
+<select name="searchKey">
 <option value="0">--처리상태--</option>
 <option value="list">모두보기</option>
 <option value="listR">처리중</option>

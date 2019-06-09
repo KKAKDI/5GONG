@@ -26,7 +26,7 @@ public class ReportDAO {
 		}catch(NamingException ne) {		
 		}
 	}
-	ArrayList<ReportDTO> select(int i, int k, int begin,int end){
+	ArrayList<ReportDTO> select(String searchKey, int i, int k, int begin,int end){
 		ArrayList<ReportDTO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt, pstmtPage = null;
@@ -34,12 +34,29 @@ public class ReportDAO {
 		try {
 			con = ds.getConnection();
 			//pstmt = con.prepareStatement(ReportSQL.sqlS);
-			pstmtPage = con.prepareStatement(ReportSQL.sqlS);
-			
-			pstmtPage.setInt(1, i);
-			pstmtPage.setInt(2, k);
-			pstmtPage.setInt(3, begin);
-			pstmtPage.setInt(4, end);
+			if(searchKey == null) {
+				pstmtPage = con.prepareStatement(ReportSQL.sqlS);
+				
+				pstmtPage.setInt(1, i);
+				pstmtPage.setInt(2, k);
+				pstmtPage.setInt(3, begin);
+				pstmtPage.setInt(4, end);
+			} else if(searchKey.equals("listR")) {
+				pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
+				pstmtPage.setInt(1, i);
+				pstmtPage.setInt(2, k);
+			} else if(searchKey.equals("listC")) {
+				pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
+				pstmtPage.setInt(1, i);
+				pstmtPage.setInt(2, k);
+			} else {
+				pstmtPage = con.prepareStatement(ReportSQL.sqlS);
+				
+				pstmtPage.setInt(1, i);
+				pstmtPage.setInt(2, k);
+				pstmtPage.setInt(3, begin);
+				pstmtPage.setInt(4, end);
+			}
 			//rs = pstmt.executeQuery();
 			rs = pstmtPage.executeQuery();
 			System.out.println("sql : select R_NO, R_SUBJECT, R_CONTENT, R_FILE, R_FILE_COPY, R_EMAIL, R_NICK, R_WRITEDATE, R_STATE from REPORT where (R_STATE="+ i + " or R_STATE=" + k + ") and (ROWNUM>=" + begin +" AND ROWNUM<=" + end + ") order by R_NO desc");
@@ -53,8 +70,9 @@ public class ReportDAO {
 				String rNick = rs.getString("R_NICK");
 				java.sql.Date rWriteDate = rs.getDate("R_WRITEDATE");
 				String rState = rs.getString("R_STATE");
+				String rReply = rs.getString("R_REPLY");
 				//System.out.println("sql : select " + rNO + rSubject + rContent + rFile + rFileCopy + rEmail + rNick + rWriteDate + rState + " from REPORT where R_STATE=" + i + " or R_STATE=" + k + " and ROWNUM>=" + begin + " AND ROWNUM<=" + end + " order by " + rNO + " desc");
-				ReportDTO dto = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState);
+				ReportDTO dto = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply);
 				list.add(dto);
 			}
 			return list;
@@ -87,6 +105,8 @@ public class ReportDAO {
 			System.out.println(dto.getrFileCopy());
 			pstmt.setString(5, dto.getrNick());
 			System.out.println(dto.getrNick());
+			pstmt.setString(6, dto.getrReply());
+			System.out.println(dto.getrReply());
 			pstmt.executeUpdate();
 		}catch(SQLException se) {
 			System.out.println("insert() se: " + se);
@@ -137,7 +157,8 @@ public class ReportDAO {
 				String rNick = rs.getString("R_NICK");
 				java.sql.Date rWriteDate = rs.getDate("R_WRITEDATE");
 				String rState = rs.getString("R_STATE");
-				dtoContent = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState);
+				String rReply = rs.getString("R_REPLY");
+				dtoContent = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply);
 			}
 			return dtoContent;
 		}catch(SQLException se) {
@@ -151,17 +172,40 @@ public class ReportDAO {
 			}
 		}
 	}
+	void update(ReportDTO dto) {
+		Connection con = null;
+		PreparedStatement pstmt = null; 
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(ReportSQL.sqlU);
+			pstmt.setString(1, dto.getrReply());
+			System.out.println("dto.getrReply : " + dto.getrReply());
+			pstmt.setInt(2, dto.getrNO());
+			System.out.println("dto.getrNO : " + dto.getrNO());
+			pstmt.executeUpdate();
+		}catch(SQLException se) {
+			System.out.println("update() se: " + se);
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {
+			}
+		}
+	}
 	
-	int getTotal() {
+	int getTotal(int i, int k) {
 		int cnt = 0;
 		Connection con = null;
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
 		try {
 			con = ds.getConnection();
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(ReportSQL.sql_TOTAL);
+			pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
+			pstmt.setInt(1, i);
+			pstmt.setInt(2, k);
+			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				cnt = rs.getInt(1);
 			}
@@ -172,8 +216,8 @@ public class ReportDAO {
 			try {
 				if (rs != null)
 					rs.close();
-				if (stmt != null)
-					stmt.close();
+				if (pstmt != null)
+					pstmt.close();
 				if (con != null)
 					con.close();
 			} catch (SQLException se) {

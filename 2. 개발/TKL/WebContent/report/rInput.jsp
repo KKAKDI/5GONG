@@ -52,8 +52,6 @@ visibility:hidden;">
 
 <a href='rBoard.do?m=list'>목록</a>
 
-<a href='rBoard.do?m=rIn_form&rNO=${dtoContent.rNO}'>답변</a>
-
 </b>
 
 <hr width='600' size='2' noshade>
@@ -62,9 +60,12 @@ visibility:hidden;">
 <table border='1' width='600' align='center' cellpadding='3'>
 <tr align="center" id="ta">
 
+<form name="rInput" method="post" action="rBoard.do?m=rIn">
+<input type='hidden' name='rNO' value='${dtoContent.rNO}'>
 <tr>
 <td align="center" width="15%"><b>답변</b></td>
-<td colspan="5" align="center" width="85%">${dtoContent.rReply}</td>
+<td colspan="5" align="center" width="85%"><textarea name="rReply" rows="5" cols="53"></textarea><input type="submit" value="확인"/></td>
 </tr>
+</form>
  </table>
  
