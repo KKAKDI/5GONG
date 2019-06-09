@@ -79,8 +79,7 @@
 		  <tr>
 		    <td>첨부파일</td>
 			<td>
-			<input type='file' id="imgInp" name="filename" multiple/><br/>
-			  <input type="file" name="bImg">
+			<input type='file' id="imgInp" name="bImg" multiple/><br/>
 			</td>
 		  </tr>
 		  <tr>

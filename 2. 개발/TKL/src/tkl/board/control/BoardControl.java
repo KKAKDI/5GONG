@@ -67,12 +67,13 @@ public class BoardControl extends HttpServlet {
 		ReplyService rService = ReplyService.getInstance();
 		PagingService pService = PagingService.getInstance();
 		String currentPageStr = request.getParameter("currentPage");
+		String b = request.getParameter("b");
 		String sk = request.getParameter("sk");
 		String sv = request.getParameter("sv");
 		request.setAttribute("sk", sk);
 		request.setAttribute("sv", sv);
 
-		// ÆäÀÌÂ¡ °¡Áî¾Æ
+		//í˜ì´ì§• ê¸°ëŠ¥ ì‹œì‘
 		int i = searchCheck(sk, sv);
 		if (currentPageStr == null) {
 			int currentPage = 0;
@@ -99,13 +100,16 @@ public class BoardControl extends HttpServlet {
 		if (request.getParameter("curPage") != null) {
 			curPage = Integer.parseInt(request.getParameter("curPage"));
 		}
-		int recodeSizePerPage = 2;
+		int recodeSizePerPage = 2;//ë‚´ê°€ ì•Œê¸°ë¡  ì´ê±° í•œí˜ì´ì§€ ë‚˜ì˜¬ìˆ˜ ìˆëŠ” ë¦¬ìŠ¤íŠ¸ 
 		int beginNum = curPage * recodeSizePerPage;
 		int pageSize = (int) Math.ceil((double) totalRecodeSize / recodeSizePerPage);
+		//ì´ê±°ëŠ” ì•„ë˜ i ì´ë‹¤
 		int startPage = curBlock * pageSizePerBlock;
 		int endPage = startPage + pageSizePerBlock;
 		
-		///// ¿©±â´Â Áı¾î ³Ö´Â°÷
+		
+		
+		///// ìë£Œ ì§‘ì–´ë„£ê¸°
 		
 		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
 		request.setAttribute("pageSize", pageSize);
@@ -118,7 +122,7 @@ public class BoardControl extends HttpServlet {
 		request.setAttribute("curPage", curPage);
 		request.setAttribute("curBlock", curBlock);
 
-		/// Æò¹üÇÑ Ã¹ ¸®½ºÆ®
+		///ê·¸ëƒ¥ ë¦¬ìŠ¤íŠ¸
 		BoardDTO dto = new BoardDTO();
 		ArrayList<BoardDTO> list = service.boardList(sk, sv);
 		request.setAttribute("list", list);
@@ -137,7 +141,7 @@ public class BoardControl extends HttpServlet {
 	private void boardIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ServletContext sc = getServletContext();
-		String saveDir = sc.getRealPath("/image");
+		String saveDir = sc.getRealPath("/img");
 		System.out.println("saveDir : " + saveDir);
 		int maxPostSize = 10 * 1028 * 1028;
 		String encoding = "utf-8";
@@ -155,7 +159,6 @@ public class BoardControl extends HttpServlet {
 		BoardDTO dto = new BoardDTO(-1, eMail, mNick, bSubject, bContent, bImg, bImgCopy, -1, -1, null, -1);
 		BoardService service = BoardService.getInstance();
 		service.insertS(dto);
-		System.out.println("ÆÄÀÏ ¾÷·Îµå ¼º°ø");
 		response.sendRedirect("board.do?m=board_list");
 	}
 
@@ -163,29 +166,27 @@ public class BoardControl extends HttpServlet {
 			throws ServletException, IOException {
 		BoardService service = BoardService.getInstance();
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		// ÄíÅ° ½ÃÀÛ
+		// 
 
-		// ÄíÅ°º¯¼ö¸¦ ¸¸µé¾î¼­ °ªÀ» ÀúÀå. ÄíÅ°º¯¼ö¿¡ °ªÀÌ ÀÖÀ¸¸é Á¶È¸¼ö Áõ°¡ ½ÇÇà ÇÏÁö ¾ÊÀ½
+		// ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½î¼­ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½. ï¿½ï¿½Å°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¸ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		boolean isGet = false;
 		Cookie[] cookies = request.getCookies();
 		for (Cookie c : cookies) {//
-			// numÄíÅ°°¡ ÀÖ´Â °æ¿ì
-			System.out.println("ÄíÅ°ÀÌ¸§ : " + c.getName());
+			// numï¿½ï¿½Å°ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½
+			System.out.println("ï¿½ï¿½Å°ï¿½Ì¸ï¿½ : " + c.getName());
 
 		}
 
 		if (cookies != null) {
-			for (Cookie c : cookies) {//
-				// numÄíÅ°°¡ ÀÖ´Â °æ¿ì
+			for (Cookie c : cookies) {
 				if (c.getName().equals("coocie" + bNo)) {
 					isGet = true;
 				}
 			}
-			// numÄíÅ°°¡ ¾ø´Â °æ¿ì
 			if (!isGet) {
-				service.boardViewS(bNo);// Á¶È¸¼öÁõ°¡
+				service.boardViewS(bNo);
 				Cookie c1 = new Cookie("coocie" + bNo, "coocie" + bNo);
-				c1.setMaxAge(1 * 24 * 60 * 60);// ÇÏ·çÀúÀå
+				c1.setMaxAge(1 * 24 * 60 * 60);
 				response.addCookie(c1);
 			}
 		}
@@ -242,7 +243,7 @@ public class BoardControl extends HttpServlet {
 		File f = new File(saveDir, bImgCopy);
 		if (f.exists()) {
 			f.delete();
-			System.out.println("ÆÄÀÏ »èÁ¦ ¼º°ø");
+			System.out.println("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 		}
 		service.boardDeleteS(bNo);
 

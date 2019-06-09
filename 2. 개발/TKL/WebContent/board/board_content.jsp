@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.board.model.BoardDTO,tkl.bReply.model.ReplyDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <meta charset='utf-8'>
-<link rel="stylesheet" type="text/css" href="http://image.lgeshop.com/css/style_2005.css">
+<link rel="stylesheet" type="text/css" href="http://img.lgeshop.com/css/style_2005.css">
 
 <html>
   <head>
@@ -23,7 +23,7 @@
 		  <td><b>조회수 : </b>${dto.bView}</td><br/><br/>
 		  <td><b>제목 : </b>${dto.bSubject}</td><br/><br/>
 		  <td><b>첨부파일</b>: <a href="board.do?m=board_download&bImgCopy=${dto.bImgCopy}">${dto.bImg}</a></td><br/><br/>
-		  <td><img src="image//${dto.bImg}"></img>
+		  <td><img src="img//${dto.bImgCopy}"></img>
 		  <b>내용 : </b>${dto.bContent}</td><br/><br/>
 		  <td>
 			<a href="board.do?m=board_update_form&bNo=${dto.bNo}">편집</a> | 

@@ -191,7 +191,7 @@ public class BoardDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(BoardSQL.sqlI);
 			pstmt.setString(1, "ccc@daum.net");
-			pstmt.setString(2, "´Ð³×ÀÓ3");
+			pstmt.setString(2, "ë‹‰ë„¤ìž„3");
 			pstmt.setString(3, dto.getbSubject());
 			pstmt.setString(4, dto.getbContent());
 			pstmt.setString(5, dto.getbImg());

@@ -47,7 +47,9 @@ function check() {
 	<td align='center'>9999999</td>
 	</tr>
 	
-	<c:forEach var="list" items="${list}" begin="${beginNum}" end="${beginNum+recodeSizePerPage}" step="1">
+	<c:set var="doneLoop" value="false"/>
+	<c:forEach var="list" items="${list}" begin="${beginNum}" end="${beginNum+(recodeSizePerPage-1)}" step="1">
+	 <c:if test="${not doneLoop}">
 
       <tr>
          <td>${list.bNo}</td>
@@ -60,7 +62,13 @@ function check() {
          <td>${list.bWriteDate}</td>
          <td>${list.bView}</td>
       </tr>
+               <c:if test="${totalRecodeSize <= beginNum}">
+              <c:set var="doneLoop" value="true"/>
+      </c:if>
+         </c:if>
       </c:forEach>
+      
+      
 	
 	
 
@@ -79,12 +87,25 @@ function check() {
 </form>
 
 <c:if test="${curBlock >0}">
-	<a href ="board.do?m=board_list&curBlock=${curBlock-1}&sk=${sk}&sv=${sv}">이전</a>
+	<a href ="board.do?m=board_list&curBlock=${curBlock-1}&curPage=${startPage-1}&sk=${sk}&sv=${sv}">이전</a>
 </c:if>
 
-	<c:forEach var="i" begin="${startPage}" end="${endPage}" step="1">
-       <td><a href ="board.do?m=board_list&curBlock=${curBlock}&curPage=${i}&sk=${sk}&sv=${sv}">${i+1} | </a></td>
-    </c:forEach>
+
+<c:set var="doneLoop" value="false"/>
+	<c:forEach var="i" begin="${startPage}" end="${endPage-1}" step="1">
+		<c:if test="${not doneLoop}">
+   			 <td><a href ="board.do?m=board_list&curBlock=${curBlock}&curPage=${i}&sk=${sk}&sv=${sv}">${i+1} | </a></td>
+  	
+   		<c:if test="${pageSize <= (i+1)}">
+    	<c:set var="doneLoop" value="true"/>
+    	
+   		 </c:if>
+ 	</c:if>
+ </c:forEach>
+    
+    
+    
+    
 <c:if test="${curBlock < (pageSize/pageSizePerBlock)-1}">
 	<a href ="board.do?m=board_list&curBlock=${curBlock+1}&sk=${sk}&sv=${sv}">다음</a>
 </c:if>
