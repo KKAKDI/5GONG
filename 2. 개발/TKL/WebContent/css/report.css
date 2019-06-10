@@ -1,0 +1,80 @@
+@charset "utf-8";
+
+html {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.report_board {
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 게시판 글쓴이~답변 */
+h2,
+a,
+table {
+    border: none;
+}
+
+th,
+td {
+    padding: 6px 0;
+    border: none;
+    border-bottom: 1px solid #333;
+}
+
+th {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: #6a6a6a;
+}
+
+td {
+    font-size: 14px;
+    font-weight: 400;
+    /* letter-spacing: 0.5px; */
+    text-indent: 3px;
+    border-bottom: 1px solid #333;
+    color:#212121;
+}
+
+.report_title {}
+
+/* 글번호 */
+.report_c_no {}
+
+/* 글쓴이 */
+.report_u_nick {}
+
+/* 등록일 */
+.report_c_wd {}
+
+/* 제목 */
+.report_c_sj {}
+
+/* 처리현황 */
+.report_c_sj {}
+
+/* 글내용 */
+.report_c_rs {}
+
+/* 첨부파일 */
+
+/* 삭제 */
+
+/* 목록 */
+
+/* 답변 */
+
+/* 확인 폼 */
+
+#ifrm_filedown {
+    position: absolute;
+    z-index: 1;
+    visibility: hidden;
+}
+textarea{resize:none;}

@@ -6,6 +6,7 @@ public class ProductDTO {
 	private int pd_no;
 	private String pd_email;
 	private String pd_nick;
+	private int pd_trust;
 	private String pd_status;
 	private String pd_buyer;
 	private String pd_name;
@@ -21,12 +22,14 @@ public class ProductDTO {
 	
 	public ProductDTO(){}
 
-	public ProductDTO(int pd_no, String pd_email, String pd_nick, String pd_status, String pd_buyer, String pd_name,
-			String pd_class, int pd_price, String pd_subject, String pd_content, int pd_view, String pd_img,
-			String pd_img_copy, Date pd_regdate, int cnt) {
+	public ProductDTO(int pd_no, String pd_email, String pd_nick, int pd_trust, String pd_status, String pd_buyer,
+			String pd_name, String pd_class, int pd_price, String pd_subject, String pd_content, int pd_view,
+			String pd_img, String pd_img_copy, Date pd_regdate, int cnt) {
+		super();
 		this.pd_no = pd_no;
 		this.pd_email = pd_email;
 		this.pd_nick = pd_nick;
+		this.pd_trust = pd_trust;
 		this.pd_status = pd_status;
 		this.pd_buyer = pd_buyer;
 		this.pd_name = pd_name;
@@ -63,6 +66,14 @@ public class ProductDTO {
 
 	public void setPd_nick(String pd_nick) {
 		this.pd_nick = pd_nick;
+	}
+
+	public int getPd_trust() {
+		return pd_trust;
+	}
+
+	public void setPd_trust(int pd_trust) {
+		this.pd_trust = pd_trust;
 	}
 
 	public String getPd_status() {
@@ -152,7 +163,7 @@ public class ProductDTO {
 	public void setPd_regdate(Date pd_regdate) {
 		this.pd_regdate = pd_regdate;
 	}
-	
+
 	public int getCnt() {
 		return cnt;
 	}

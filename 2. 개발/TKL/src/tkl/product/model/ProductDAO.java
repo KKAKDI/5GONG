@@ -27,7 +27,8 @@ class ProductDAO {
 		try {
 			con = ds.getConnection();
 			stmt = con.createStatement();
-			rs = stmt.executeQuery(ProductSQL.sqlList);
+	        rs = stmt.executeQuery(ProductSQL.sqlList);
+			
 			while(rs.next()) {
 				int pd_no = rs.getInt("pd_no");
 				String pd_nick = rs.getString("pd_nick");
@@ -98,6 +99,8 @@ class ProductDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			int pd_no1 = rs.getInt("pd_no");
+			String pd_nick = rs.getString("pd_nick");
+			int pd_trust = rs.getInt("pd_trust");
 			String pd_status = rs.getString("pd_status");
 			String pd_name = rs.getString("pd_name");
 			String pd_class = rs.getString("pd_class");
@@ -107,6 +110,8 @@ class ProductDAO {
 			java.sql.Date pd_regdate = rs.getDate("pd_regdate");
 			ProductDTO dto = new ProductDTO();
 			dto.setPd_no(pd_no1);
+			dto.setPd_nick(pd_nick);
+			dto.setPd_trust(pd_trust);
 			dto.setPd_status(pd_status);
 			dto.setPd_name(pd_name);
 			dto.setPd_class(pd_class);
@@ -181,61 +186,21 @@ class ProductDAO {
 		}
 	}
 	
-	ArrayList<ProductDTO> selectSel(){
+	ArrayList<ProductDTO> select2(String pd_class){
 		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(ProductSQL.sqlListSel);
+			pstmt = con.prepareStatement(ProductSQL.sqlList2);
+			pstmt.setString(1, pd_class);
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				int pd_no = rs.getInt("pd_no");
 				String pd_nick = rs.getString("pd_nick");
 				String pd_status = rs.getString("pd_status");
-				String pd_class1 = rs.getString("pd_class");
-				String pd_subject = rs.getString("pd_subject");
-				java.sql.Date pd_regdate = rs.getDate("pd_regdate");
-				int pd_view = rs.getInt("pd_view");
-				int cnt = rs.getInt("cnt");
-				ProductDTO dto = new ProductDTO();
-				dto.setPd_no(pd_no);
-				dto.setPd_nick(pd_nick);
-				dto.setPd_status(pd_status);
-				dto.setPd_class(pd_class1);
-				dto.setPd_subject(pd_subject);
-				dto.setPd_regdate(pd_regdate);
-				dto.setPd_view(pd_view);
-				dto.setCnt(cnt);
-				list.add(dto);
-			}
-			return list;
-		}catch(SQLException se) {
-			return null;
-		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null) con.close();
-			}catch(SQLException se) {}
-		}
-	}
-	
-	ArrayList<ProductDTO> selectBuy(){
-		ArrayList<ProductDTO> list = new ArrayList<ProductDTO>();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(ProductSQL.sqlListBuy);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				int pd_no = rs.getInt("pd_no");
-				String pd_nick = rs.getString("pd_nick");
-				String pd_status = rs.getString("pd_status");
-				String pd_class = rs.getString("pd_class");
+				pd_class = rs.getString("pd_class");
 				String pd_subject = rs.getString("pd_subject");
 				java.sql.Date pd_regdate = rs.getDate("pd_regdate");
 				int pd_view = rs.getInt("pd_view");

@@ -26,7 +26,6 @@ import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
 import tkl.preply.model.PreplyDTO;
 
-
 @WebServlet("/product.do")
 public class ProductControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -85,32 +84,25 @@ public class ProductControl extends HttpServlet {
 		if (request.getParameter("curPage1") != null) {
 			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
 		}
-		int pageSizePerBlock = 1;
-		int curPage = (Integer)request.getAttribute("currentPage");
-		//int tableRowNum =(Integer)request.getAttribute("tableRowNum");
 		ProductService service = ProductService.getInstance();
 		int tableRowNum = service.PagingRowNumS();
-		//curBlock = 1;
+		int totalRecodeSize = tableRowNum;
+		int pageSizePerBlock = 3;
+		int curPage = (Integer)request.getAttribute("currentPage");
 		if(request.getAttribute("curBlock") != null){
 			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
 		}
-		int totalRecodeSize = tableRowNum;
 		curPage1 = curBlock*pageSizePerBlock;
 		if(request.getParameter("curPage1") != null) {
 			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
 		}
-		int recodeSizePerPage =2;
+		int recodeSizePerPage = 10;
 		int beginNum = curPage1 * recodeSizePerPage;
 		int pageSize = (int)Math.ceil((double)totalRecodeSize/recodeSizePerPage);
 		int startPage = curBlock*pageSizePerBlock;
 		int endPage = startPage + pageSizePerBlock;
-		
-		
-		//tableRowNum = service.PagingRowNumS();
-		
 		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
 		request.setAttribute("curPage", curPage);
-		request.setAttribute("tableRowNum", tableRowNum);
 		request.setAttribute("curBlock", curBlock);
 		request.setAttribute("totalRecodeSize", totalRecodeSize);
 		request.setAttribute("curPage1", curPage1);
@@ -119,7 +111,7 @@ public class ProductControl extends HttpServlet {
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		
+		request.setAttribute("tableRowNum", tableRowNum);
 		ArrayList<ProductDTO> list = service.selectS();
 		request.setAttribute("list", list);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_list.jsp");
@@ -141,9 +133,9 @@ public class ProductControl extends HttpServlet {
 		String pd_img_copy = mr.getFilesystemName("pd_img_copy");
 		String pd_img = mr.getOriginalFileName("pd_img_copy");
 		String pd_email = mr.getParameter("pd_email");
-		pd_email = "aaa@naver.com";
+		//pd_email = "ddd@naver.com";
 		String pd_nick = mr.getParameter("pd_nick");
-		pd_nick = "닉네임1";
+		//pd_nick = "닉네임1";
 		String pd_status = mr.getParameter("pd_status");
 		pd_status = "판매중";
 		String pd_name = mr.getParameter("pd_name");
@@ -269,14 +261,15 @@ public class ProductControl extends HttpServlet {
 	
 	private void reply_reg(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pd_no = getPd_no(request);
-		//String m_email = request.getParameter("m_email");
-		//String m_nick = request.getParameter("m_nick");
+		String pd_email = request.getParameter("pd_email");
+		String pd_nick = request.getParameter("pd_nick");
+		System.out.println("pd_nick : " + pd_nick);
 		String pr_comment = request.getParameter("pr_comment");
 		PreplyService service = PreplyService.getInstance();
 		PreplyDTO dto = new PreplyDTO();
 		dto.setPd_no(pd_no);
-		//dto.setM_email(m_email);
-		//dto.setM_nick(m_nick);
+		dto.setPd_email(pd_email);
+		dto.setPd_nick(pd_nick);
 		dto.setPr_comment(pr_comment);
 		service.regS(dto);
 		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
@@ -293,16 +286,108 @@ public class ProductControl extends HttpServlet {
 	}
 	
 	private void list_sel(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String currentPageStr = request.getParameter("currentPage");
+		if (currentPageStr == null) {
+			int currentPage = 0;
+			request.setAttribute("currentPage", currentPage);
+		} else {
+			int currentPage = Integer.parseInt(currentPageStr);
+			request.setAttribute("currentPage", currentPage);
+		}
+		int curBlock = 0;
+		if (request.getParameter("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getParameter("curBlock"));
+		}
+		int curPage1 = 0;
+		if (request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
 		ProductService service = ProductService.getInstance();
-		ArrayList<ProductDTO> list_sel = service.selectSelS();
+		int tableRowNum = service.PagingRowNumS();
+		int totalRecodeSize = tableRowNum;
+		int pageSizePerBlock = 3;
+		int curPage = (Integer)request.getAttribute("currentPage");
+		if(request.getAttribute("curBlock") != null){
+			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
+		}
+		curPage1 = curBlock*pageSizePerBlock;
+		if(request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int recodeSizePerPage = 10;
+		int beginNum = curPage1 * recodeSizePerPage;
+		int pageSize = (int)Math.ceil((double)totalRecodeSize/recodeSizePerPage);
+		int startPage = curBlock*pageSizePerBlock;
+		int endPage = startPage + pageSizePerBlock;
+		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("curBlock", curBlock);
+		request.setAttribute("totalRecodeSize", totalRecodeSize);
+		request.setAttribute("curPage1", curPage1);
+		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
+		request.setAttribute("beginNum", beginNum);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("tableRowNum", tableRowNum);
+		String pd_class = request.getParameter("pd_class");
+		pd_class = "팝니다";
+		ArrayList<ProductDTO> list_sel = service.select2(pd_class);
+		request.setAttribute("pd_class", pd_class);
 		request.setAttribute("list_sel", list_sel);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_sel.jsp");
 		rd.forward(request, response);
 	}
 	
 	private void list_buy(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String currentPageStr = request.getParameter("currentPage");
+		if (currentPageStr == null) {
+			int currentPage = 0;
+			request.setAttribute("currentPage", currentPage);
+		} else {
+			int currentPage = Integer.parseInt(currentPageStr);
+			request.setAttribute("currentPage", currentPage);
+		}
+		int curBlock = 0;
+		if (request.getParameter("curBlock") != null) {
+			curBlock = Integer.parseInt(request.getParameter("curBlock"));
+		}
+		int curPage1 = 0;
+		if (request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
 		ProductService service = ProductService.getInstance();
-		ArrayList<ProductDTO> list_buy = service.selectBuyS();
+		int tableRowNum = service.PagingRowNumS();
+		int totalRecodeSize = tableRowNum;
+		int pageSizePerBlock = 3;
+		int curPage = (Integer)request.getAttribute("currentPage");
+		if(request.getAttribute("curBlock") != null){
+			curBlock = Integer.parseInt(request.getAttribute("curBlock").toString());
+		}
+		curPage1 = curBlock*pageSizePerBlock;
+		if(request.getParameter("curPage1") != null) {
+			curPage1 = Integer.parseInt(request.getParameter("curPage1"));
+		}
+		int recodeSizePerPage = 10;
+		int beginNum = curPage1 * recodeSizePerPage;
+		int pageSize = (int)Math.ceil((double)totalRecodeSize/recodeSizePerPage);
+		int startPage = curBlock*pageSizePerBlock;
+		int endPage = startPage + pageSizePerBlock;
+		request.setAttribute("pageSizePerBlock", pageSizePerBlock);
+		request.setAttribute("curPage", curPage);
+		request.setAttribute("curBlock", curBlock);
+		request.setAttribute("totalRecodeSize", totalRecodeSize);
+		request.setAttribute("curPage1", curPage1);
+		request.setAttribute("recodeSizePerPage", recodeSizePerPage);
+		request.setAttribute("beginNum", beginNum);
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("startPage", startPage);
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("tableRowNum", tableRowNum);
+		String pd_class = request.getParameter("pd_class");
+		pd_class = "삽니다";
+		ArrayList<ProductDTO> list_buy = service.select2(pd_class);
+		request.setAttribute("pd_class", pd_class);
 		request.setAttribute("list_buy", list_buy);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_list_buy.jsp");
 		rd.forward(request, response);
@@ -312,7 +397,6 @@ public class ProductControl extends HttpServlet {
 		int pd_no = getPd_no(request);
 		String pd_status = request.getParameter("pd_status");
 		pd_status = "판매완료";
-		System.out.println("pd_status : " + pd_status);
 		ProductDTO dto = new ProductDTO();
 		dto.setPd_no(pd_no);
 		dto.setPd_status(pd_status);

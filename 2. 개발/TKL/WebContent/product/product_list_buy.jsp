@@ -1,16 +1,36 @@
-<%@ page contentType="text/html;charset=UTF-8" import="tkl.product.model.ProductDTO"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8"
+	import="tkl.product.model.ProductDTO"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>중고상품 목록</title>
+<title>상품 목록</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/product_list_buy.css">
+<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   String sessionNick  = (String)session.getAttribute("session_nick");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      Kakao.cleanup();   
+      logout();
+   <%       
+      }   
+   %>
+</script>
 </head>
 <body>
-	<h1>중고상품 목록</h1>
-	<a href='product/product_reg.jsp'>상품등록</a>
-	&nbsp;&nbsp;&nbsp;<a href='product.do'>전체</a>
-	&nbsp;&nbsp;&nbsp;<a href='product.do?&m=list_sel'>팝니다</a>
-	&nbsp;&nbsp;&nbsp;<a href='product.do?&m=list_buy'>삽니다</a>
+	<h1>상품 목록</h1>
+	<a href='product/product_reg.jsp'>상품등록</a> &nbsp;&nbsp;&nbsp;
+	<a href='product.do'>전체</a> &nbsp;&nbsp;&nbsp;
+	<a href='product.do?m=list_sel'>팝니다</a> &nbsp;&nbsp;&nbsp;
+	<a href='product.do?m=list_buy'>삽니다</a> &nbsp;&nbsp;&nbsp;
+	<a href='./'>메인</a>
 	<table>
 		<tr>
 			<th>상품번호</th>
@@ -20,27 +40,42 @@
 			<th>등록일</th>
 			<th>조회수</th>
 		</tr>
-		<c:if test="${list_buy.size() == 0}">
+		<c:set var="doneLoop" value="false"/>
+		<c:forEach var="list_buy" items="${list_buy}" begin="${beginNum}" end="${beginNum+recodeSizePerPage-1}">
+   			<c:if test="${not doneLoop}">
+   			<c:if test="${totalRecodeSize <= beginNum}">
+     			<c:set var="doneLoop" value="true"/>
+			</c:if>
 			<tr>
-				<td colspan="5">데이터가 없습니다</td>
+				<td>${list_buy.pd_no}</td>
+				<td>${list_buy.pd_status}</td>
+				<td>${list_buy.pd_class}</td>
+				<td><a href='product.do?m=content&pd_no=${list_buy.pd_no}'>${list_buy.pd_subject}</a>
+					<span style="color: red;">[${list_buy.cnt}]</span></td>
+				<td>${list_buy.pd_nick}</td>
+				<td>${list_buy.pd_regdate}</td>
+				<td>${list_buy.pd_view}</td>
 			</tr>
-		</c:if>
-		<c:forEach items="${list_buy}" var="dto">
-			<tr>
-				<td>${dto.pd_no}</td>
-				<td>${dto.pd_status}</td>
-				<td>
-				<span style="color:gray;">[${dto.pd_class}]</span>
-				<a href='product.do?m=content&pd_no=${dto.pd_no}'>${dto.pd_subject}</a>
-				<c:if test="${dto.cnt != 0}">
-				<span style="color:red;">[${dto.cnt}]</span>
-				</c:if>
-				</td>
-				<td>${dto.pd_nick}</td>
-				<td>${dto.pd_regdate}</td>
-				<td>${dto.pd_view}</td>
-			</tr>
+			</c:if>
 		</c:forEach>
 	</table>
+	<c:if test="${curBlock > 0}">
+		<a href="product.do?m=list_buy&curBlock=${curBlock-1}&curPage1=${startPage-1}&pd_class=${pd_class}">◀이전</a>
+		<c:if test="${curPage < curPage-1}">
+			
+		</c:if>
+	</c:if>
+	<c:set var="doneLoop" value="false"/>
+	<c:forEach var="i" begin="${startPage}" end="${endPage-1}">
+		<c:if test="${not doneLoop}">
+		<a href="product.do?m=list_buy&curBlock=${curBlock}&curPage1=${i}&pd_class=${pd_class}">${i+1}</a>
+		<c:if test="${pageSize <= (i+1)}">
+			<c:set var="doneLoop" value="true"/>
+		</c:if>
+		</c:if>
+	</c:forEach>
+	<c:if test="${curBlock < (pageSize/pageSizePerBlock)-3}">
+		<a href="product.do?m=list_buy&curBlock=${curBlock+1}&pd_class=${pd_class}">다음▶</a>
+	</c:if>
 </body>
 </html>

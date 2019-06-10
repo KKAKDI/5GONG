@@ -3,7 +3,24 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>상품 상세정보</title>
+<title>상품 수정</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="css/reset.css">
+<style>
+html {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+input[type="button"], input[type="submit"], input[type="reset"] {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+}
+#update_tb {
+	text-align:center;
+}
+</style>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -20,6 +37,19 @@
 			readURL(this);
 		});
 	});
+	function logout(){
+	      location.href="sign_in.jsp";
+	}
+	<%
+	String sessionNick  = (String)session.getAttribute("session_nick");
+	   if(sessionNick==null){
+	%>   
+	   alert("session 없음");      
+	   Kakao.cleanup();   
+	   logout();
+	<%       
+	   }   
+	%>
 </script>
 </head>
 <body>
@@ -27,7 +57,7 @@
 	&nbsp;&nbsp;&nbsp;<a href='product.do'>상품목록</a>
 	&nbsp;&nbsp;&nbsp;<a href='product.do?m=content&pd_no=${update_form.pd_no}'>상품 상세정보</a>
 	<form name='f' method='post' action='product.do?m=update&pd_no=${update_form.pd_no}&pd_class=${update_form.pd_class}'>
-	<table>
+	<table id="update_tb">
 		<tr>
 			<td rowspan="7"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
         <img id="blah" src="product.do?m=content_img&pd_img_copy=${update_form.pd_img_copy}" alt="이미지를 넣어주세요" /></td>
@@ -59,9 +89,6 @@
 				<input type='submit' value='수정하기'>
 				<input type="reset" value="다시쓰기">
 			</td>
-		</tr>
-		<tr>
-			<td colspan="3">댓글</td>
 		</tr>
 	</table>
 	</form>
