@@ -25,7 +25,6 @@ public class ProductDTO {
 	public ProductDTO(int pd_no, String pd_email, String pd_nick, int pd_trust, String pd_status, String pd_buyer,
 			String pd_name, String pd_class, int pd_price, String pd_subject, String pd_content, int pd_view,
 			String pd_img, String pd_img_copy, Date pd_regdate, int cnt) {
-		super();
 		this.pd_no = pd_no;
 		this.pd_email = pd_email;
 		this.pd_nick = pd_nick;

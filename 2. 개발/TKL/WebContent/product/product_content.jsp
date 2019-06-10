@@ -140,7 +140,8 @@ input[type="text"] {
 	</table>
 	<div id = payblock>
 	<table >
-		<form name="f" method="post" action="product.do?m=buy_complete">
+		<form name="f" method="post" action="transfer.do?m=payment">
+		<input type='hidden' name='pd_no' value='${con.pd_no}'>	
 			<tr>
 				<th>구매자</th>
 				<th id="buyer" name="buyer">${session_nick}</th>

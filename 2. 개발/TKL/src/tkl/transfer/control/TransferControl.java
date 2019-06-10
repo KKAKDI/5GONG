@@ -39,10 +39,9 @@ public class TransferControl extends HttpServlet {
 	}
 	public void payment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		TransferService service = TransferService.getInstance();
-		
 		TransferDTO dto = new TransferDTO();
 		service.createPayment(dto);
+		response.sendRedirect("product.do");
 		//상품에서 거래로 request	목록
-		
 	}
 }
