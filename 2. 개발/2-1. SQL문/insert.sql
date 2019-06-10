@@ -1,11 +1,11 @@
 --회원 (권한 - 0:관리자, 1:일반회원)
 insert into MEMBER values('bit@naver.com', '비트','1', '1q2w3e4r!','비트캠프', '국민은행', 134256854943,01055765483 ,1000000, 100, SYSDATE);
 insert into MEMBER values('king@naver.com', '킹' ,'0', '1q2w3e4r!','왕', '국민은행' , 138549345934,01047568345,3000000,80, SYSDATE);
-insert into MEMBER values('wunhak@google.com','운학','1','1q2w3e4r!', '최운학', '국민은행',135473965433,01034538924,2000000,90,SYSDATE);
-insert into MEMBER values('jihun@google.com','지훈','1','1q2w3e4r!', '곽지훈','신한은행',448934759232,01043572484,2000000,90,SYSDATE);
-insert into MEMBER values('seongsik@naver.com','성식','1','1q2w3e4r!', '조성식','카카오뱅크',124578435892,01013287435,2000000,90,SYSDATE);
-insert into MEMBER values('jeongwoo@naver.com','정우','1','1q2w3e4r!', '변정우','우리은행',774357935639,01046328533,2000000,90,SYSDATE);
-insert into MEMBER values('dongjin@daum.net', '동진','1','1q2w3e4r!', '박동진','카카오뱅크',128564694433,01074892342,2000000,90,SYSDATE);
+insert into MEMBER values('aaa@google.com','운학','0','1q2w3e4r!', '최운학', '국민은행',135473965433,01034538924,2000000,90,SYSDATE);
+insert into MEMBER values('bbb@google.com','지훈','0','1q2w3e4r!', '곽지훈','신한은행',448934759232,01043572484,2000000,90,SYSDATE);
+insert into MEMBER values('ccc@naver.com','성식','0','1q2w3e4r!', '조성식','카카오뱅크',124578435892,01013287435,2000000,90,SYSDATE);
+insert into MEMBER values('ddd@naver.com','정우','0','1q2w3e4r!', '변정우','우리은행',774357935639,01046328533,2000000,90,SYSDATE);
+insert into MEMBER values('eee@daum.net', '동진','0','1q2w3e4r!', '박동진','카카오뱅크',128564694433,01074892342,2000000,90,SYSDATE);
 insert into MEMBER values('fff@naver.com', '채연' ,'1', '1q2w3e4r!','정채연', '국민은행', 139706594945,01043583223, 2000000, 70 , SYSDATE);
 insert into MEMBER values('ggg@naver.com','나리','0', '1q2w3e4r!','김나리', '신한은행' , 448689574056,01065943452,800000, 75,  SYSDATE);
 insert into MEMBER values('hhh@naver.com', '영훈' ,'1', '1q2w3e4r!','최영훈', '신한은행', 448658095464,01086747432, 1200000, 85 , SYSDATE);
@@ -28,15 +28,15 @@ insert into PRODUCT values(1, 'bit@naver.com', '비트', 100, '인성팝니다', '형규'
 --정신머리 팝니다
 insert into PRODUCT values(2, 'king@naver.com', '킹', 80, '정신머리팝니다', '인희', '휴대용선풍기', '정신머리', 13000, '휴대용선풍기', '휴대용 선풍기 13000원에 팝니다',1, 0, 'handifan.jsp', 'handifan_copy02.jsp',SYSDATE);
 --영혼팝니다
-insert into PRODUCT values(3, 'wunhak@google.com','운학', 90, '영혼팝니다', '시욱', '노트북', '영혼', 700000, '노트북', 'LG gram 70만원에 팝니다', 0, 0, 'gram.jsp', 'gram_copy03.jsp',SYSDATE);
+insert into PRODUCT values(3, 'aaa@google.com','운학', 90, '영혼팝니다', '시욱', '노트북', '영혼', 700000, '노트북', 'LG gram 70만원에 팝니다', 0, 0, 'gram.jsp', 'gram_copy03.jsp',SYSDATE);
 --월요일 팝니다
-insert into PRODUCT values(4, 'jihun@google.com','지훈', 90, '월요일팝니다', '채현', '그래픽카드', '월요일', 600000, '그래픽카드', 'GTX 1080 60만원에 팝니다', 0, 0, 'gtx1080.jsp', 'gtx1080_copy04.jsp',SYSDATE);
+insert into PRODUCT values(4, 'bbb@google.com','지훈', 90, '월요일팝니다', '채현', '그래픽카드', '월요일', 600000, '그래픽카드', 'GTX 1080 60만원에 팝니다', 0, 0, 'gtx1080.jsp', 'gtx1080_copy04.jsp',SYSDATE);
 --근윽 팝니다
-insert into PRODUCT values(5, 'seongsik@naver.com','성식', 90, '근윽팝니다', '찬우', '모자', '근윽', 300000, '모자', '한정판 명품모자 30만원에 팝니다', 1, 0, 'cap.jsp', 'cap_copy05.jsp', SYSDATE);
+insert into PRODUCT values(5, 'ccc@naver.com','성식', 90, '근윽팝니다', '찬우', '모자', '근윽', 300000, '모자', '한정판 명품모자 30만원에 팝니다', 1, 0, 'cap.jsp', 'cap_copy05.jsp', SYSDATE);
 --출근자 삽니다 
-insert into PRODUCT values(6, 'jeongwoo@naver.com','정우', 90, '출근자삽니다', '현', '모니터', '출근자', 250000, '모니터', 'LED모니터 25만원에 삽니다', 1, 0, 'monitor.jsp', 'monitor_copy06.jsp', SYSDATE);
+insert into PRODUCT values(6, 'ddd@naver.com','정우', 90, '출근자삽니다', '현', '모니터', '출근자', 250000, '모니터', 'LED모니터 25만원에 삽니다', 1, 0, 'monitor.jsp', 'monitor_copy06.jsp', SYSDATE);
 --여포 삽니다
-insert into PRODUCT values(7, 'dongjin@daum.net', '동진', 90, '여포삽니다', '성호', '신발', '여포', 150000, '신발','나이키 신발 15만원에 삽니다', 0, 0, 'nike.jsp', 'nike_copy07.jsp', SYSDATE);
+insert into PRODUCT values(7, 'eee@daum.net', '동진', 90, '여포삽니다', '성호', '신발', '여포', 150000, '신발','나이키 신발 15만원에 삽니다', 0, 0, 'nike.jsp', 'nike_copy07.jsp', SYSDATE);
 --주말 삽니다
 insert into PRODUCT values(8, 'fff@naver.com','채연',70, '주말삽니다', '정인',  '컵밥', '주말', 20000, '컵밥', '컵밥 20개 2만원에 삽니다', 1, 0, 'cupbab.jsp', 'cupbab_copy08.jsp',SYSDATE);
 --머리카락 삽니다
