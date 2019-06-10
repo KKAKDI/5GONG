@@ -66,13 +66,13 @@ insert into HISTORY values(1, '닉네임5', 987654321234, '닉네임3', 777788889999, 
 insert into HISTORY values(2, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, SYSDATE);
 
 --상품댓글
-insert into P_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', '나이키 운동화 9만에 에눌 가능한가요?', 'b1.png', 'b1_copy.png', SYSDATE);
-insert into P_REPLY values(2, 3, 'eee@google.com', '닉네임5', '뉴발란스 운동화 14만에 에눌 가능한가요?', 'b2.png', 'b2_copy.png', SYSDATE);
+insert into P_REPLY values(1, 1, 'bit@naver.com', '비트', '아이패드 3만원 할인가능한가요?', 'iPad.png', 'iPad_copy01.png', SYSDATE);
+insert into P_REPLY values(2, 3, 'aaa@google.com', '운학', '직거래하면 만원 빼주시나요?', 'gram.jsp', 'gram_copy03.jsp', SYSDATE);
 
 --신고목록
-insert into REPORT values(1, '닉네임3 유저 사기 신고', '닉네임3 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'a.jpg', 'a_copy.jpg', 'ddd@naver.com', '닉네임4', SYSDATE, '처리중', '댓글1', '사기신고');
-insert into REPORT values(2, '닉네임4 유저 사기 신고', '닉네임5 유저가 물품을 보내지 않습니다', 'b.jpg', 'b_copy.jpg', 'eee@google.com', '닉네임5', SYSDATE, '처리중', '댓글2', '사기신고');
-
+--신고목록
+insert into REPORT values(1, '비트 유저 사기 신고', '비트 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'iPad.png', 'iPad_copy01.png', 'bit@naver.com', '비트', SYSDATE, '처리중', '댓글1', '사기신고');
+insert into REPORT values(2, '운학 유저 사기 신고', '운학 유저가 물품을 보내지 않습니다', 'gram.jsp', 'gram_copy03.jsp', 'aaa@google.com', '운학', SYSDATE, '처리중', '댓글2', '사기신고');
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
 insert into NEWS values(1, 'aaa@naver.com', '닉네임1', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
 insert into NEWS values(2, 'bbb@google.com', '닉네임2', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
