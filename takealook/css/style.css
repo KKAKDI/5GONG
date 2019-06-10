@@ -17,7 +17,6 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 16px;
     font-weight: 400;
-    font-size: 16px;
     vertical-align: top;
 }
 
@@ -101,7 +100,7 @@ body {
     outline: none;
     border: none;
     background: transparent;
-    color:#000;
+    color: #000;
 }
 
 #header .search input[type=text]:hover,
@@ -313,10 +312,16 @@ body {
     width: 1200px;
     margin: 0 auto;
     text-align: center;
+    color: #15005d;
+    font-size: 20px;
+
+
 }
 
 #content .title_wrap h1 {
-    margin: 30px 0 50px 0;
+    margin: 70px 0 70px 0;
+    font-weight: 100;
+    letter-spacing: 3px;
 }
 
 #content .product_area {
@@ -336,11 +341,19 @@ body {
     margin-top: 14px;
 }
 
+#content .product_area .pro_buy ul,
+#content .product_area .pro_sell ul,
+#content .product_area .pro_now ul {
+    text-align: center;
+
+}
+
 #content .product_area .pro_buy li,
 #content .product_area .pro_sell li,
 #content .product_area .pro_now li {
     display: inline-block;
     width: 235px;
+
 
 }
 
@@ -362,6 +375,7 @@ body {
 #content .product_area .pro_sell dl,
 #content .product_area .pro_now dl {
     margin-top: 10px;
+    text-align: left;
 }
 
 #content .product_area .pro_buy dl dt,
@@ -412,6 +426,7 @@ body {
 #content .user_area {
     clear: both;
     float: none;
+
 }
 
 #content .user_area .free_board_top,
@@ -419,19 +434,22 @@ body {
     float: left;
     display: block;
     width: 595px;
+    text-align: center;
+    padding-bottom: 40px;
 }
 
 /* #content .user_area .free_board_top ul, #content .user_area .free_board ul */
 #content .user_area .free_board_top li,
 #content .user_area .free_board li {
     width: 100%;
-    margin-bottom: 8px;
+    margin-bottom: 15px;
 }
 
 #content .user_area .free_board_top li a,
 #content .user_area .free_board li a {
     width: 45%;
     display: inline-block;
+    text-align: left;
 }
 
 #content .user_area .free_board_top li dl,
@@ -511,7 +529,7 @@ body {
 .service_area .qna,
 .service_area .cs_center {
     float: left;
-    width: 32%;
+    width: 32.5%;
 }
 
 .service_area .notice dl,
