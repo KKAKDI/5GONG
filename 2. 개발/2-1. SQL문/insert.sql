@@ -71,9 +71,16 @@ insert into P_REPLY values(2, 3, 'aaa@google.com', '운학', '직거래하면 만원 빼주
 
 
 --신고목록
-insert into REPORT values(1, '비트 유저 사기 신고', '비트 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'iPad.jpg', 'iPad_copy01.jpg', 'bit@naver.com', '비트', SYSDATE, '처리중', '댓글1', '사기신고');
-insert into REPORT values(2, '운학 유저 사기 신고', '운학 유저가 물품을 보내지 않습니다', 'gram.jpg', 'gram_copy03.jpg', 'aaa@google.com', '운학', SYSDATE, '처리중', '댓글2', '사기신고');
-
+insert into REPORT values(1,'닉네임 성식님 사기 신고', '이 사람 그냥 사기꾼이라서 사기를 당했습니다', 'a.jpg', 'a_copy.jpg', 'ddd@naver.com', '정우', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.
+', '사기신고');
+insert into REPORT values(2, '운학 << 이님 사기 신고', '120만원짜리 10만원에 팜 개이득', 'b.jpg', 'b_copy.jpg', 'ccc@naver.com', '성식', SYSDATE, '처리완료', '환불조치해 드렸습니다', '사기신고');
+insert into REPORT values(3, '사이트가 버벅이는거 같아요..', '사이트 이동할때 마다 렉이 있네요', 'c.jpg', 'c_copy.jpg', 'ccc@naver.com', '성식', SYSDATE, '처리완료', '고객님의 의견을 반영하여 빠른 시일내에 개선하도록 하겠습니다.', '불편신고');
+insert into REPORT values(4, '닉네임 찬우 라는사람 허위매물', '이분 중고나라에 비행기 판다고 올리셧네요 확인바랍니다..', 'd.jpg', 'd_copy.jpg', 'bbb@google.com', '지훈', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.', '허위상품신고');
+insert into REPORT values(5, '배송비 사기!!', '물건값 내리고 배송비 엄청 늘려서 올리는사람 많아요 찾아서 재제 때려주세요', 'e.jpg', 'e_copy.jpg', 'king@naver.com', '킹', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.', '사기신고');
+insert into REPORT values(6, '중고책 상태;;', '닉네임 비트 이분꺼 중고책 구매했는데 DB책 삿는데 자바관련 책 배송오고 연락두절됨', 'f.jpg', 'f_copy.jpg', 'kkk@daum.net', '찬우', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.', '사기신고');
+insert into REPORT values(7, '자유게시판에 도배글', '자게에 갑자기 도배글이 많아졌는데 처리좀 해주세요 ', 'g.jpg', 'g_copy.jpg', 'iii@google.com', '성호', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.', '불편신고');
+insert into REPORT values(8, '닉넴 킹 사기 신고', '상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'a.jpg', 'a_copy.jpg', 'eee@daum.net', '동진', SYSDATE, '처리중', '신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.', '사기신고');
+insert into REPORT values(9, '사기 신고', ' 6/5에 거래했던거 물품을 아직도 보내지 않습니다. ', 'p.jpg', 'p_copy.jpg', 'ggg@naver.com', '나리', SYSDATE, '처리완료', '해당 회원에 대해 거래 정지와 함께 고객님의 환불조치가 완료 되었습니다.', '사기신고');
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
 insert into NEWS values(1, 'aaa@google.com', '운학', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
 insert into NEWS values(2, 'bbb@google.com', '지훈', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
