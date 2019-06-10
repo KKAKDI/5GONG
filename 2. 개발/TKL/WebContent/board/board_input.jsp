@@ -94,7 +94,7 @@
 		  <tr>
 		    <td>작성자</td>
 			<td>
-			  <input type="text" name="mNick" value="세션으로 닉네임 받아야됨"disabled>
+			  <input type="text" name="mNick" value='${session_nick}' disabled>
 			</td>
 		  </tr>
 		  <tr>

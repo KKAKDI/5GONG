@@ -46,7 +46,7 @@
 	}
 	function checkLike(){
 		var sessionNick = '<%=sessionNick%>';
-		var Array = '<%=rList%>';*
+		var Array = '<%=rList%>';
 	}
 	
 	

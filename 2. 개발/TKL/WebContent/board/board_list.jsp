@@ -4,11 +4,9 @@
 <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 
 <center>
-<link rel="stylesheet" type="text/css" href="//www.ppomppu.co.kr/css/style.css?v=2019050104" />
-<link rel="stylesheet" type="text/css" href="//www.ppomppu.co.kr/css/stylesheet.css?v=2019050104" />
-<link rel="stylesheet" type="text/css" href="//www.ppomppu.co.kr/zboard/dq_css/cate_tab_201303042.css" />
-<link rel="shortcut icon" href="//img.ppomppu.co.kr/favicon.ico" />
-<link rel="apple-touch-icon" href="//img.ppomppu.co.kr/images/nn128.jpeg"/>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/product_list_buy.css">
 
 <hr>
 <h2>자유게시판</h2>
@@ -47,7 +45,7 @@ function check() {
       }   
    %>
    </script>   
-
+<center>
 <table>
 	<tr>
 	<th>글번호</th>
@@ -128,4 +126,4 @@ function check() {
 <c:if test="${curBlock < (pageSize/pageSizePerBlock)-1}">
 	<a href ="board.do?m=board_list&curBlock=${curBlock+1}&sk=${sk}&sv=${sv}">다음</a>
 </c:if>
-
+<center>
