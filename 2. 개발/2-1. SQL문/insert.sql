@@ -56,14 +56,14 @@ insert into PRODUCT values(15,'mmm@daum.net', '호균',90, '전잘삽니다', '도연',  
 
 
 --결제
-insert into PAYMENT values(1, 1, '닉네임3',null, 777788889999, '닉네임4',null, 123456789012, 100000, 100000, SYSDATE, '서울시 양천구 월정로 29길 22 태산주택 502호' , '구매확인', '판매확인');
-insert into PAYMENT values(2, 2, '닉네임4',null, 123456789012, null,null, null, 150000, null, SYSDATE, '화곡역 5번 출구', '구매확인', '판매확인');
-insert into PAYMENT values(3, 3, '닉네임5',null, 987654321234, '닉네임3',null, 777788889999, 120000, 120000, SYSDATE, '서울대역', '구매안함', '판매확인');
-insert into PAYMENT values(4, 4, '닉네임4',null, 123456789012, '닉네임5',null, 987654321234, 80000, 80000, SYSDATE, '비트캠프', '구매확인', '판매안함');
+insert into PAYMENT values(1, 1, '비트', '국민은행', 134256854943, '형규', null, 123456789012, 500000, 500000, SYSDATE, '서울시 양천구 월정로 29길 22 태산주택 502호' , '구매확인', '판매확인');
+insert into PAYMENT values(2, 2, '킹','국민은행', 138549345934, '인희',null, null, 13000, 13000, SYSDATE, '화곡역 5번 출구', '구매확인', '판매확인');
+insert into PAYMENT values(3, 3, '운학','국민은행', 111122223333, '시욱',null, 777788889999, 700000, 700000, SYSDATE, '서울대역', '구매안함', '판매확인');
+insert into PAYMENT values(4, 4, '지훈','신한은행', 444455556666, '채현',null, 987654321234, 600000, 600000, SYSDATE, '비트캠프', '구매확인', '판매안함');
 
 --거래기록
-insert into HISTORY values(1, '닉네임5', 987654321234, '닉네임3', 777788889999, 120000, SYSDATE);
-insert into HISTORY values(2, '닉네임4', 123456789012, '닉네임5', 987654321234, 80000, SYSDATE);
+insert into HISTORY values(1, '비트', 1342568574943, '형규', 123456789012, 500000, SYSDATE);
+insert into HISTORY values(2, '킹', 138549345934, '인희', null, 13000, SYSDATE);
 
 --상품댓글
 insert into P_REPLY values(1, 1, 'bit@naver.com', '비트', '아이패드 3만원 할인가능한가요?', 'iPad.png', 'iPad_copy01.png', SYSDATE);
@@ -79,13 +79,20 @@ insert into NEWS values(1, 'aaa@naver.com', '운학', '사기 대처 방법', '유저 간 �
 insert into NEWS values(2, 'bbb@google.com', '지훈', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
 
 --자유게시판
-insert into BOARD values(1, 'ccc@daum.net', '닉네임3', '갤S10 5G', '님들 요새 갤S10 5G 나왔던데 쓸만함?', 'aa.jpg', 'aa_copy01.jpg', 0, 0, SYSDATE, 0);
-insert into BOARD values(2, 'ddd@naver.com', '닉네임4', '다이슨 청소기', '다이슨 청소기 중고가도 너무 비싸던데...', 'bb.jpg', 'bb_copy01.jpg', 0, 0, SYSDATE, 0);
-insert into BOARD values(3, 'eee@google.com', '닉네임5', '에어팟', '에어팟1이랑 에어팟2 성능 차이 많이남?', null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(1, 'aaa@google.com', '운학', '갤S10 5G', '님들 요새 갤S10 5G 나왔던데 쓸만함?', 'aa.jpg', 'aa_copy01.jpg', 0, 0, SYSDATE, 0);
+insert into BOARD values(2, 'bbb@google.com', '지훈', '다이슨 청소기', '다이슨 청소기 중고가도 너무 비싸던데...', 'bb.jpg', 'bb_copy01.jpg', 0, 0, SYSDATE, 0);
+insert into BOARD values(3, 'ccc@naver.com', '성식', '에어팟', '에어팟1이랑 에어팟2 성능 차이 많이남?', null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(4, 'ddd@naver.com', '정우', '그램','그램 30만원에 싸게 매입합니다' , null, null,0, 0, SYSDATE, 0);
+insert into BOARD values(5, 'eee@daum.net', '동진','데스크탑','컴퓨터 장비 싸게 매입합니다 문의주세여',null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(6, 'fff@naver.com', '채연','컵밥', '컵밥은 중고로 판매 안하나요?',null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(7, 'ggg@naver.com', '나리','닌텐도', '닌텐도 스위치 가장 싼 가격이 얼마인가요?',null, null,0, 0, SYSDATE, 0);
+insert into BOARD values(8, 'hhh@naver.com', '영훈','풋살화', '풋살화 싸게 팝니다 문의주세요',null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(9, 'iii@google.com', '성호','전자담배', '전자담배 팔아요 종류별로있습니다 문의주세요',null, null, 0, 0, SYSDATE, 0);
+insert into BOARD values(10, 'jjj@google.com', '현서','노트북', '요즘 가성비 좋은 노트북 종류가 뭐가있나요?',null, null, 0, 0, SYSDATE, 0);
 
 --자게댓글
-insert into B_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', 'ㅇㅇ갤S10이쁨 근데 아직은 5G는 잘안터지더라', SYSDATE, 'aaa.png', 'aaa_copy01.png', 0, 0,'ddd@naver.com', '닉네임4');
-insert into B_REPLY values(2, 2, 'eee@google.com', '닉네임5',  '그냥 중고로 살바엔 새거로 사는게 나을듯', SYSDATE, 'bbb.png', 'bbb_copy01.png', 0, 0, 'ddd@naver.com', '닉네임4');
-insert into B_REPLY values(3, 3, 'ccc@daum.net', '닉네임3', '에어팟1 살바엔 에어팟2 사는게 훨씬 이득임', SYSDATE, 'ccc.png', 'ccc_copy01.png', 0, 0, 'ccc@daum.net', '닉네임3');
+insert into B_REPLY values(1, 1, 'bbb@google.com', '지훈', 'ㅇㅇ갤S10이쁨 근데 아직은 5G는 잘안터지더라', SYSDATE, 'aaa.png', 'aaa_copy01.png', 0, 0,'bbb@naver.com', '지훈');
+insert into B_REPLY values(2, 2, 'iii@google.com', '성호',  '그냥 중고로 살바엔 새거로 사는게 훨씬 이득입니다', SYSDATE, 'bbb.png', 'bbb_copy01.png', 0, 0, 'iii@google.com', '성호');
+insert into B_REPLY values(3, 3, 'hhh@naver.com', '영훈', '에어팟1 살바엔 에어팟2 사는게 훨씬 이득임', SYSDATE, 'ccc.png', 'ccc_copy01.png', 0, 0, 'hhh@naver.com', '영훈');
 
 commit;
