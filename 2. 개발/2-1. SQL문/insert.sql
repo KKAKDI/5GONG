@@ -75,8 +75,16 @@ insert into REPORT values(1, '비트 유저 사기 신고', '비트 유저가 상품 내용과 맞�
 insert into REPORT values(2, '운학 유저 사기 신고', '운학 유저가 물품을 보내지 않습니다', 'gram.jsp', 'gram_copy03.jsp', 'aaa@google.com', '운학', SYSDATE, '처리중', '댓글2', '사기신고');
 
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
-insert into NEWS values(1, 'aaa@naver.com', '운학', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
+insert into NEWS values(1, 'aaa@google.com', '운학', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
 insert into NEWS values(2, 'bbb@google.com', '지훈', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
+insert into NEWS values(3, 'ccc@naver.com', '성식' ,'거래방법', 'TAKE A LOOK 의 모든거래는 미리 구매자에게 돈을 입금받아 관리자가 거래를 확인하고 체크하여 확인이 되면 판매자에게 돈이 입금되는 안전거래 시스템입니다', 0, SYSDATE, '공지사항');
+insert into NEWS values(4,'ddd@naver.com', '정우', '오픈공지','가장 안전한 중고거래장터 TAKE A LOOK 이 오픈하였습니다 자유롭고 안전한 거래를 지금 바로 시작해보세요',0, SYSDATE, '공지사항');
+insert into NEWS values(5,'eee@daum.net', '동진','신뢰도시스템','중고거래 장터 TAKE A LOOK은 신뢰도 시스템을 이용하여 판매자들의 신뢰도를 체크하여 공개함으로서 구매자들의 중고거래에 대한 부담감을 대폭 감소시켰습니다',0, SYSDATE, '공지사항');
+insert into NEWS values(6,'aaa@google.com', '운학','포인트 적립','첫 구매시 구매금액의 1%를 포인트로 적립 해 드립니다', 0, SYSDATE, '이벤트');
+insert into NEWS values(7,'bbb@google.com', '지훈','배송비 지원','이벤트에 당첨되신 10명의 회원에게는 구매한 상품 중 원하는 상품의 배송비를 1회 지원해드립니다', 0, SYSDATE, '이벤트');
+insert into NEWS values(8, 'ccc@naver.com', '성식','부정거래','부정거래시 신뢰도시스템에 의거 신뢰도가 대폭 감소되며 차후 상품의 판매를 정지당할 수 있음을 알려드립니다',0, SYSDATE, '공지사항');
+insert into NEWS values(9,'ddd@naver.com', '정우','거래안내','TAKE A LOOK 은 상품의 변질이나 기타 판매자의 관리소홀로 문제가 되는 부분에 대해서 보상해드리지 않음을 알려드립니다 ', 0, SYSDATE, '공지사항');
+insert into NEWS values(10,'eee@daum.net', '동진','TAKE A LOOK 이 쏜다','이벤트에 당첨되신 한분께는 중고장터에서 사용하실수 있는 50000포인트를 적립해 드립니다', 0, SYSDATE, '이벤트');
 
 --자유게시판
 insert into BOARD values(1, 'aaa@google.com', '운학', '갤S10 5G', '님들 요새 갤S10 5G 나왔던데 쓸만함?', 'aa.jpg', 'aa_copy01.jpg', 0, 0, SYSDATE, 0);
