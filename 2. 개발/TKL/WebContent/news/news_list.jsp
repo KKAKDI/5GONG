@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
+<Style>
+	align="center"
+</Style>
 
 <meta charset="UTF-8">
 <title>새소식 목록</title>
@@ -31,7 +34,7 @@
 		새소식
 	</h1>
 	<br/>
-	&nbsp;&nbsp;&nbsp;<a href='./'>메인메뉴</a>
+	&nbsp;&nbsp;&nbsp;<a href='./'>홈</a>
 	&nbsp;&nbsp;<a href='news.do?&m=news_notice'>공지사항</a>
    &nbsp;&nbsp;&nbsp;<a href='news.do?&m=news_event'>이벤트</a>	
 	<br/>
