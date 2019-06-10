@@ -1,58 +1,91 @@
-<%@ page contentType="text/html;charset=UTF-8" import="java.util.*,tkl.product.model.ProductDTO,tkl.preply.model.PreplyDTO,tkl.payment.model.PaymentDTO"%>
+<%@ page contentType="text/html;charset=UTF-8"
+	import="java.util.*,tkl.product.model.ProductDTO,tkl.preply.model.PreplyDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta charset="utf-8">
 <title>상품 상세정보</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="css/reset.css">
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script
+	src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <style>
 html {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
 }
+
 input[type="button"], input[type="submit"] {
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 16px;
-    font-weight: 400;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
 }
+
 input[type="text"] {
-    width:600px;
-    height:30px;
+	width: 600px;
+	height: 30px;
 }
+
 #update_link, #delete_link {
-	color:gray;
+	color: gray;
 }
+
 #content_tb, #reply_tb {
-	text-align:center;
+	text-align: center;
 }
-#payment_tb {
-	display:none;
+
+#payblock {
+	display: none;
 }
 </style>
 <script>
-   function logout(){
-      location.href="sign_in.jsp";
-   }
-   <%
-   String sessionEmail  = (String)session.getAttribute("session_email");
-   String sessionNick  = (String)session.getAttribute("session_nick");
-      if(sessionNick==null){
-   %>   
-      alert("session 없음");      
-      Kakao.cleanup();   
-      logout();
-   <%       
-      }   
-   %>
-   function showTable(){
-	   if(document.getElementById("payment_tb").style.display=='block'){
-		   document.getElementById("payment_tb").style.display='none';
-	   }else {
-		   document.getElementById("payment_tb").style.display='block';
-	   }
-   }
+	function logout() {
+		location.href = "sign_in.jsp";
+	}
+<%String sessionEmail = (String) session.getAttribute("session_email");
+			String sessionNick = (String) session.getAttribute("session_nick");
+			if (sessionNick == null) {%>
+	alert("session 없음");
+	Kakao.cleanup();
+	logout();
+<%}%>
+	$(document).ready(function() {
+		var flag = true;
+		$("#showtable").click(function() {
+			if(flag){
+				$("#payblock").css("display", "block");
+				flag = false;
+			}else{
+				$("#payblock").css("display", "none");
+				flag = true;
+			}
+			var getNick = "${session_nick}";
+			console.log(getNick);
+			$.ajax({
+				type:'POST',
+				url:'json.do',
+				data: {
+					"nick" : getNick
+						},
+				success:function(data){
+					var obj = JSON.parse(data);
+					var memlist = obj.member;
+					for(var i=0;i<memlist.length;i++){
+						if(memlist[i].nick==getNick){
+							console.log(memlist[i].bank+"/"+memlist[i].actnum);
+							$("#bank").text(memlist[i].bank);
+							$("#account").text(memlist[i].actnum);
+						}else{
+							console.log(memlist[i].bank+"/"+memlist[i].actnum);
+						}
+					}
+				}
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -60,8 +93,10 @@ input[type="text"] {
 	<a href='product.do'>상품목록</a>
 	<c:choose>
 		<c:when test="${con.pd_nick eq session_nick}">
-			&nbsp;&nbsp;&nbsp;<a href='product.do?m=update_form&pd_no=${con.pd_no}'>상품수정</a>
-			&nbsp;&nbsp;&nbsp;<a href='product.do?m=delete&pd_no=${con.pd_no}&pd_img_copy=${con.pd_img_copy}'>상품삭제</a>
+			&nbsp;&nbsp;&nbsp;<a
+				href='product.do?m=update_form&pd_no=${con.pd_no}'>상품수정</a>
+			&nbsp;&nbsp;&nbsp;<a
+				href='product.do?m=delete&pd_no=${con.pd_no}&pd_img_copy=${con.pd_img_copy}'>상품삭제</a>
 		</c:when>
 		<c:otherwise>
 			<a id="update_link">상품수정</a>
@@ -71,7 +106,8 @@ input[type="text"] {
 	<input type='hidden' name='pd_no' value='${con.pd_no}'>
 	<table id="content_tb">
 		<tr>
-			<td rowspan="10"><img src='product.do?m=content_img&pd_img_copy=${con.pd_img_copy}'></td>
+			<td rowspan="10"><img
+				src='product.do?m=content_img&pd_img_copy=${con.pd_img_copy}'></td>
 			<td colspan="2">상품번호 : ${con.pd_no}</td>
 		</tr>
 		<tr>
@@ -99,71 +135,65 @@ input[type="text"] {
 			<td>조회수 : ${con.pd_view}</td>
 		</tr>
 		<tr>
-		<td><input type="button" value="즉시구매" onClick="javascript:showTable();"></td>
+			<td><input type="button" id="showtable" value="즉시구매"></td>
 		</tr>
 	</table>
-	<form name="f" method="post" action="product.do?m=buy_complete">
-	<table id="payment_tb">
+	<div id = payblock>
+	<table >
+		<form name="f" method="post" action="product.do?m=buy_complete">
+			<tr>
+				<th>구매자</th>
+				<th id="buyer" name="buyer">${session_nick}</th>
+			</tr>
+		<th>구매자은행</th>
+		<th id="bank" name="bank"></th>
 		<tr>
-			<th>결제번호</th>
-			<th>구매자</th>
-			<th>구매자은행</th>
 			<th>구매자계좌</th>
-			<th>구매금액</th>
-			<th>배송주소</th>
-			<th>구매날짜</th>
-		</tr>
-		<tr> 
-			<td>${payment.pm_no}</td>
-			<td>${payment.pm_buyer}</td>
-			<td>${payment.pm_b_bank}</td>
-			<td>${payment.pm_b_account}</td>
-			<td>${payment.pm_b_amount}</td>
-			<td>${payment.pm_addr}</td>
-			<td>${payment.pm_regdate}</td>
+			<th id="account" name="account"></th>
 		</tr>
 		<tr>
-		<td><input type="submit" value="구매요청"></td>
+			<th>배송주소</th>
+			<th><input type="text" id="addr" name="addr"></th>
+		</tr>		
+		<tr>
+			<td><input type="submit" value="구매요청"></td>
 		</tr>
+		</form>
 	</table>
-	</form>
+	</div>
 	<form name="f" method="post" action="product.do?m=reply_reg">
-	<input type='hidden' name='pd_no' value='${con.pd_no}'>
-	<input type='hidden' name='pd_nick' value='<%=sessionNick%>'>
-	<input type='hidden' name='pd_email' value='<%=sessionEmail%>'>
-	<table id="reply_tb">
+		<input type='hidden' name='pd_no' value='${con.pd_no}'> <input
+			type='hidden' name='pd_nick' value='<%=sessionNick%>'> <input
+			type='hidden' name='pd_email' value='<%=sessionEmail%>'>
+		<table id="reply_tb">
 			<tr>
 				<th>작성자</th>
 				<th>내용</th>
 				<th>작성날짜</th>
 			</tr>
 			<c:forEach items="${reply_list}" var="dto">
-			<tr>
-				<td>${dto.pd_nick}</td>
-				<td>${dto.pr_comment}</td>
-				<td>${dto.pr_writedate}</td>
-				<c:choose>	
-				<c:when test="${dto.pd_nick eq session_nick}">
-				<td>
-					<input type="button" value="삭제" onclick="location.href='product.do?m=reply_delete&pd_no=${con.pd_no}&pr_no=${dto.pr_no}'">
-				</td>
-				</c:when>
-				<c:otherwise>
-				<td>
-					<input type="button" value="삭제" disabled>
-				</td>
-				</c:otherwise>
-				</c:choose>
-			</tr>
+				<tr>
+					<td>${dto.pd_nick}</td>
+					<td>${dto.pr_comment}</td>
+					<td>${dto.pr_writedate}</td>
+					<c:choose>
+						<c:when test="${dto.pd_nick eq session_nick}">
+							<td><input type="button" value="삭제"
+								onclick="location.href='product.do?m=reply_delete&pd_no=${con.pd_no}&pr_no=${dto.pr_no}'">
+							</td>
+						</c:when>
+						<c:otherwise>
+							<td><input type="button" value="삭제" disabled></td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="3">
-					<a>[<%=sessionNick%>]</a>
-					<input type="text" name="pr_comment">
-					<input type="submit" value="등록">
-				</td>
+				<td colspan="3"><a>[<%=sessionNick%>]
+				</a> <input type="text" name="pr_comment"> <input type="submit"
+					value="등록"></td>
 			</tr>
-	</table>
+		</table>
 	</form>
 </body>
 </html>
