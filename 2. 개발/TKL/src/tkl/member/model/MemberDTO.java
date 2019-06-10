@@ -2,7 +2,7 @@ package tkl.member.model;
 
 import java.sql.Date;
 
-public class MamberDTO {
+public class MemberDTO {
 	private String email;
 	private String nick;
 	private String grant;
@@ -15,9 +15,9 @@ public class MamberDTO {
 	private int trust;
 	private Date regdate;
 	
-	public MamberDTO(){}
+	public MemberDTO(){}
 	
-	public MamberDTO(String email, String nick, String grant,String pwd, String name, String bank, int actNum, int phone,
+	public MemberDTO(String email, String nick, String grant,String pwd, String name, String bank, int actNum, int phone,
 			int amount, int trust, Date regdate) {
 		super();
 		this.email = email;

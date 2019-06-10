@@ -9,7 +9,7 @@ public class MemberService {
 	public static MemberService getInstance() {
 		return instance;
 	}
-	public void insertS(MamberDTO dto) {
+	public void insertS(MemberDTO dto) {
 		dao.insert(dto);
 	}
 }

@@ -25,7 +25,7 @@ import tkl.product.model.ProductService;
 import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
 import tkl.preply.model.PreplyDTO;
-import tkl.product.model.PagingDTO;
+
 
 @WebServlet("/product.do")
 public class ProductControl extends HttpServlet {

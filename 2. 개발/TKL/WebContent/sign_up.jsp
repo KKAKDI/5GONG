@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8"%>
 <!DOCTYPE html>
-<html>
+<html  lang="ko">
 <head>
 <meta charset="utf-8">
 <title>Take A Look Sign Up</title>
@@ -13,9 +13,9 @@
 <body>
 <div id='tkl_signup'>
    <div id='signupform'>
-      <form name='signup' action='/member.do?m=insert' method='post'>
-         <fieldset>
-            <legend>회원가입</legend>
+      <form name='signup' action='member.do?m=insert' method='post'>
+       
+          
                <div class="tkl_emali">
                   <label for='email'>이메일 :</label> 
                   <input type='text' name='email' id='email' title='이메일은 ID로 사용됩니다.' required>
@@ -77,7 +77,7 @@
             <input type='button' id='privacy' value='동의'> 
 
             <input type='submit' id='submit' class="signup_fin" value='회원가입'>
-         </fieldset>
+         
       </form>
    </div>
 </div>

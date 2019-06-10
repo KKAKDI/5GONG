@@ -22,11 +22,11 @@ public class MemberDAO {
 		}catch(NamingException ne) {}
 	}
 	
-	public MamberDTO getMem(MamberDTO mem) {
+	public MemberDTO getMem(MemberDTO mem) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		MamberDTO outMem = null;
+		MemberDTO outMem = null;
 		try {
 			con = ds.getConnection();			
 			pstmt = con.prepareStatement(MemberSQL.SQL_SEL);
@@ -35,10 +35,11 @@ public class MemberDAO {
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				System.out.println("1");
-				outMem = new MamberDTO();
+				outMem = new MemberDTO();
 				System.out.println(rs.getString("M_EMAIL")+"/"+rs.getString("M_NICK"));
 				outMem.setEmail(rs.getString("M_EMAIL"));
 				outMem.setNick(rs.getString("M_NICK"));
+				outMem.setGrant(rs.getString("M_GRANT"));
 				outMem.setPwd(null);				
 			}			
 		} catch (SQLException se) {
@@ -53,7 +54,7 @@ public class MemberDAO {
 		return outMem;
 	}
 	
-	void insert(MamberDTO dto) {
+	void insert(MemberDTO dto) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {

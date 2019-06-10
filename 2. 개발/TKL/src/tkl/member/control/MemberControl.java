@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import tkl.member.model.MamberDTO;
+import tkl.member.model.MemberDTO;
 import tkl.member.model.MemberDAO;
 import tkl.member.model.MemberService;
 
@@ -55,7 +55,7 @@ public class MemberControl extends HttpServlet {
 			actNum = Integer.parseInt(actNumStr);
 		}
 		//String actName = request.getParameter("actname"); 예금주
-		MamberDTO dto = new MamberDTO();
+		MemberDTO dto = new MemberDTO();
 		dto.setEmail(email);
 		dto.setNick(nick);
 		dto.setPwd(pwd);
@@ -77,17 +77,18 @@ public class MemberControl extends HttpServlet {
 			throws ServletException, IOException {
 		String email = request.getParameter("email");
 		String pwd = request.getParameter("pwd");	
-		MamberDTO inMem = new MamberDTO();
+		MemberDTO inMem = new MemberDTO();
 		inMem.setEmail(email);
 		inMem.setPwd(pwd);
 		MemberDAO dao = new MemberDAO();
-		MamberDTO outMem = dao.getMem(inMem);		
+		MemberDTO outMem = dao.getMem(inMem);		
 		if(outMem==null) {
 			response.sendRedirect("sign_in.jsp?e=1");
 		}else {
 			HttpSession session = request.getSession();
 			session.setAttribute("session_email", outMem.getEmail());
 			session.setAttribute("session_nick",outMem.getNick());
+			session.setAttribute("session_grant", outMem.getGrant());
 			response.sendRedirect("index.do");
 			}
 	}
