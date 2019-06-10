@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" import="java.util.*,tkl.product.model.ProductDTO,tkl.preply.model.PreplyDTO"%>
+<%@ page contentType="text/html;charset=UTF-8" import="java.util.*,tkl.product.model.ProductDTO,tkl.preply.model.PreplyDTO,tkl.payment.model.PaymentDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
@@ -27,6 +27,9 @@ input[type="text"] {
 #content_tb, #reply_tb {
 	text-align:center;
 }
+#payment_tb {
+	display:none;
+}
 </style>
 <script>
    function logout(){
@@ -43,6 +46,13 @@ input[type="text"] {
    <%       
       }   
    %>
+   function showTable(){
+	   if(document.getElementById("payment_tb").style.display=='block'){
+		   document.getElementById("payment_tb").style.display='none';
+	   }else {
+		   document.getElementById("payment_tb").style.display='block';
+	   }
+   }
 </script>
 </head>
 <body>
@@ -58,7 +68,6 @@ input[type="text"] {
 			<a id="delete_link">상품삭제</a>
 		</c:otherwise>
 	</c:choose>
-	<form name="f" method="post" action="product.do?m=buy_complete">
 	<input type='hidden' name='pd_no' value='${con.pd_no}'>
 	<table id="content_tb">
 		<tr>
@@ -78,7 +87,7 @@ input[type="text"] {
 			<td colspan="2">진행상태 : ${con.pd_status}</td>
 		</tr>
 		<tr>
-			<td colspan="2">상품이름 : ${con.pd_name}</td>
+			<td colspan="2">상품명 : ${con.pd_name}</td>
 		</tr>
 		<tr>
 			<td colspan="2">가격 : ${con.pd_price}</td>
@@ -90,7 +99,28 @@ input[type="text"] {
 			<td>조회수 : ${con.pd_view}</td>
 		</tr>
 		<tr>
-		<td><input type="submit" value="구매하기"></td>
+		<td><input type="button" value="구매하기" onClick="javascript:showTable();"></td>
+		</tr>
+	</table>
+	<form name="f" method="post" action="product.do?m=buy_complete">
+	<table>
+		<tr>
+			<th>결제번호</th>
+			<th>판매자</th>
+			<th>판매자은행</th>
+			<th>판매자계좌</th>
+			<th>판매금액</th>
+			<th>배송주소</th>
+			<th>구매날짜</th>
+		</tr>
+		<tr> 
+			<td>${payment.pm_no}</td>
+			<td>${payment.pm_seller}</td>
+			<td>${payment.pm_s_bank}</td>
+			<td>${payment.pm_s_account}</td>
+			<td>${payment.pm_s_amount}</td>
+			<td>${payment.pm_addr}</td>
+			<td>${payment.pm_regdate}</td>
 		</tr>
 	</table>
 	</form>
