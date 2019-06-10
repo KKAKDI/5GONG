@@ -15,4 +15,8 @@ public class TransferService {
 	public boolean transactionS(String email, long amount) {
 		return dao.checkBalance(email,amount);
 	}
+	
+	public void createPayment(TransferDTO dto) {
+		dao.createPayment(dto);
+	}
 }

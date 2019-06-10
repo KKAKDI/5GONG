@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import tkl.transfer.model.TransferDTO;
 import tkl.transfer.model.TransferService;
 
 
@@ -23,6 +24,8 @@ public class TransferControl extends HttpServlet {
 			m = m.trim();
 			if(m.equals("fin")) {
 				transfer(request,response);
+			}else if(m.equals("payment")) {
+				payment(request,response);
 			}
 		}else {
 			System.out.println("잘못된 접근입니다.");
@@ -34,5 +37,12 @@ public class TransferControl extends HttpServlet {
 		
 		System.out.println(test+"");
 	}
-
+	public void payment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		TransferService service = TransferService.getInstance();
+		
+		TransferDTO dto = new TransferDTO();
+		service.createPayment(dto);
+		//상품에서 거래로 request	목록
+		
+	}
 }

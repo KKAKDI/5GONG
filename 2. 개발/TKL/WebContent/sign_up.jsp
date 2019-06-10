@@ -4,6 +4,8 @@
 <head>
 <meta charset="utf-8">
 <title>Take A Look Sign Up</title>
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="css/reset.css">
 <link rel="stylesheet" href="css/sign_up.css">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
