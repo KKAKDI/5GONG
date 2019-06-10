@@ -13,9 +13,10 @@ public class ReportDTO {
 	private Date rWriteDate;
 	private String rState;
 	private String rReply;
+	private String rClass;
 	public ReportDTO(){}
 	public ReportDTO(int rNO, String rSubject, String rContent, String rFile, String rFileCopy, String rEmail,
-			String rNick, Date rWriteDate, String rState, String rReply) {
+			String rNick, Date rWriteDate, String rState, String rReply, String rClass) {
 		super();
 		this.rNO = rNO;
 		this.rSubject = rSubject;
@@ -27,6 +28,7 @@ public class ReportDTO {
 		this.rWriteDate = rWriteDate;
 		this.rState = rState;
 		this.rReply = rReply;
+		this.rClass = rClass;
 	}
 	public int getrNO() {
 		return rNO;
@@ -87,6 +89,12 @@ public class ReportDTO {
 	}
 	public void setrReply(String rReply) {
 		this.rReply = rReply;
+	}
+	public String getrClass() {
+		return rClass;
+	}
+	public void setrClass(String rClass) {
+		this.rClass = rClass;
 	}
 	
 }

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import tkl.report.model.ReportDTO;
@@ -26,7 +27,7 @@ public class ReportDAO {
 		}catch(NamingException ne) {		
 		}
 	}
-	ArrayList<ReportDTO> select(String searchKey, int i, int k, int begin,int end){
+	ArrayList<ReportDTO> select(String sessionNick, String sessionGrant, String searchKey, int begin,int end){
 		ArrayList<ReportDTO> list = new ArrayList<>();
 		Connection con = null;
 		PreparedStatement pstmt, pstmtPage = null;
@@ -34,32 +35,50 @@ public class ReportDAO {
 		try {
 			con = ds.getConnection();
 			//pstmt = con.prepareStatement(ReportSQL.sqlS);
-			if(searchKey == null) {
-				pstmtPage = con.prepareStatement(ReportSQL.sqlS);
-				
-				pstmtPage.setInt(1, i);
-				pstmtPage.setInt(2, k);
-				pstmtPage.setInt(3, begin);
-				pstmtPage.setInt(4, end);
-			} else if(searchKey.equals("listR")) {
-				pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
-				pstmtPage.setInt(1, i);
-				pstmtPage.setInt(2, k);
-			} else if(searchKey.equals("listC")) {
-				pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
-				pstmtPage.setInt(1, i);
-				pstmtPage.setInt(2, k);
-			} else {
-				pstmtPage = con.prepareStatement(ReportSQL.sqlS);
-				
-				pstmtPage.setInt(1, i);
-				pstmtPage.setInt(2, k);
-				pstmtPage.setInt(3, begin);
-				pstmtPage.setInt(4, end);
+			System.out.println("sessionGrant11 : " + sessionGrant);
+			if(sessionGrant.equals("0 ")) {
+				if(searchKey == null) {
+					pstmtPage = con.prepareStatement(ReportSQL.sqlSAll);
+					pstmtPage.setString(1, "贸府吝");
+					pstmtPage.setString(2, "贸府肯丰");
+					pstmtPage.setInt(3, begin);
+					pstmtPage.setInt(4, end);
+				} else if(searchKey.equals("listR")) {
+					pstmtPage = con.prepareStatement(ReportSQL.SQL_SRAll);
+					pstmtPage.setString(1, "贸府吝");
+				} else if(searchKey.equals("listC")) {
+					pstmtPage = con.prepareStatement(ReportSQL.SQL_SRAll);
+					pstmtPage.setString(1, "贸府肯丰");
+				}
+			}
+			if(sessionGrant.equals("1 ")) {
+				if(searchKey == null) {
+					pstmtPage = con.prepareStatement(ReportSQL.sqlS);
+					pstmtPage.setString(1, sessionNick);
+					pstmtPage.setString(2, "贸府吝");
+					pstmtPage.setString(3, "贸府肯丰");
+					pstmtPage.setInt(4, begin);
+					pstmtPage.setInt(5, end);
+				} else if(searchKey.equals("listR")) {
+					pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
+					pstmtPage.setString(1, sessionNick);
+					pstmtPage.setString(2, "贸府吝");
+				} else if(searchKey.equals("listC")) {
+					pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
+					pstmtPage.setString(1, sessionNick);
+					pstmtPage.setString(2, "贸府肯丰");
+				} else {
+					pstmtPage = con.prepareStatement(ReportSQL.sqlS);
+					pstmtPage.setString(1, sessionNick);
+					pstmtPage.setString(2, "贸府吝");
+					pstmtPage.setString(3, "贸府肯丰");
+					pstmtPage.setInt(4, begin);
+					pstmtPage.setInt(5, end);	
+				}
 			}
 			//rs = pstmt.executeQuery();
 			rs = pstmtPage.executeQuery();
-			System.out.println("sql : select R_NO, R_SUBJECT, R_CONTENT, R_FILE, R_FILE_COPY, R_EMAIL, R_NICK, R_WRITEDATE, R_STATE from REPORT where (R_STATE="+ i + " or R_STATE=" + k + ") and (ROWNUM>=" + begin +" AND ROWNUM<=" + end + ") order by R_NO desc");
+			//System.out.println("sql : select R_NO, R_SUBJECT, R_CONTENT, R_FILE, R_FILE_COPY, R_EMAIL, R_NICK, R_WRITEDATE, R_STATE from REPORT where (R_STATE="+ i + " or R_STATE=" + k + ") and (ROWNUM>=" + begin +" AND ROWNUM<=" + end + ") order by R_NO desc");
 			while(rs.next()) {
 				int rNO = rs.getInt("R_NO");
 				String rSubject = rs.getString("R_SUBJECT");
@@ -71,8 +90,9 @@ public class ReportDAO {
 				java.sql.Date rWriteDate = rs.getDate("R_WRITEDATE");
 				String rState = rs.getString("R_STATE");
 				String rReply = rs.getString("R_REPLY");
+				String rClass = rs.getString("R_CLASS");
 				//System.out.println("sql : select " + rNO + rSubject + rContent + rFile + rFileCopy + rEmail + rNick + rWriteDate + rState + " from REPORT where R_STATE=" + i + " or R_STATE=" + k + " and ROWNUM>=" + begin + " AND ROWNUM<=" + end + " order by " + rNO + " desc");
-				ReportDTO dto = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply);
+				ReportDTO dto = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply, rClass);
 				list.add(dto);
 			}
 			return list;
@@ -107,6 +127,8 @@ public class ReportDAO {
 			System.out.println(dto.getrNick());
 			pstmt.setString(6, dto.getrReply());
 			System.out.println(dto.getrReply());
+			pstmt.setString(7, dto.getrClass());
+			System.out.println(dto.getrClass());
 			pstmt.executeUpdate();
 		}catch(SQLException se) {
 			System.out.println("insert() se: " + se);
@@ -158,7 +180,8 @@ public class ReportDAO {
 				java.sql.Date rWriteDate = rs.getDate("R_WRITEDATE");
 				String rState = rs.getString("R_STATE");
 				String rReply = rs.getString("R_REPLY");
-				dtoContent = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply);
+				String rClass = rs.getString("R_Class");
+				dtoContent = new ReportDTO(rNO, rSubject, rContent, rFile, rFileCopy, rEmail, rNick, rWriteDate, rState, rReply, rClass);
 			}
 			return dtoContent;
 		}catch(SQLException se) {
@@ -194,7 +217,7 @@ public class ReportDAO {
 		}
 	}
 	
-	int getTotal(int i, int k) {
+	int getTotal(String sessionNick, int i, int k) {
 		int cnt = 0;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -202,9 +225,16 @@ public class ReportDAO {
 		
 		try {
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
-			pstmt.setInt(1, i);
-			pstmt.setInt(2, k);
+			if(i+k == 1) {
+				pstmt = con.prepareStatement(ReportSQL.sql_TOTALAll);
+				pstmt.setInt(1, i);
+				pstmt.setInt(2, k);
+			} else {
+				pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
+				pstmt.setString(1, sessionNick);
+				pstmt.setInt(2, i);
+				pstmt.setInt(3, k);
+			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				cnt = rs.getInt(1);
