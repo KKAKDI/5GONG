@@ -1,15 +1,16 @@
 <%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.report.model.ReportDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<head>
 <meta charset='utf-8'>
-<link rel='stylesheet' type='text/css' href='css/style.css'>
-<center>
-<hr width='600' size='2' noshade>
-<h2>TKL 신고게시판 List</h2>
+<title>TKL 신고게시판 List</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="../css/reset.css">
+</head>
 &nbsp;&nbsp;&nbsp;
 <a href='rBoard.do?m=in_form'>신고하기</a>
 &nbsp;&nbsp;&nbsp;
-<a href='index.do'>인덱스</a>
+<a href='index.do'>홈</a>
 &nbsp;&nbsp;&nbsp;
 
 <form action="rBoard.do">
@@ -22,10 +23,10 @@
 <input type="submit" value="검색"/>
 </form>
 
-</center>
-<table border='1' width='600' align='center' cellpadding='2'>
+<table>
 <tr>
-<th>글번호</th>
+<!-- <th>글번호</th> -->
+<th>분류</th>
 <th>글제목</th>
 <th>작성자</th>
 <th>등록일</th>
@@ -42,62 +43,60 @@
 
 <c:if test="${list.size() == 0}">
 			<tr>
-				<td colspan='5' align='center'>데이터가 하나도 없음</td>
+				<td colspan='5' align='center'>신고 내역이 없습니다.</td>
 			</tr>
 		</c:if>
 		
 
 <c:forEach items="${list}" var="dto">		
 <tr>
-<td>${dto.rNO}</td>
+<!-- <td>${dto.rNO}</td> -->
+<td>${dto.rClass}</td>
 <td><a href='rBoard.do?m=content&rNO=${dto.rNO}'>${dto.rSubject}</a></td>
 <td>${dto.rNick}</td>
 <td>${dto.rWriteDate}</td>
 <td>${dto.rState}</td>
+
 </tr>
 </c:forEach>
 
 </table>
 
-
-
 <br>
-			 <div class="page_num">
-				<ul>					
-						<%
-							if (pg > block) { //처음, 이전 링크
-						%> 
-						<li><a href="rBoard.do?pg=1">◀◀</a></li> <li><a href="rBoard.do?pg=<%=fromPage - 1%>">◀</a></li>
-						<%
-							} else {
-						%><li><span style="color: gray">◀◀</span></li> <li><span	style="color: gray">◀</span></li>
-						<%
-							}
-						%> 
-						<%
-						 	for (int i = fromPage; i <= toPage; i++) {
-						 		if (i == pg) {
-						 %>
-						  <li><span><%=i%></span></li>
-						  <%
-						 		} else {
-						 %> 
-						 <li><a href="rBoard.do?pg=<%=i%>"><%=i%></a></li>
-						 <%
-						 		}
-						 	}
-						 %> 
-						 <%
-						 	if (toPage < allPage) { //다음, 이후 링크
-						 %>
-						  <li><a href="rBoard.do?pg=<%=toPage + 1%>">▶</a></li> <li><a href="rBoard.do?pg=<%=allPage%>">▶▶</a></li>
-						<%
-						 	} else {
-						 %> <li><span style="color: gray">▶</span></li> <li><span style="color: gray">▶▶</span></li> 
-						<%
-						 	}
-						 %>					
-				</ul>
-			</div>			
-		</div>
-	</div>
+ <div class="page_num">
+	<ul>					
+		<%
+			if (pg > block) { //처음, 이전 링크
+		%> 
+		<a href="rBoard.do?pg=1">◀◀</a> <a href="rBoard.do?pg=<%=fromPage - 1%>">◀</a>
+		<%
+			} else {
+		%><span style="color: gray">◀◀</span><span style="color: blue">◀</span>
+		<%
+			}
+		%> 
+		<%
+		 	for (int i = fromPage; i <= toPage; i++) {
+		 		if (i == pg) {
+		 %>
+		  <span><%=i%></span>
+		  <%
+		 		} else {
+		 %> 
+		 <a href="rBoard.do?pg=<%=i%>"><%=i%></a>
+		 <%
+		 		}
+		 	}
+		 %> 
+		 <%
+		 	if (toPage < allPage) { //다음, 이후 링크
+		 %>
+		  <a href="rBoard.do?pg=<%=toPage + 1%>">▶</a><a href="rBoard.do?pg=<%=allPage%>">▶▶</a>
+		<%
+		 	} else {
+		 %> <span style="color: blue">▶</span><span style="color: gray">▶▶</span>
+		<%
+		 	}
+		 %>					
+	</ul>
+</div>

@@ -4,7 +4,6 @@
   <head>
     <title>TKL 신고하기</title>
 	<meta charset='utf-8'>
-	<link rel='stylesheet' type='text/css' href='../css/style.css'>
 	<script language="javascript">
 	  function check(){
 	    if(document.input.rSubject.value == ""){
@@ -15,48 +14,56 @@
 		  alert("내용을 입력해주세요");
 		  return false;
 		}
-		if(document.input.rNick.value == ""){
-		  alert("닉네임을 입력해주세요");
+		if(document.input.rClass.value == "0"){
+		alert("신고분류를 선택 해주세요");
 		  return false;
 		}
 		document.input.submit();
 	  }
 	</script>
   </head>
+  
+  <%
+	String sessionNick  = (String)session.getAttribute("session_nick");
+  %>
+  
   <body onload="input.writer.focus()">
-    <center>
-	   <hr width="600" size="2" noshade>
 	      <h2>TKL 신고하기</h2>
 		  <a href='../rBoard.do'>글목록</a>
-	   <hr width="600" size="2" noshade>
-	</center>
 	<form name="input" method="post" action="../rBoard.do?m=in" enctype="multipart/form-data">
-	   <table border="1" width="600" align="center"  cellpadding="3" cellspacing="1">
+	   <table>
 	      <tr>
-		     <td width="30%" align="center">닉네임</td>
-			 <td align="center"><input type="text" name="rNick" size="60"></td>
+		     <td>닉네임</td>
+			 <td><input type="hidden" name="rNick" size="60" value="<%=sessionNick%>"><%=sessionNick%></td>
+			 <td>신고분류 : 
+					<select name="rClass">
+						<option value="0">----선택----</option>
+						<option value="사기신고">사기신고</option>
+						<option value="불편신고">불편신고</option>
+						<option value="허위상품신고">허위상품신고</option>
+					</select>
+				</td>
 		  </tr>
           <tr>
-		     <td align="center">제목</td>
-			 <td align="center"><input type="text" name="rSubject" size="60"></td>
+		     <td>제목</td>
+			 <td><input type="text" name="rSubject" size="60"></td>
 		  </tr>
 		  <tr>
-		     <td align="center">신고내용</td>
-			 <td align="center"><textarea name="rContent" rows="5" cols="53"></textarea></td>
+		     <td>신고내용</td>
+			 <td><textarea name="rContent" rows="5" cols="53"></textarea></td>
 		  </tr>
 		  <tr>
-		     <td align="center">파일첨부</td>
-			 <td align="center"><input type="file" name="rFile" size="60"></td>
+		     <td>파일첨부</td>
+			 <td><input type="file" name="rFile" size="60"></td>
 		  </tr>
 		  <tr>
-		     <td colspan="2" align="center">
+		     <td>
 			    <input type="button" value="작성하기" onclick="check()">
 				<input type="reset" value="다시입력">
 			 </td>
 		  </tr>
 	   </table>
 	   <br>
-	   <hr width="600" size="2" noshade>
 	</form>
   </body>
 </html>
