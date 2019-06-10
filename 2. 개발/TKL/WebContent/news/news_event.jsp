@@ -36,6 +36,7 @@
 	<br/>
 	<%
 	String sessionGrant = (String)session.getAttribute("session_grant"); 
+	sessionGrant = sessionGrant.trim();
 		if(sessionGrant.equals("0") ){
 			System.out.println(sessionGrant);
 %>   

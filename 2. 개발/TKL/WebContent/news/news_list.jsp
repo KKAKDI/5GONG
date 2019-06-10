@@ -19,8 +19,6 @@
    
    String sessionNick  = (String)session.getAttribute("session_nick");
    sessionNick = sessionNick.trim();
-   String sessionGrant = (String)session.getAttribute("session_grant"); 
-   sessionGrant = sessionGrant.trim();
       if(sessionNick==null){
    %>   
       alert("session 없음");      
@@ -33,22 +31,27 @@
 
 </head>
 <body>
-	<div id="content">
 	<h1>
 		새소식
 	</h1>
 	<br/>
-	<div>
 	&nbsp;&nbsp;&nbsp;<a href='./'>홈</a>
 	&nbsp;&nbsp;<a href='news.do?&m=news_notice'>공지사항</a>
    &nbsp;&nbsp;&nbsp;<a href='news.do?&m=news_event'>이벤트</a>	
-	
-	
-<%	
-		System.out.println(sessionGrant);
-		if(sessionGrant.equals("0") ){		
+	<br/>
+	<div >
+<%
+	String sessionGrant = (String)session.getAttribute("session_grant"); 
+	sessionGrant = sessionGrant.trim();
+		if(sessionGrant.equals("0") ){
+			System.out.println(sessionGrant);
 %>   
 	 <a href='news/news_reg.jsp'>새소식 등록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%
+	}else{
+		
+%>
+	 
 <%
 	}
 %>
@@ -93,6 +96,6 @@
         <c:if test="${curBlock < (pageSize/pageSizePerBlock)-2}">
 			 <a href ="news.do?&curBlock=${curBlock+1}">다음</a>
 		</c:if> 
-	</div>
+
 </body>
 </html>

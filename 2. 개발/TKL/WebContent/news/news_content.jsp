@@ -57,6 +57,7 @@
 			<b> 
 <%
 	String sessionGrant = (String)session.getAttribute("session_grant"); 
+	sessionGrant = sessionGrant.trim();
 		if(sessionGrant.equals("0") ){
 			System.out.println(sessionGrant);
 %>   
@@ -68,7 +69,7 @@
 	}else{
 		
 %>
-	
+	<a href='news.do?m=list'>목록</a>	
 <%
 	}
 %>
