@@ -51,7 +51,7 @@
                   <input type='button' id='nickconfirm' value='닉네임 중복확인'>
                   <div id='nickck'></div>
                </div>
-               <div class="tkl_confirm">
+               <div class="confirm">
                   <div class="bank_select_zone">
                   <span>은행명 :</span>
                      <select name='bank' id='bank'>
