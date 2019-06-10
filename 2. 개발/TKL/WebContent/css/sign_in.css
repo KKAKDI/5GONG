@@ -1,7 +1,10 @@
 @charset "utf-8";
 
 div[id$="ck"] {
-    display: none;
+  width: 250px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  margin:0 auto;
 }
 
 .login_page {

@@ -4,7 +4,7 @@ $(function(){
 		$("#GNB > ul > li").hover(
 			function () {
 				$(this).parent("ul").stop().animate({ height: 202 }, 400);
-				$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 162 }, 400);
+				$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 88 }, 200);
 			},
 			function () {
 				$(this).parent("ul").stop().animate({ height: 40 }, 400);
@@ -14,7 +14,7 @@ $(function(){
 		$("#GNB > ul > li").focusin(function () {
 			$(this).find("li").addClass("active");
 			$(this).parent("ul").stop().animate({ height: 202 }, 400);
-			$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 162 }, 400);
+			$(this).parents("#GNB").next(".sub_shadow").stop().animate({ height: 88 }, 200);
 		});
 		$("#GNB > ul > li").focusout(function () {
 			$(this).find("li").removeClass("active");

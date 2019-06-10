@@ -37,8 +37,7 @@
 	function logout(){
 		location.href="sign_in.jsp";
 	}
-	<%
-	
+	<%	
 	String sessionNick  = (String)session.getAttribute("session_nick");
 		if(sessionNick==null){
 	%>	
@@ -46,12 +45,8 @@
 		Kakao.cleanup();	
 		logout();
 	<% 		
-		}else{
-	%>			
-		alert("session : <%=sessionNick%>");	
-	<%
-		}	
-	%>
+		}
+		%>
 	</script>	
 </head>
 
@@ -64,13 +59,13 @@
          </div>
       </div>
       <header id="header" class="clearflx">
-         <div class="logo"><a href=""><img src="img/logo.png" alt="logo"></a></div>
+         <div class="logo"><a href="index.do"><img src="img/logo.png" alt="logo"></a></div>
          <div class="search">
-            <form action="검색서블릿" method="POST">
+            <form action="product.do?m=" method="get">
                <div class="search_radio">
-                  <input type="radio" id="ra_sell" name="radio">
+                  <input type="radio" id="ra_sell" name="radio" value="list_sel">
                   <label for="ra_sell"><span class="span_sell"></span>팝니다</label>
-                  <input type="radio" id="ra_buy" name="radio">
+                  <input type="radio" id="ra_buy" name="radio" value="list_buy">
                   <label for="ra_buy"><span class="span_buy"></span>삽니다</label>
                   <!--radio 버튼을 숨기고 css로 효과를 label사용 id 부여 후 사용 용도에 맞게 id for 동기화-->
                </div>
@@ -85,8 +80,8 @@
          <div class="location">
             <ul>
                <li><a href=""><%=sessionNick%></a></li>
-               <li><a href="">Join</a></li>
-               <li><a href="member.do?m=out">Logout</a></li>
+               <li><a href="">고객센터</a></li>
+               <li><a href="member.do?m=out">로그아웃</a></li>
             </ul>
          </div>
       </header>
@@ -101,29 +96,24 @@
                   </ul>
                </li>
                <li>
-                  <a href="">중고거래</a>
+                  <a href="product.do">중고거래</a>
                   <ul class="sub">
-                     <li><a href="">상품목록</a></li>
-                     <li><a href="">상품등록</a></li>
-                     <li><a href="">상품수정</a></li>
-                     <li><a href="">상품삭제</a></li>
+                     <li><a href="product.do">상품목록</a></li>
+                     <li><a href="product.do?m=reg_form">상품등록</a></li>                    
                   </ul>
                </li>
                <li>
-                  <a href="">자유게시판</a>
+                  <a href="board.do">자유게시판</a>
                   <ul class="sub">
-                     <li><a href="">게시판목록</a></li>
-                     <li><a href="">글 작성</a></li>
-                     <li><a href="">글 수정</a></li>
-                     <li><a href="">글 상세</a></li>
+                     <li><a href="board.do?m=board_list">게시판목록</a></li>
+                     <li><a href="board.do?m=board_input">글 작성</a></li>                    
                   </ul>
                </li>
                <li>
-                  <a href="">고객센터</a>
-                  <ul class="sub">
-                     <li><a href="">FnA</a></li>
-                     <li><a href="">신고목록</a></li>
-                     <li><a href="">신고작성</a></li>
+                  <a href="rBoard.do">고객센터</a>
+                  <ul class="sub">                     
+                     <li><a href="rBoard.do">신고목록</a></li>
+                     <li><a href="rBoard.do?m=in_form">신고작성</a></li>
                   </ul>
                </li>
             </ul>

@@ -22,10 +22,10 @@ $(document).ready(function(){
     $("#pwdck").text("잘못된 로그인 정보입니다.");
   }
 
-  $("#email").keyup(function(){
-		if ( regEmail.test($.trim($("#email").val())) ){
+  $("#u_email").keyup(function(){
+		if ( regEmail.test($.trim($("#u_email").val())) ){
 			$("#emailck").css("display", "none");
-      $("#email").css("border","1px solid #49ff86");
+      $("#u_email").css("border","1px solid #49ff86");
       return true;
 		}else{
 			$("#emailck").show();
@@ -34,8 +34,8 @@ $(document).ready(function(){
 			return false;
 		}
 	});
-  $("#pwd").keyup(function(){
-		var pwd = $("#pwd").val();
+  $("#u_pwd").keyup(function(){
+		var pwd = $("#u_pwd").val();
 		if(pwd.length<8){
       $("#pwdck").show();
       $("#pwdck").css("color", "red");
@@ -43,13 +43,13 @@ $(document).ready(function(){
       return false;
     }else{
       $("#pwdck").css("display","none");
-      $("#pwd").css("border","1px solid #49ff86");
+      $("#u_pwd").css("border","1px solid #49ff86");
       return true;
     }
 	});
   $("#signin").submit(function(){
-    var getEmail = $("#email").val();
-    var getPwd = $("#pwd").val();
+    var getEmail = $("#u_email").val();
+    var getPwd = $("#u_pwd").val();
 
     if(getEmail==""){
       $("#emailck").show();
@@ -72,10 +72,7 @@ $(document).ready(function(){
   $("#find").click(function(){
     location.href("findMember.jsp");
   });
-  $("#kakao").click(function(){
-
-  });
   $("#google").click(function(){
-
+    alert("공사중");
   });
 });

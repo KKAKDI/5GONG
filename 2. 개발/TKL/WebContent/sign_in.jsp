@@ -23,14 +23,15 @@
             <div class="login_box">
                <p>
                   <label for="u_email">이메일</label>
-                  <input type='text' name='email' id='u_email' placeholder="Email address">
-                  <div id='emailck'></div>
+                  <input type='text' name='email' id='u_email' placeholder="Email address">            
+                   <div id='emailck'></div>
                </p>
                <p>
                   <label for="u_pwd">비밀번호</label>
-                  <input type='password' name='pwd' id='u_pwd' placeholder="Password">
-                  <div id='pwdck'></div>
+                  <input type='password' name='pwd' id='u_pwd' placeholder="Password"> 
+                   <div id='pwdck'></div>          
                </p>
+             
             </div>
             <input type='submit' class="bg_cos" value='로그인'>
             <a id='kakao-login-btn' class="kakao" ></a>
