@@ -46,8 +46,8 @@ insert into BOARD values(2, 'ddd@naver.com', '닉네임4', '다이슨 청소기', '다이슨
 insert into BOARD values(3, 'eee@google.com', '닉네임5', '에어팟', '에어팟1이랑 에어팟2 성능 차이 많이남?', null, null, 0, 0, SYSDATE, 0);
 
 --자게댓글
-insert into B_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', 'ㅇㅇ갤S10이쁨 근데 아직은 5G는 잘안터지더라', SYSDATE, 'aaa.png', 'aaa_copy01.png', 0, 0);
-insert into B_REPLY values(2, 2, 'eee@google.com', '닉네임5',  '그냥 중고로 살바엔 새거로 사는게 나을듯', SYSDATE, 'bbb.png', 'bbb_copy01.png', 0, 0);
-insert into B_REPLY values(3, 3, 'ccc@daum.net', '닉네임3', '에어팟1 살바엔 에어팟2 사는게 훨씬 이득임', SYSDATE, 'ccc.png', 'ccc_copy01.png', 0, 0);
+insert into B_REPLY values(1, 1, 'ddd@naver.com', '닉네임4', 'ㅇㅇ갤S10이쁨 근데 아직은 5G는 잘안터지더라', SYSDATE, 'aaa.png', 'aaa_copy01.png', 0, 0,'ddd@naver.com', '닉네임4');
+insert into B_REPLY values(2, 2, 'eee@google.com', '닉네임5',  '그냥 중고로 살바엔 새거로 사는게 나을듯', SYSDATE, 'bbb.png', 'bbb_copy01.png', 0, 0, 'ddd@naver.com', '닉네임4');
+insert into B_REPLY values(3, 3, 'ccc@daum.net', '닉네임3', '에어팟1 살바엔 에어팟2 사는게 훨씬 이득임', SYSDATE, 'ccc.png', 'ccc_copy01.png', 0, 0, 'ccc@daum.net', '닉네임3');
 
 commit;
