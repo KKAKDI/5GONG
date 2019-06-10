@@ -24,35 +24,35 @@ insert into MONEY_MEMBER values('박동진', '01098765432', '기업은행', '9876543212
 
 --상품 (진행상태 - 0:판매중, 1:거래중, 2:거래완료 / 상품유형 - 0:팝니다, 1:삽니다)
 --인성팝니다
-insert into PRODUCT values(1, 'bit@naver.com', '비트', 100, '인성팝니다', '형규', '아이패드', '인성', 500000, '아이패드', '아이패드 50만원에 팝니다', 0, 0, 'iPad.jpg', 'iPad_copy01.jpg',SYSDATE); 
+insert into PRODUCT values(1, 'bit@naver.com', '비트', 100, '판매중', null, '기타', '팝니다', 500000, '인성 팝니다', '흐르는 인성 나눠드리려고 팝니다.', 0, 0, 'iPad.jsp', 'iPad_copy01.jsp',SYSDATE); 
 --정신머리 팝니다
-insert into PRODUCT values(2, 'king@naver.com', '킹', 80, '정신머리팝니다', '인희', '휴대용선풍기', '정신머리', 13000, '휴대용선풍기', '휴대용 선풍기 13000원에 팝니다',1, 0, 'handifan.jpg', 'handifan_copy02.jpg',SYSDATE);
+insert into PRODUCT values(2, 'king@naver.com', '킹', 80, '판매중', null, '기타', '팝니다', 13000, '정신머리 팝니다', '정신머리 필요하신분 사가세요.',1, 0, 'handifan.jsp', 'handifan_copy02.jsp',SYSDATE);
 --영혼팝니다
-insert into PRODUCT values(3, 'aaa@google.com','운학', 90, '영혼팝니다', '시욱', '노트북', '영혼', 700000, '노트북', 'LG gram 70만원에 팝니다', 0, 0, 'gram.jpg', 'gram_copy03.jpg',SYSDATE);
+insert into PRODUCT values(3, 'aaa@google.com','운학', 90, '판매중', null, '기타', '팝니다', 700000, '영혼 팝니다', '혹시 거주지가 지옥불반도 이신분 계신가요', 0, 0, 'gram.jsp', 'gram_copy03.jsp',SYSDATE);
 --월요일 팝니다
-insert into PRODUCT values(4, 'bbb@google.com','지훈', 90, '월요일팝니다', '채현', '그래픽카드', '월요일', 600000, '그래픽카드', 'GTX 1080 60만원에 팝니다', 0, 0, 'gtx1080.jpg', 'gtx1080_copy04.jpg',SYSDATE);
+insert into PRODUCT values(4, 'bbb@google.com','지훈', 90, '판매중', null, '기타', '팝니다', 600000, '월요일 팝니다', '월요병도 같이 드려요.', 0, 0, 'gtx1080.jsp', 'gtx1080_copy04.jsp',SYSDATE);
 --근윽 팝니다
-insert into PRODUCT values(5, 'ccc@naver.com','성식', 90, '근윽팝니다', '찬우', '모자', '근윽', 300000, '모자', '한정판 명품모자 30만원에 팝니다', 1, 0, 'cap.jpg', 'cap_copy05.jpg', SYSDATE);
+insert into PRODUCT values(5, 'ccc@naver.com','성식', 90, '판매중', null, '기타', '팝니다', 300000, '근육 팝니다', '헬창 성님들 질 좋은 그뉵 필요하지 않으십니까', 1, 0, 'cap.jsp', 'cap_copy05.jsp', SYSDATE);
 --출근자 삽니다 
-insert into PRODUCT values(6, 'ddd@naver.com','정우', 90, '출근자삽니다', '현', '모니터', '출근자', 250000, '모니터', 'LED모니터 25만원에 삽니다', 1, 0, 'monitor.jpg', 'monitor_copy06.jpg', SYSDATE);
+insert into PRODUCT values(6, 'ddd@naver.com','정우', 90, '구매중', null, '기타', '삽니다', 250000, '출근자 삽니다', '노동력 필요합니다 급하게 구해요', 1, 0, 'monitor.jsp', 'monitor_copy06.jsp', SYSDATE);
 --여포 삽니다
-insert into PRODUCT values(7, 'eee@daum.net', '동진', 90, '여포삽니다', '성호', '신발', '여포', 150000, '신발','나이키 신발 15만원에 삽니다', 0, 0, 'nike.jpg', 'nike_copy07.jpg', SYSDATE);
+insert into PRODUCT values(7, 'eee@daum.net', '동진', 90, '구매중', null, '기타', '삽니다', 150000, '여포 삽니다','부모님께 "아 알아서 한다고" 5회 이상 해보신분.', 0, 0, 'nike.jsp', 'nike_copy07.jsp', SYSDATE);
 --주말 삽니다
-insert into PRODUCT values(8, 'fff@naver.com','채연',70, '주말삽니다', 'hand1정인',  '컵밥', '주말', 20000, '컵밥', '컵밥 20개 2만원에 삽니다', 1, 0, 'cupbab.jpg', 'cupbab_copy08.jpg',SYSDATE);
+insert into PRODUCT values(8, 'fff@naver.com','채연',70, '구매중', null, '기타', '삽니다', 20000, '주말 삽니다', '제가 부주의 해서 주말을 잃어버렸습니다 혹시 남는 주말 있으신분.', 1, 0, 'cupbab.jsp', 'cupbab_copy08.jsp',SYSDATE);
 --머리카락 삽니다
-insert into PRODUCT values(9, 'ggg@naver.com','나리',75, '머리카락삽니다', '선우' ,  '노트북', '머리카락', 750000, '노트북', '삼성 시리즈9 75만원에 삽니다',0, 0, 'series9.jpg', 'series9_copy09.jpg',SYSDATE);
+insert into PRODUCT values(9, 'ggg@naver.com','나리',75, '구매중', null,   '기타', '삽니다', 750000, '머리카락 삽니다', '자라나라 머리머리',0, 0, 'series9.jsp', 'series9_copy09.jsp',SYSDATE);
 --저는 서울 삽니다
-insert into PRODUCT values(10,'hhh@naver.com', '영훈',85, '저는서울삽니다', '현서' , '도서', '저는서울', 20000, '도서', '스프링책 2만원에 삽니다', 1, 0, 'book.jpg', 'book_copy10.jpg',SYSDATE); 
---주말 삽니다
-insert into PRODUCT values(11,'iii@google.com','성호',95, '주말삽니다', '성훈',  '전자담배', '주말', 100000, '전자담배', '전자담배 10만원에 삽니다', 1, 0, 'eleccigr.jpg', 'eleccigr_copy11.jpg',SYSDATE);
+insert into PRODUCT values(10,'hhh@naver.com', '영훈',85, '구매중', null,  '기타', '삽니다', 20000, '저는 서울 삽니다', '유사 서울 안삽니다.', 1, 0, 'book.jsp', 'book_copy10.jsp',SYSDATE); 
+--주말 팝니다
+insert into PRODUCT values(11,'iii@google.com','성호',95, '판매중', null,  '기타', '팝니다', 100000, '주말 팝니다', '자택 24시간 근무자 입니다 주말 너무 길어요.', 1, 0, 'eleccigr.jsp', 'eleccigr_copy11.jsp',SYSDATE);
 --정신머리 팝니다
-insert into PRODUCT values(12,'jjj@google.com','현서',60,'정신머리팝니다', '찬우',  '지갑', '정신머리', 500000, '지갑', '구찌지갑 50만원에 팝니다', 0, 0, 'gucci.jpg', 'gucci_copy12.jpg',SYSDATE);
+insert into PRODUCT values(12,'jjj@google.com','현서',60, '판매중', null,   '기타', '팝니다', 500000, '정신머리 삽니다', '국민학교 졸업한 19살 군필 여고생입니다 동년배들이 전부 정신머리가 없읍니다 ', 0, 0, 'gucci.jsp', 'gucci_copy12.jsp',SYSDATE);
 --룰루랄라 삽니다
-insert into PRODUCT values(13,'kkk@daum.net','찬우',75, '룰루랄라삽니다', '의창',  '벨트', '룰루랄라', 300000, '벨트', '루이비통벨트 30만원에 팝니다', 0, 0, 'luisvit.jpg', 'luisvit_copy13.jpg',SYSDATE); 
+insert into PRODUCT values(13,'kkk@daum.net','찬우',75, '구매중', null,   '기타', '삽니다', 300000, '룰루랄라 삽니다', '즐겁게 삽시다', 0, 0, 'luisvit.jsp', 'luisvit_copy13.jsp',SYSDATE); 
 --노래주머니 팝니다
-insert into PRODUCT values(14,'lll@daum.net','재현',80, '노래주머니팝니다', '찬우',  '이어폰','노래주머니', 140000, '이어폰','에어팟2 14만원에 팝니다', 1, 0, 'airpod.jpg', 'airpod_copy14.jpg',SYSDATE);
+insert into PRODUCT values(14,'lll@daum.net','재현',80, '판매중', null,  '기타', '팝니다', 140000, '노래주머니 팝니다','싱싱합니다 노래주머니', 1, 0, 'airpod.jsp', 'airpod_copy14.jsp',SYSDATE);
 -- 전 잘삽니다
-insert into PRODUCT values(15,'mmm@daum.net', '호균',90, '전잘삽니다', '도연',  '블루투스스피커', '전잘', 70000, '블루투스스피커', '블루투스스피커 7만원에 삽니다', 1, 0, 'BTspeaker.jpg', 'BTspeaker_copy15.jpg',SYSDATE);
+insert into PRODUCT values(15,'mmm@daum.net', '호균',90,  '구매중', null,  '기타',  '삽니다', 70000, '전 잘 삽니다', '아시겠어요?', 1, 0, 'BTspeaker.jsp', 'BTspeaker_copy15.jsp',SYSDATE);
 
 
 --결제
