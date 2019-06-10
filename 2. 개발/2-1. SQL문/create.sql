@@ -29,6 +29,7 @@ CREATE TABLE PRODUCT (
     PD_NO       NUMBER          NOT NULL,       --거래번호
     PD_EMAIL    VARCHAR2(40)    NULL,           --이메일
     PD_NICK     VARCHAR2(30)    NULL,           --닉네임
+    PD_TRUST	NUMBER(3)       NULL,           --신뢰도
     PD_STATUS   VARCHAR2(30)    NULL,           --진행상태
     PD_BUYER    VARCHAR2(30)    NULL,           --구매자
     PD_NAME     VARCHAR2(100)   NULL,           --상품명
@@ -36,6 +37,7 @@ CREATE TABLE PRODUCT (
     PD_PRICE    NUMBER          NULL,           --상품가격
     PD_SUBJECT  VARCHAR2(100)   NULL,           --상품제목
     PD_CONTENT  VARCHAR2(4000)  NULL,           --상품내용
+    PD_COOLDEAL CHAR(2)         NULL,           --즉시거래  
     PD_VIEW     NUMBER          NULL,           --조회수
     PD_IMG      VARCHAR2(300)   NULL,	        --이미지
     PD_IMG_COPY VARCHAR2(300)   NULL,		--이미지사본
