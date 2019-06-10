@@ -29,11 +29,8 @@ public class ProductService {
 	public void updateS(ProductDTO dto) {
 		dao.update(dto);
 	}
-	public ArrayList<ProductDTO> selectSelS(){
-		return dao.selectSel();
-	}
-	public ArrayList<ProductDTO> selectBuyS(){
-		return dao.selectBuy();
+	public ArrayList<ProductDTO> select2(String pd_class){
+		return dao.select2(pd_class);
 	}
 	public void buyCompleteS(ProductDTO dto) {
 		dao.buyComplete(dto);

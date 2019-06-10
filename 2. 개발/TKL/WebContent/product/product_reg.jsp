@@ -4,6 +4,9 @@
 <head>
 <title>간단한 게시판</title>
 <meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="../css/product_reg.css">
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -26,11 +29,27 @@
 			readURL(this);
 		});
 	});
+	function logout(){
+	      location.href="sign_in.jsp";
+	}
+	<%
+	String sessionEmail  = (String)session.getAttribute("session_email");
+	String sessionNick  = (String)session.getAttribute("session_nick");
+	   if(sessionNick==null){
+	%>   
+	   alert("session 없음");      
+	   Kakao.cleanup();   
+	   logout();
+	<%       
+	   }   
+	%>
 </script>
 </head>
-<body onload="f.name.focus()">
+<body>
 	<form name="f" method="post" action="../product.do?m=reg" enctype="multipart/form-data">
 		<input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png" multiple/><br/>
+        <input type='hidden' name='pd_nick' value='<%=sessionNick%>'>
+        <input type='hidden' name='pd_email' value='<%=sessionEmail%>'>
         <img id="blah" src="#" alt="이미지를 넣어주세요" />
 		<table>
 			<tr>
@@ -48,17 +67,6 @@
 					</select>
 				</td>
 			</tr>
-			<!--  
-			<tr>
-				<td>진행상태 : 
-					<select name="pd_status">
-						<option value="0">----선택----</option>
-						<option value="판매중">판매중</option>
-						<option value="거래중">거래중</option>
-						<option value="거래완료">거래완료</option>
-					</select>
-				</td>
-			</tr>-->
 			<tr>
 				<td>가격 : <input type="text" name="pd_price"></td>
 			</tr>

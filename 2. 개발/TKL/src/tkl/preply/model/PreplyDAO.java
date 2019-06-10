@@ -62,8 +62,8 @@ class PreplyDAO {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(PreplySQL.sqlReg);
 			pstmt.setInt(1, dto.getPd_no());
-			pstmt.setString(2, "aaa@naver.com");
-			pstmt.setString(3, "닉네임1");
+			pstmt.setString(2, dto.getPd_email());
+			pstmt.setString(3, dto.getPd_nick());
 			pstmt.setString(4, dto.getPr_comment());
 			pstmt.executeUpdate();
 		}catch(SQLException se) {
