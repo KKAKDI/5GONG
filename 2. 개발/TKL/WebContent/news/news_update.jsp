@@ -4,17 +4,26 @@
 <head>
 <meta charset="utf-8">
 <title>공지사항 상세보기</title>
-<style type="text/css">
-table {
-	border: 1px solid #333;;
-	width: 1000px;
-	height: 500px;
-}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="css/reset.css">
+<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   
+   String sessionNick  = (String)session.getAttribute("session_nick");
+   String sessionEmail  = (String)session.getAttribute("session_email");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      Kakao.cleanup();   
+      logout();
+   <%       
+      }
+   %>         
+   </script>   
 
-tr, th, td {
-	border: 1px solid #333;
-}
-</style>
 </head>
 <body>
 	<h2>글 수정</h2>
@@ -27,7 +36,9 @@ tr, th, td {
 			<tr>
 				<td >글 구분 :  ${updateview.n_division}</td>
 			</tr>
-			
+			<tr>
+			<td >이메일 : ${updateview.n_email}</td>
+			</tr>
 			<tr>
 				<td >닉네임 : ${updateview.n_nick} </td>
 			</tr>

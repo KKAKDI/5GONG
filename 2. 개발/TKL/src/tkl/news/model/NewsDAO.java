@@ -35,7 +35,7 @@ public class NewsDAO {
 				int n_view = rs.getInt("n_view");
 				Date n_writedate = rs.getDate("n_writedate");
 				String n_division = rs.getString("n_division");
-
+				
 				NewsDTO dto = new NewsDTO();
 				dto.setN_no(n_no);
 				dto.setN_nick(n_nick);
@@ -68,11 +68,11 @@ public class NewsDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(NewsSQL.sqlI);
-			//pstmt.setString(1, dto.getN_email());
-			pstmt.setString(1, dto.getN_nick());
-			pstmt.setString(2, dto.getN_subject());
-			pstmt.setString(3, dto.getN_content());
-			pstmt.setString(4, dto.getN_division());
+			pstmt.setString(1, dto.getN_email());
+			pstmt.setString(2, dto.getN_nick());
+			pstmt.setString(3, dto.getN_subject());
+			pstmt.setString(4, dto.getN_content());
+			pstmt.setString(5, dto.getN_division());
 			pstmt.executeUpdate();
 		} catch (SQLException se) {
 			System.out.println("Insert SQL error: "+se);
@@ -96,6 +96,7 @@ public class NewsDAO {
 			rs = pstmt.executeQuery();
 			rs.next();
 			String n_nick = rs.getString("n_nick");
+			String n_email = rs.getString("n_email");
 			String n_subject = rs.getString("n_subject");
 			String n_content = rs.getString("n_content");
 			String n_division = rs.getString("n_division");
@@ -103,6 +104,7 @@ public class NewsDAO {
 			NewsDTO dto = new NewsDTO();
 			dto.setN_no(n_no);
 			dto.setN_nick(n_nick);
+			dto.setN_email(n_email);
 			dto.setN_subject(n_subject);
 			dto.setN_content(n_content);
 			dto.setN_division(n_division);
@@ -151,6 +153,7 @@ public class NewsDAO {
 			rs.next();
 			int n_no = rs.getInt("n_no");
 			String n_nick = rs.getString("n_nick");
+			String n_email = rs.getString("n_email");
 			String n_subject =rs.getString("n_subject");
 			String n_content = rs.getString("n_content");
 			String n_division = rs.getString("n_division");
@@ -158,6 +161,7 @@ public class NewsDAO {
 			NewsDTO dtoo = new NewsDTO();
 			dtoo.setN_no(n_no);
 			dtoo.setN_nick(n_nick);
+			dtoo.setN_email(n_email);
 			dtoo.setN_subject(n_subject);
 			dtoo.setN_content(n_content);
 			dtoo.setN_division(n_division);

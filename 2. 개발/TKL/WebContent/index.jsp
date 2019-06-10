@@ -94,10 +94,10 @@
          <nav id="GNB">
             <ul>
                <li>
-                  <a href="">새소식</a>
+                  <a href="news.do?&m=list">새소식</a>
                   <ul class="sub">
-                     <li><a href="">공지사항</a></li>
-                     <li><a href="">이벤트</a></li>
+                     <li><a href="news.do?&m=news_notice">공지사항</a></li>
+                     <li><a href="news.do?&m=news_event">이벤트</a></li>
                   </ul>
                </li>
                <li>

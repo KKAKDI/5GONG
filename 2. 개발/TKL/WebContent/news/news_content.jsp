@@ -2,19 +2,30 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <title>공지사항 상세보기</title>
-<style type="text/css">
-table {
-	border: 1px solid #333;;
-	width: 1000px;
-	height: 500px;
-}
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+<link rel="stylesheet" href="css/reset.css">
+<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   
+   String sessionNick  = (String)session.getAttribute("session_nick");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      Kakao.cleanup();   
+      logout();
+   <%       
+      }
+   %>         
+   </script>   
 
-tr, th, td {
-	border: 1px solid #333;
-}
-</style>
+<meta charset="utf-8">
+
+
 </head>
 <body>
 	<h2>공지사항</h2>
@@ -28,6 +39,10 @@ tr, th, td {
 
 			</tr>
 			<tr>
+			<td >이메일 : ${con.n_email}</td>
+			
+			</tr>
+			<tr>
 				<td>닉네임 : ${con.n_nick}</td>
 			</tr>
 			<tr>
@@ -37,12 +52,26 @@ tr, th, td {
 				<td >글내용 : ${con.n_content}</td>
 			</tr>
 			
-		
+	
 	</table>
 			<b> 
-			<a href='news.do?m=updateview&n_no=${con.n_no}'>수정</a>| 
+<%
+	String sessionGrant = (String)session.getAttribute("session_grant"); 
+		if(sessionGrant.equals("0") ){
+			System.out.println(sessionGrant);
+%>   
+	 <a href='news.do?m=updateview&n_no=${con.n_no}'>수정</a>| 
 			<a href='news.do?m=del&n_no=${con.n_no}'>삭제</a>| 
-			<a href='news.do?m=list'>목록</a>	
+			
+<%
+	}else{
+		
+%>
+	 <a href='news.do?m=list'>목록</a>	
+<%
+	}
+%>
+			
 			</b>
 </body>
 </html>

@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import tkl.news.model.NewsDTO;
 import tkl.news.model.NewsService;
@@ -108,14 +109,15 @@ public class NewsControl extends HttpServlet {
 	}
 	public void in(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException{
-		//String n_email = request.getParameter("n_email");
-		String n_nick = request.getParameter("n_nick");
+		HttpSession session = request.getSession();
+		String n_nick = (String)session.getAttribute("session_nick");
+		String n_email = (String)session.getAttribute("session_email");
 		String n_subject = request.getParameter("n_subject");
 		String n_content = request.getParameter("n_content");
 		String n_division = request.getParameter("n_division");	
 		NewsDTO dto = new NewsDTO();
-		//dto.setN_email(n_email);
 		dto.setN_nick(n_nick);
+		dto.setN_email(n_email);
 		dto.setN_subject(n_subject);
 		dto.setN_content(n_content);
 		dto.setN_division(n_division);
@@ -129,23 +131,23 @@ public class NewsControl extends HttpServlet {
 		NewsService service = NewsService.getInstance();
 		String n_noStr = request.getParameter("n_no");
 		int n_no = Integer.parseInt(n_noStr);
-		// ÄíÅ° ½ÃÀÛ
+		// ì¿ í‚¤ ì‹œì‘
 
-		//ÄíÅ°º¯¼ö¸¦ ¸¸µé¾î¼­ °ªÀ» ÀúÀå. ÄíÅ°º¯¼ö¿¡ °ªÀÌ ÀÖÀ¸¸é Á¶È¸¼ö Áõ°¡ ½ÇÇà ÇÏÁö ¾ÊÀ½
+		//ì¿ í‚¤ë³€ìˆ˜ë¥¼ ë§Œë“¤ì–´ì„œ ê°’ì„ ì €ì¥. ì¿ í‚¤ë³€ìˆ˜ì— ê°’ì´ ìˆìœ¼ë©´ ì¡°íšŒìˆ˜ ì¦ê°€ ì‹¤í–‰ í•˜ì§€ ì•ŠìŒ
 		boolean isGet=false;
 		Cookie[] cookies=request.getCookies();
 		if(cookies!=null){   
 			for(Cookie c: cookies){//    
-				//numÄíÅ°°¡ ÀÖ´Â °æ¿ì
+				//numì¿ í‚¤ê°€ ìˆëŠ” ê²½ìš°
 				if(c.getName().equals("coocie"+n_no)){
 					isGet=true; 
 				}
 			}
-			// numÄíÅ°°¡ ¾ø´Â °æ¿ì
+			// numì¿ í‚¤ê°€ ì—†ëŠ” ê²½ìš°
 			if(!isGet) {
-				service.viewU(n_no);//Á¶È¸¼öÁõ°¡
+				service.viewU(n_no);//ì¡°íšŒìˆ˜ì¦ê°€
 				Cookie c1 = new Cookie("coocie"+n_no, "coocie"+n_no); 
-				c1.setMaxAge(1*24*60*60);//ÇÏ·çÀúÀå
+				c1.setMaxAge(1*24*60*60);//í•˜ë£¨ì €ì¥
 				response.addCookie(c1);    
 			}
 		}
@@ -211,7 +213,8 @@ public class NewsControl extends HttpServlet {
 		rd.forward(request, response);
 	}
 	  private void news_event(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		   NewsService service = NewsService.getInstance();
+		
+			NewsService service = NewsService.getInstance();
 		   ArrayList<NewsDTO> list_event = service.selecteventS();
 		   request.setAttribute("list_event", list_event);
 		   RequestDispatcher rd= request.getRequestDispatcher("news/news_event.jsp");
@@ -227,15 +230,15 @@ public class NewsControl extends HttpServlet {
 					n_no = Integer.parseInt(n_noStr);
 					return n_no;
 				}catch(NumberFormatException ne) {
-					System.out.println("¼ıÀÚÀÇ ÇüÅÂ°¡ ¾Æ´Ñ n_no°¡ ³Ñ¾î¿Â °æ¿ì");
+					System.out.println("ìˆ«ìì˜ í˜•íƒœê°€ ì•„ë‹Œ n_noê°€ ë„˜ì–´ì˜¨ ê²½ìš°");
 					return -1;
 				}
 			}else {
-				System.out.println("n_noÀÇ ±æÀÌ°¡ 0ÀÎ °æ¿ì");
+				System.out.println("n_noì˜ ê¸¸ì´ê°€ 0ì¸ ê²½ìš°");
 				return -1;
 			}
 		}else {
-			System.out.println("n_no°¡ ³Ñ¾î¿ÀÁö ¾ÊÀº °æ¿ì");
+			System.out.println("n_noê°€ ë„˜ì–´ì˜¤ì§€ ì•Šì€ ê²½ìš°");
 			return -1;
 		}
 	}
