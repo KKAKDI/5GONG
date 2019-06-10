@@ -9,8 +9,9 @@ input[type=text] {
     display: inline-block;
     width: 225px;
     padding: 7px 4px;
-    font-family: "Open Sans", sans-serif;
-    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
     color: #000;
     background-color: #fff;
     outline: none;
@@ -19,7 +20,6 @@ input[type=text] {
     transition: opacity 0.3s;
 }
 
-input[type=text]:focus
-    {
+input[type=text]:focus {
     opacity: 1;
 }
