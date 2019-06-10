@@ -63,9 +63,9 @@
          <div class="search">
             <form action="product.do?m=" method="get">
                <div class="search_radio">
-                  <input type="radio" id="ra_sell" name="radio" value="list_sel">
+                  <input type="radio" id="ra_sell" name="m" value="list_sel">
                   <label for="ra_sell"><span class="span_sell"></span>팝니다</label>
-                  <input type="radio" id="ra_buy" name="radio" value="list_buy">
+                  <input type="radio" id="ra_buy" name="m" value="list_buy">
                   <label for="ra_buy"><span class="span_buy"></span>삽니다</label>
                   <!--radio 버튼을 숨기고 css로 효과를 label사용 id 부여 후 사용 용도에 맞게 id for 동기화-->
                </div>
