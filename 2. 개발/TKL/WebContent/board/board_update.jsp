@@ -6,6 +6,26 @@
 <html>
   <head>
 	<title>reboard_edit.jsp</title>
+	<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   
+   String sessionNick  = (String)session.getAttribute("session_nick");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      Kakao.cleanup();   
+      logout();
+   <%       
+      }else{
+   %>         
+      alert("session : <%=sessionNick%>");   
+   <%
+      }   
+   %>
+   </script>   
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script language="javascript">
     $(document).ready(function(){
@@ -117,8 +137,7 @@
 		  <tr>
 		    <td>첨부파일</td>
 			<td>
-			<input type='file' id="imgInp" name="filename" multiple/><br/>
-			  <input type="file" name="bImg" value ='image//${dto.bImg}' size="46">
+			<input type='file' id="imgInp" name="bImg" value ='image//${dto.bImg}' multiple/><br/>
 			</td>
 		  </tr>
 			<td>

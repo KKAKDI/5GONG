@@ -28,6 +28,25 @@ function check() {
     document.search.submit();
 }
 	</script>
+	<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   
+   String sessionNick  = (String)session.getAttribute("session_nick");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      logout();
+   <%       
+      }else{
+   %>         
+   console.log("session : ${session_email}");    
+   <%
+      }   
+   %>
+   </script>   
 
 <table>
 	<tr>

@@ -36,4 +36,7 @@ public class BoardService {
 	public void boardUpdateS(int bNo, String bSubject, String bContent, String bImg, String bImgCopy) {
 		dao.boardUpdate(bNo, bSubject, bContent, bImg, bImgCopy);	
 	}
+	public BoardDTO boardNickS(int bNo) {
+		return dao.boardNick(bNo);
+	}
 }

@@ -6,6 +6,7 @@
     <title>TKL</title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script language="javascript">
+	
     $(document).ready(function(){
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -47,6 +48,26 @@
 		document.input.submit();
 	  }
 	</script>
+	<script>
+   function logout(){
+      location.href="sign_in.jsp";
+   }
+   <%
+   
+   String sessionNick  = (String)session.getAttribute("session_nick");
+      if(sessionNick==null){
+   %>   
+      alert("session 없음");      
+      Kakao.cleanup();   
+      logout();
+   <%       
+      }else{
+   %>         
+      console.log("session : ${session_email}");   
+   <%
+      }   
+   %>
+   </script>   
   </head>
   <body>
 	    <font><b>글 쓰 기</b></font>

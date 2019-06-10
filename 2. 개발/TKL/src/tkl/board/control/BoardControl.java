@@ -10,7 +10,9 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthSeparatorUI;
+import javax.websocket.Session;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -27,7 +29,6 @@ import tkl.board.model.BoardService;
 @WebServlet("/board.do")
 public class BoardControl extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String m = request.getParameter("m");
 
@@ -55,6 +56,8 @@ public class BoardControl extends HttpServlet {
 				replyDelete(request, response);
 			} else if (m.equals("board_like")) {
 				boardLike(request, response);
+//			} else if (m.equals("board_like_list")) {
+//				boardLikeList(request,response);
 			}
 		}else {
 				boardList(request, response);
@@ -140,6 +143,7 @@ public class BoardControl extends HttpServlet {
 
 	private void boardIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 		ServletContext sc = getServletContext();
 		String saveDir = sc.getRealPath("/img");
 		System.out.println("saveDir : " + saveDir);
@@ -150,8 +154,11 @@ public class BoardControl extends HttpServlet {
 		String bImgCopy = mr.getFilesystemName("bImg");
 		String bImg = mr.getOriginalFileName("bImg");
 		System.out.println("bImg: " + bImg);
-		String mNick = mr.getParameter("mNick");
-		String eMail = mr.getParameter("eMail");
+		String mNick = (String)session.getAttribute("session_nick");
+		System.out.println("mNick : "+mNick);
+		String eMail = (String)session.getAttribute("session_email");
+		System.out.println("eMail : "+eMail);
+		System.out.println("세션 아이디 : "+(String)session.getAttribute("session_nick"));
 		String bSubject = mr.getParameter("bSubject");
 		String bContent = mr.getParameter("bContent");
 		String homepage = mr.getParameter("homepage");
@@ -166,9 +173,16 @@ public class BoardControl extends HttpServlet {
 			throws ServletException, IOException {
 		BoardService service = BoardService.getInstance();
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
-		// 
+		
+		
+		// 추천 리스트 확인하는거
+		ArrayList <String> likeList = new ArrayList<String>();
+		ReplyService rService = ReplyService.getInstance();
+		likeList = rService.replyLikeListS(bNo);
+		request.setAttribute("likeList", likeList);
+		
 
-		// ��Ű������ ���� ���� ����. ��Ű������ ���� ������ ��ȸ�� ���� ���� ���� ����
+		// 쿠키 시작
 		boolean isGet = false;
 		Cookie[] cookies = request.getCookies();
 		for (Cookie c : cookies) {//
@@ -190,11 +204,10 @@ public class BoardControl extends HttpServlet {
 				response.addCookie(c1);
 			}
 		}
-
+ 
 		BoardDTO dto = service.boardContentS(bNo);
-		request.setAttribute("dto", dto);
-
-		ReplyService rService = ReplyService.getInstance();
+		request.setAttribute("dto", dto);  
+		
 		ArrayList<ReplyDTO> list = rService.replyListS(bNo);
 
 		request.setAttribute("rList", list);
@@ -236,14 +249,13 @@ public class BoardControl extends HttpServlet {
 		BoardService service = BoardService.getInstance();
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
 		ServletContext sc = getServletContext();
-		String saveDir = sc.getRealPath("image");
+		String saveDir = sc.getRealPath("img");
 		System.out.println("saveDir : " + saveDir);
 		String bImgCopy = request.getParameter("bImgCopy");
 		System.out.println("bImgCopy : " + bImgCopy);
 		File f = new File(saveDir, bImgCopy);
 		if (f.exists()) {
 			f.delete();
-			System.out.println("���� ���� ����");
 		}
 		service.boardDeleteS(bNo);
 
@@ -254,7 +266,7 @@ public class BoardControl extends HttpServlet {
 			throws ServletException, IOException {
 		System.out.println("boardDownload();");
 		ServletContext sc = getServletContext();
-		String saveDir = sc.getRealPath("image");
+		String saveDir = sc.getRealPath("img");
 
 		String fileName = new String(request.getParameter("bImgCopy"));
 		File file = new File(saveDir + "/" + fileName);
@@ -307,18 +319,36 @@ public class BoardControl extends HttpServlet {
 
 	private void replyIn(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String mEmail = (String)session.getAttribute("session_email");
+		System.out.println("mEmail : "+mEmail);
+		String mNick = (String)session.getAttribute("session_nick");
+		System.out.println("mNick : "+mNick);
 		ReplyService rs = ReplyService.getInstance();
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		System.out.println("bNo : "+bNo);
 		String brContent = request.getParameter("brContent");
-		rs.replyInS(bNo, brContent);
+		rs.replyInS(bNo, brContent, mEmail, mNick);
 		response.sendRedirect("board.do?m=board_content&bNo=" + bNo);
 	}
 
 	private void replyDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ReplyService rs = ReplyService.getInstance();
+		HttpSession session = request.getSession();
 		int brNo = Integer.parseInt(request.getParameter("brNo"));
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		ReplyDTO dto = rs.replyNickS(brNo);
+		if(dto.getmNick()==session.getAttribute("session_nick")) {
+			System.out.println("세션 아이디와 일치");
+			String check = "-1";
+			request.setAttribute("check", check);
+		}else {
+			System.out.println("세션 아이디와 불일치");
+			String check = "0";
+			request.setAttribute("check", check);
+		}
+		
 		rs.replyDeleteS(brNo);
 		response.sendRedirect("board.do?m=board_content&bNo=" + bNo);
 	}
@@ -326,11 +356,32 @@ public class BoardControl extends HttpServlet {
 	private void boardLike(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		BoardService service = BoardService.getInstance();
+		ReplyService rService = ReplyService.getInstance();
+		HttpSession session = request.getSession();
+		String nick = (String)session.getAttribute("session_nick");
+		String email = (String)session.getAttribute("session_email");
 		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		//리플 추천 아이디 넣는거
+		rService.replyLikeInS(bNo, email, nick);
+		//보드 추천수 올리는거
 		service.boardLikeS(bNo);
+		
 		response.sendRedirect("board.do?m=board_content&bNo=" + bNo);
 	}
-
+	
+	private void boardLikeList(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		ArrayList <String> likeList = new ArrayList<String>();
+		ReplyService rService = ReplyService.getInstance();
+		int bNo = Integer.parseInt(request.getParameter("bNo"));
+		likeList = rService.replyLikeListS(bNo);
+		request.setAttribute("likeList", likeList);
+		for(String temp : likeList) {
+			System.out.println("likeList 뽑아보자 : "+temp);
+		}
+		response.sendRedirect("tkl.board/board_content.jsp");
+	}
+	
 	private int searchCheck(String sk, String sv) {
 		if ((sk == null || sv == null) || (sk == "")) {
 			return 0;

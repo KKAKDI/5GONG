@@ -10,7 +10,7 @@ public class ReplyDTO {
 	private String brContent;
 	private Date brWriteDate;
 	private String brImg;
-	private String brImgCopy;
+	private String brImgCopy;  
 	private int brLike;
 	private int brDisLike;
 	public ReplyDTO(int brNo, int bNo, String mEmail, String mNick, String brContent, Date brWriteDate, String brImg,
@@ -25,12 +25,12 @@ public class ReplyDTO {
 		this.brImg = brImg;
 		this.brImgCopy = brImgCopy;
 		this.brLike = brLike;
-		this.brDisLike = brDisLike;
+		this.brDisLike = brDisLike; 
 	}
 	public int getBrNo() {
 		return brNo;
-	}
-	public void setBrNo(int brNo) {
+	}  
+	public void setBrNo(int brNo) { 
 		this.brNo = brNo;
 	}
 	public int getbNo() {
@@ -38,12 +38,12 @@ public class ReplyDTO {
 	}
 	public void setbNo(int bNo) {
 		this.bNo = bNo;
-	}
+	}   
 	public String getmEmail() {
 		return mEmail;
 	}
 	public void setmEmail(String mEmail) {
-		this.mEmail = mEmail;
+		this.mEmail = mEmail;       
 	}
 	public String getmNick() {
 		return mNick;
@@ -51,7 +51,7 @@ public class ReplyDTO {
 	public void setmNick(String mNick) {
 		this.mNick = mNick;
 	}
-	public String getBrContent() {
+	public String getBrContent() {   
 		return brContent;
 	}
 	public void setBrContent(String brContent) {

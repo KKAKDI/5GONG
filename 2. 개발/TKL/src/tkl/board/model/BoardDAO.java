@@ -12,6 +12,8 @@ import javax.naming.*;
 import javax.servlet.ServletException;
 import javax.sql.*;
 
+import tkl.bReply.model.ReplyDTO;
+import tkl.bReply.model.ReplySQL;
 import tkl.board.model.BoardDTO;
 import tkl.board.model.BoardSQL;
 
@@ -190,8 +192,8 @@ public class BoardDAO {
 		try {
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(BoardSQL.sqlI);
-			pstmt.setString(1, "ccc@daum.net");
-			pstmt.setString(2, "닉네임3");
+			pstmt.setString(1, dto.getmEmail());
+			pstmt.setString(2, dto.getmNick());
 			pstmt.setString(3, dto.getbSubject());
 			pstmt.setString(4, dto.getbContent());
 			pstmt.setString(5, dto.getbImg());
@@ -302,6 +304,35 @@ public class BoardDAO {
 
 			}
 		}
+	}
+	BoardDTO boardNick(int bNo) {
+		System.out.println("boardNick()");
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(BoardSQL.sqlSNick);
+			pstmt.setInt(1, bNo);
+			rs = pstmt.executeQuery();
+			rs.next();
+			String mNick = rs.getString("M_NICK");
+			String mEmail = rs.getString("M_EMAIL");
+			BoardDTO dto = new BoardDTO(bNo, mEmail, mNick, null, null, null, null, -1, -1, null, -1);
+			return dto;
+		} catch (SQLException se) {
+			System.out.println("boardNick se : " + se);
+		} finally {
+			try {
+				if (pstmt != null)
+					pstmt.close();
+				if (con != null)
+					con.close();
+			} catch (SQLException se) {
+			}
+		}
+		return null;
+		
 	}
 
 }

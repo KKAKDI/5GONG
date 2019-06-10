@@ -14,4 +14,5 @@ public class BoardSQL {
 	static final String sqlSN = "select * from BOARD where M_NICK LIKE '%' || ? || '%' order by B_NO desc";
 	static final String sqlSS = "select * from BOARD where B_SUBJECT LIKE '%' || ? || '%' order by B_NO desc";
 	static final String sqlSC = "select * from BOARD where B_CONTENT LIKE '%' || ? || '%' order by B_NO desc";
+	static final String sqlSNick = "select M_NICK, M_EMAIL from BOARD where B_NO = ?";
 }
