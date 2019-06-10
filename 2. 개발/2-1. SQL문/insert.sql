@@ -1,11 +1,11 @@
 --회원 (권한 - 0:관리자, 1:일반회원)
 insert into MEMBER values('bit@naver.com', '비트','1', '1q2w3e4r!','비트캠프', '국민은행', 134256854943,01055765483 ,1000000, 100, SYSDATE);
 insert into MEMBER values('king@naver.com', '킹' ,'0', '1q2w3e4r!','왕', '국민은행' , 138549345934,01047568345,3000000,80, SYSDATE);
-insert into MEMBER values('aaa@google.com','운학','0','1q2w3e4r!', '최운학', '국민은행',135473965433,01034538924,2000000,90,SYSDATE);
-insert into MEMBER values('bbb@google.com','지훈','0','1q2w3e4r!', '곽지훈','신한은행',448934759232,01043572484,2000000,90,SYSDATE);
-insert into MEMBER values('ccc@naver.com','성식','0','1q2w3e4r!', '조성식','카카오뱅크',124578435892,01013287435,2000000,90,SYSDATE);
-insert into MEMBER values('ddd@naver.com','정우','0','1q2w3e4r!', '변정우','우리은행',774357935639,01046328533,2000000,90,SYSDATE);
-insert into MEMBER values('eee@daum.net', '동진','0','1q2w3e4r!', '박동진','카카오뱅크',128564694433,01074892342,2000000,90,SYSDATE);
+insert into MEMBER values('aaa@google.com','운학','0','1q2w3e4r!', '최운학', '국민은행',111122223333,01011112222,2000000,90,SYSDATE);
+insert into MEMBER values('bbb@google.com','지훈','0','1q2w3e4r!', '곽지훈','신한은행',444455556666,01033334444,2000000,90,SYSDATE);
+insert into MEMBER values('ccc@naver.com','성식','0','1q2w3e4r!', '조성식','카카오뱅크',124578435892,01012345678,2000000,90,SYSDATE);
+insert into MEMBER values('ddd@naver.com','정우','0','1q2w3e4r!', '변정우','우리은행',777788889999,01055556666,2000000,90,SYSDATE);
+insert into MEMBER values('eee@daum.net', '동진','0','1q2w3e4r!', '박동진','기업은행',987654321234,01098765432,2000000,90,SYSDATE);
 insert into MEMBER values('fff@naver.com', '채연' ,'1', '1q2w3e4r!','정채연', '국민은행', 139706594945,01043583223, 2000000, 70 , SYSDATE);
 insert into MEMBER values('ggg@naver.com','나리','0', '1q2w3e4r!','김나리', '신한은행' , 448689574056,01065943452,800000, 75,  SYSDATE);
 insert into MEMBER values('hhh@naver.com', '영훈' ,'1', '1q2w3e4r!','최영훈', '신한은행', 448658095464,01086747432, 1200000, 85 , SYSDATE);
@@ -69,13 +69,14 @@ insert into HISTORY values(2, '닉네임4', 123456789012, '닉네임5', 987654321234, 
 insert into P_REPLY values(1, 1, 'bit@naver.com', '비트', '아이패드 3만원 할인가능한가요?', 'iPad.png', 'iPad_copy01.png', SYSDATE);
 insert into P_REPLY values(2, 3, 'aaa@google.com', '운학', '직거래하면 만원 빼주시나요?', 'gram.jsp', 'gram_copy03.jsp', SYSDATE);
 
---신고목록
+
 --신고목록
 insert into REPORT values(1, '비트 유저 사기 신고', '비트 유저가 상품 내용과 맞지않는 물품을 보내는 사기를 당했습니다', 'iPad.png', 'iPad_copy01.png', 'bit@naver.com', '비트', SYSDATE, '처리중', '댓글1', '사기신고');
 insert into REPORT values(2, '운학 유저 사기 신고', '운학 유저가 물품을 보내지 않습니다', 'gram.jsp', 'gram_copy03.jsp', 'aaa@google.com', '운학', SYSDATE, '처리중', '댓글2', '사기신고');
+
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
-insert into NEWS values(1, 'aaa@naver.com', '닉네임1', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
-insert into NEWS values(2, 'bbb@google.com', '닉네임2', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
+insert into NEWS values(1, 'aaa@naver.com', '운학', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
+insert into NEWS values(2, 'bbb@google.com', '지훈', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
 
 --자유게시판
 insert into BOARD values(1, 'ccc@daum.net', '닉네임3', '갤S10 5G', '님들 요새 갤S10 5G 나왔던데 쓸만함?', 'aa.jpg', 'aa_copy01.jpg', 0, 0, SYSDATE, 0);
