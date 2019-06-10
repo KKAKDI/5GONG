@@ -73,7 +73,6 @@
 			<tr>
 				<td colspan='2'>글내용 : <textarea name="pd_content" rows="10" cols="60"></textarea></td>
 			</tr>
-			
 			<tr>
 				<td>
 				<input type="submit" value="등록"> 

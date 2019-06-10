@@ -59,15 +59,24 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 	<form name='f' method='post' action='product.do?m=update&pd_no=${update_form.pd_no}&pd_class=${update_form.pd_class}'>
 	<table id="update_tb">
 		<tr>
-			<td rowspan="7"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
+			<td rowspan="9"><input type='file' id="imgInp" name="pd_img_copy" accept=".jpg, .png"/><br/>
         <img id="blah" src="product.do?m=content_img&pd_img_copy=${update_form.pd_img_copy}" alt="이미지를 넣어주세요" /></td>
 			<td colspan="2">상품번호 : ${update_form.pd_no}</td>
+		</tr>
+		<tr>
+			<td colspan="2">판매자 : ${update_form.pd_nick}</td>
+		</tr>
+		<tr>
+			<td colspan="2">신뢰도 : ${update_form.pd_trust}</td>
 		</tr>
 		<tr>
 			<td colspan="2">상품유형 : ${update_form.pd_class}</td>
 		</tr>
 		<tr>
-			<td colspan="2">상품이름 : <input type='text' name='pd_name'
+			<td colspan="2">진행상태 : ${update_form.pd_status}</td>
+		</tr>
+		<tr>
+			<td colspan="2">상품명 : <input type='text' name='pd_name'
 					value='${update_form.pd_name}'></td>
 		</tr>
 		<tr>
@@ -79,10 +88,6 @@ input[type="button"], input[type="submit"], input[type="reset"] {
 		</tr>
 		<tr>
 			<td>조회수 : ${update_form.pd_view}</td>
-		</tr>
-		<tr>
-			<td colspan="2" align="center"><input type="button" value="구매하기"
-				onclick="location.href='product.do?m=list' "></td>
 		</tr>
 		<tr>
 			<td colspan='2' align='center'>

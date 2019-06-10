@@ -33,8 +33,7 @@ public class MemberDAO {
 			pstmt.setString(1, mem.getEmail());
 			pstmt.setString(2, mem.getPwd());
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				System.out.println("1");
+			if(rs.next()) {				
 				outMem = new MemberDTO();
 				System.out.println(rs.getString("M_EMAIL")+"/"+rs.getString("M_NICK"));
 				outMem.setEmail(rs.getString("M_EMAIL"));

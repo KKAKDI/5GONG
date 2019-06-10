@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -58,8 +59,11 @@ public class ReportControl extends HttpServlet {
 		ReportService service = ReportService.getInstance();
 		String pageStr = request.getParameter("pg");
 		String searchKey = request.getParameter("searchKey");
+		HttpSession session = request.getSession();
+		String sessionNick  = (String)session.getAttribute("session_nick");
+		String sessionGrant = (String)session.getAttribute("session_grant"); 
 		System.out.println("searchKey : " + searchKey);
-		int rowCnt = 3;
+		int rowCnt = 5;
 		int page = 1;
 		
 		if(pageStr!=null) {//page 가 초기값이 아닌 경우 저장
@@ -71,31 +75,26 @@ public class ReportControl extends HttpServlet {
 		
 		ArrayList<ReportDTO> list = null;
 		int total = 0;
-		System.out.println("오나1");
 		
 		if(searchKey == null) {
-			System.out.println("오나4");
-			list = service.selectS(searchKey, 0, 1, begin, end);
-			total = service.getTotalS(0, 1);
-			System.out.println("searchKey : " + searchKey + ", 0, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
+			list = service.selectS(sessionNick, sessionGrant, searchKey, begin, end);
+			total = service.getTotalS(sessionNick, 0, 1);
+			System.out.println("sessionNick : " + sessionNick + ",searchKey : " + searchKey + ", 0, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
 		}else if(searchKey.equals("listR")) {
-			System.out.println("오나2");
-			list = service.selectS(searchKey, 0, 0, begin, end);
-			total = service.getTotalS(0, 0);
-			System.out.println("searchKey : " + searchKey + ", 0, 0," + " begin : " + begin + ", end : " + end + ", total : " + total);
+			list = service.selectS(sessionNick, sessionGrant, searchKey, begin, end);
+			total = service.getTotalS(sessionNick, 0, 0);
+			System.out.println("sessionNick : " + sessionNick + ",searchKey : " + searchKey + ", 0, 0," + " begin : " + begin + ", end : " + end + ", total : " + total);
 		}else if(searchKey.equals("listC")) {
-			System.out.println("오나3");
-			list = service.selectS(searchKey, 1, 1, begin, end);
-			total = service.getTotalS(1, 1);
-			System.out.println("searchKey : " + searchKey + ", 1, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
+			list = service.selectS(sessionNick, sessionGrant, searchKey, begin, end);
+			total = service.getTotalS(sessionNick, 1, 1);
+			System.out.println("sessionNick : " + sessionNick + ",searchKey : " + searchKey + ", 1, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
 		}else {
-			System.out.println("오나5");
-			list = service.selectS(searchKey, 0, 1, begin, end);
-			total = service.getTotalS(0, 1);
-			System.out.println("searchKey : " + searchKey + ", 0, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
+			list = service.selectS(sessionNick, sessionGrant, searchKey, begin, end);
+			total = service.getTotalS(sessionNick, 0, 1);
+			System.out.println("sessionNick : " + sessionNick + ",searchKey : " + searchKey + ", 0, 1," + " begin : " + begin + ", end : " + end + ", total : " + total);
 		}
 		int allPage = (int)Math.ceil(total/(double)rowCnt);
-		int block = 3;
+		int block = 5;
 		
 		int fromPage= ((page-1)/block*block)+1;
 		int toPage = ((page-1)/block*block)+block;
@@ -113,52 +112,6 @@ public class ReportControl extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
 		rd.forward(request, response);
 	}
-	
-	/*
-	protected void listC(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ReportService service = ReportService.getInstance();
-		String pageStr = request.getParameter("pg");
-		String searchKey = request.getParameter("searchKey");
-		int rowCnt = 3;
-		int page = 1;
-		
-		if(pageStr!=null) {//page 가 초기값이 아닌 경우 저장
-			page = Integer.parseInt(pageStr);
-		}
-		
-		int begin =(page*rowCnt)-(rowCnt-1);// 2x5-4
-		int end =(page*rowCnt);//2x5 
-		
-		ArrayList<ReportDTO> list = null;
-		String m = request.getParameter("m");
-		int total = 0;
-		if(m.equals("listR")) {
-			list = service.selectS(searchKey, 0, 0, begin, end);
-			total = service.getTotalS(0, 0);
-		}else if(m.equals("listC")) {
-			list = service.selectS(searchKey, 1, 1, begin, end);
-			total = service.getTotalS(1, 1);
-		}
-		
-		int allPage = (int)Math.ceil(total/(double)rowCnt);
-		int block = 3;
-		
-		int fromPage= ((page-1)/block*block)+1;
-		int toPage = ((page-1)/block*block)+block;
-		if(toPage>allPage) {
-			toPage=allPage;
-		}
-				
-		request.setAttribute("list",  list);
-		request.setAttribute("page", page);
-		request.setAttribute("fromPage", fromPage);
-		request.setAttribute("toPage", toPage);
-		request.setAttribute("allPage", allPage);		
-		request.setAttribute("block", block);
-		RequestDispatcher rd = request.getRequestDispatcher("report/list.jsp");
-		rd.forward(request, response);
-	}
-	*/
 	protected void in_form(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.sendRedirect("report/input.jsp");
 	}
@@ -183,8 +136,10 @@ public class ReportControl extends HttpServlet {
 		System.out.println("rContent : " + rContent);
 		String rNick = mr.getParameter("rNick");
 		System.out.println("rNick : " + rNick);
+		String rClass = mr.getParameter("rClass");
+		System.out.println("rClass : " + rClass);
 		String rReply = "신고가 처리 중 이며, 빠른시일 내에 답변 예정입니다.";
-		ReportDTO dto = new ReportDTO(-1, rSubject, rContent, rFile, rFileCopy, null, rNick, null, null, rReply); // -1 은 통상 의미없는 숫자를 넣을떄
+		ReportDTO dto = new ReportDTO(-1, rSubject, rContent, rFile, rFileCopy, null, rNick, null, null, rReply, rClass); // -1 은 통상 의미없는 숫자를 넣을떄
 		ReportService service = ReportService.getInstance();
 		service.insertS(dto);
 		//list(request, response); // 새로 고침 시 계속 생성됨 아래 것으로 사용
@@ -284,7 +239,7 @@ public class ReportControl extends HttpServlet {
 	protected void rIn(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String rReply = request.getParameter("rReply");
 		int rNO = getrNO(request);
-		ReportDTO dto = new ReportDTO(rNO, null, null, null, null, null, null, null, null, rReply); // -1 은 통상 의미없는 숫자를 넣을떄
+		ReportDTO dto = new ReportDTO(rNO, null, null, null, null, null, null, null, null, rReply, null); // -1 은 통상 의미없는 숫자를 넣을떄
 		ReportService service = ReportService.getInstance();
 		service.updateS(dto);
 		//list(request, response); // 새로 고침 시 계속 생성됨 아래 것으로 사용

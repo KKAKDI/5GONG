@@ -25,6 +25,8 @@ import tkl.product.model.ProductService;
 import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
 import tkl.preply.model.PreplyDTO;
+import tkl.payment.model.PaymentDTO;
+import tkl.payment.model.PaymentService;
 
 @WebServlet("/product.do")
 public class ProductControl extends HttpServlet {
@@ -212,6 +214,13 @@ public class ProductControl extends HttpServlet {
 		PreplyService service2 = PreplyService.getInstance();
 		ArrayList<PreplyDTO> reply_list = service2.selectS(pd_no);
 		request.setAttribute("reply_list", reply_list);
+		PaymentService service3 = PaymentService.getInstance();
+		//String pm_noStr = request.getParameter("pm_no");
+		//pm_noStr = pm_noStr.trim();
+		//int pm_no = Integer.parseInt(pm_noStr);
+		//System.out.println("pm_no : " + pm_no);
+		PaymentDTO dto2 = service3.selectS(pd_no);
+		request.setAttribute("payment", dto2);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_content.jsp");
 		rd.forward(request, response);
 	}
@@ -396,13 +405,13 @@ public class ProductControl extends HttpServlet {
 	private void buy_complete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int pd_no = getPd_no(request);
 		String pd_status = request.getParameter("pd_status");
-		pd_status = "판매완료";
+		pd_status = "거래중";
 		ProductDTO dto = new ProductDTO();
 		dto.setPd_no(pd_no);
 		dto.setPd_status(pd_status);
 		ProductService service = ProductService.getInstance();
 		service.buyCompleteS(dto);
-		response.sendRedirect("product.do");
+		response.sendRedirect("product.do?m=content&pd_no="+pd_no);
 	}
 	
 	private int getPd_no(HttpServletRequest request) {
