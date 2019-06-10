@@ -37,8 +37,8 @@ insert into REPORT values(1, '닉네임3 유저 사기 신고', '닉네임3 유저가 상품 내용
 insert into REPORT values(2, '닉네임4 유저 사기 신고', '닉네임5 유저가 물품을 보내지 않습니다', 'b.jpg', 'b_copy.jpg', 'eee@google.com', '닉네임5', SYSDATE, '0', '댓글2');
 
 --새소식 ( 구분 - 0:공지사항, 1:이벤트)
-insert into NEWS values(1, 'aaa@naver.com', '닉네임1', '[공지]사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
-insert into NEWS values(2, 'bbb@google.com', '닉네임2', '[이벤트]첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
+insert into NEWS values(1, 'aaa@naver.com', '닉네임1', '사기 대처 방법', '유저 간 거래 시 사기를 당할 경우 빠르게 신고 바랍니다', 0, SYSDATE, '공지사항');
+insert into NEWS values(2, 'bbb@google.com', '닉네임2', '첫 결제 시 수수료 감면 이벤트', '첫 결제 시 수수료를 감면해주는 이벤트를 진행합니다 지금 참여하세요', 0, SYSDATE, '이벤트');
 
 --자유게시판
 insert into BOARD values(1, 'ccc@daum.net', '닉네임3', '갤S10 5G', '님들 요새 갤S10 5G 나왔던데 쓸만함?', 'aa.jpg', 'aa_copy01.jpg', 0, 0, SYSDATE, 0);
