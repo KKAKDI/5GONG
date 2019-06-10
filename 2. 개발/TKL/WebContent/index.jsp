@@ -41,7 +41,7 @@
 	String sessionNick  = (String)session.getAttribute("session_nick");
 		if(sessionNick==null){
 	%>	
-		alert("session 없음");		
+		
 		Kakao.cleanup();	
 		logout();
 	<% 		
