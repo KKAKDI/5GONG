@@ -99,28 +99,31 @@ input[type="text"] {
 			<td>조회수 : ${con.pd_view}</td>
 		</tr>
 		<tr>
-		<td><input type="button" value="구매하기" onClick="javascript:showTable();"></td>
+		<td><input type="button" value="즉시구매" onClick="javascript:showTable();"></td>
 		</tr>
 	</table>
 	<form name="f" method="post" action="product.do?m=buy_complete">
-	<table>
+	<table id="payment_tb">
 		<tr>
 			<th>결제번호</th>
-			<th>판매자</th>
-			<th>판매자은행</th>
-			<th>판매자계좌</th>
-			<th>판매금액</th>
+			<th>구매자</th>
+			<th>구매자은행</th>
+			<th>구매자계좌</th>
+			<th>구매금액</th>
 			<th>배송주소</th>
 			<th>구매날짜</th>
 		</tr>
 		<tr> 
 			<td>${payment.pm_no}</td>
-			<td>${payment.pm_seller}</td>
-			<td>${payment.pm_s_bank}</td>
-			<td>${payment.pm_s_account}</td>
-			<td>${payment.pm_s_amount}</td>
+			<td>${payment.pm_buyer}</td>
+			<td>${payment.pm_b_bank}</td>
+			<td>${payment.pm_b_account}</td>
+			<td>${payment.pm_b_amount}</td>
 			<td>${payment.pm_addr}</td>
 			<td>${payment.pm_regdate}</td>
+		</tr>
+		<tr>
+		<td><input type="submit" value="구매요청"></td>
 		</tr>
 	</table>
 	</form>

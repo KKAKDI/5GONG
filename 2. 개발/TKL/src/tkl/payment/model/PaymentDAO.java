@@ -31,30 +31,30 @@ class PaymentDAO {
 			rs.next();
 			int pm_no = rs.getInt("pm_no");
 			System.out.println("pm_no : " + pm_no);
-			//pd_no = rs.getInt("pd_no");
-			String pm_seller = rs.getString("pm_seller");
-			System.out.println("pm_seller : " + pm_seller);
-			String pm_s_bank = rs.getString("pm_s_bank");
-			System.out.println("pm_s_bank : " + pm_s_bank);
-			int pm_s_account = rs.getInt("pm_s_account");
-			System.out.println("pm_s_account : " + pm_s_account);
-			int pm_s_amount = rs.getInt("pm_s_amount");
-			System.out.println("pm_s_amount : " + pm_s_amount);
+			pd_no = rs.getInt("pd_no");
+			String pm_buyer = rs.getString("pm_buyer");
+			System.out.println("pm_buyer : " + pm_buyer);
+			String pm_b_bank = rs.getString("pm_b_bank");
+			System.out.println("pm_b_bank : " + pm_b_bank);
+			long pm_b_account = rs.getLong("pm_b_account");
+			System.out.println("pm_b_account : " + pm_b_account);
+			long pm_b_amount = rs.getLong("pm_b_amount");
+			System.out.println("pm_b_amount : " + pm_b_amount);
 			java.sql.Date pm_regdate = rs.getDate("pm_regdate");
 			System.out.println("pm_regdate : " + pm_regdate);
 			String pm_addr = rs.getString("pm_addr");
-			System.out.println("pm_addr : " + pm_addr);
 			PaymentDTO dto = new PaymentDTO();
 			dto.setPm_no(pm_no);
-			//dto.setPd_no(pd_no);
-			dto.setPm_seller(pm_seller);
-			dto.setPm_s_bank(pm_s_bank);
-			dto.setPm_s_account(pm_s_account);
-			dto.setPm_s_amount(pm_s_amount);
+			dto.setPd_no(pd_no);
+			dto.setPm_buyer(pm_buyer);
+			dto.setPm_b_bank(pm_b_bank);
+			dto.setPm_b_account(pm_b_account);
+			dto.setPm_b_amount(pm_b_amount);
 			dto.setPm_regdate(pm_regdate);
 			dto.setPm_addr(pm_addr);
 			return dto;
 		}catch(SQLException se) {
+			System.out.println("오류 : " + se);
 			return null;
 		}finally {
 			try {
@@ -64,4 +64,6 @@ class PaymentDAO {
 			}catch(SQLException se) {}
 		}
 	}
+	
+	
 }

@@ -215,10 +215,6 @@ public class ProductControl extends HttpServlet {
 		ArrayList<PreplyDTO> reply_list = service2.selectS(pd_no);
 		request.setAttribute("reply_list", reply_list);
 		PaymentService service3 = PaymentService.getInstance();
-		//String pm_noStr = request.getParameter("pm_no");
-		//pm_noStr = pm_noStr.trim();
-		//int pm_no = Integer.parseInt(pm_noStr);
-		//System.out.println("pm_no : " + pm_no);
 		PaymentDTO dto2 = service3.selectS(pd_no);
 		request.setAttribute("payment", dto2);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_content.jsp");
