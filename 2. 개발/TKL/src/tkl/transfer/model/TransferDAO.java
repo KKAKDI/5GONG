@@ -8,7 +8,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 
-
 public class TransferDAO implements Transfer{
 	private DataSource ds;
 	Connection con;
@@ -25,20 +24,72 @@ public class TransferDAO implements Transfer{
 		}		
 	}
 	
+	TransferDTO select(int pd_no){
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(TransferSQL.SQL_LIST);
+			pstmt.setInt(1, pd_no);
+			rs = pstmt.executeQuery();
+			rs.next();
+			int pm_no = rs.getInt("pm_no");
+			pd_no = rs.getInt("pd_no");
+			String pm_seller = rs.getString("pm_seller");
+			String pm_s_bank = rs.getString("pm_s_bank");
+			long pm_s_account = rs.getLong("pm_s_account");
+			String pm_buyer = rs.getString("pm_buyer");
+			String pm_b_bank = rs.getString("pm_b_bank");
+			long pm_b_account = rs.getLong("pm_b_account");
+			long pm_s_amount = rs.getLong("pm_s_amount");
+			long pm_b_amount = rs.getLong("pm_b_amount");
+			java.sql.Date pm_regdate = rs.getDate("pm_regdate");
+			String pm_addr = rs.getString("pm_addr");
+			String pm_bchek = rs.getString("pm_bchek");
+			String pm_schek = rs.getString("pm_schek");
+			TransferDTO dto = new TransferDTO();
+			dto.setPm_no(pm_no);
+			dto.setPd_no(pd_no);
+			dto.setPm_seller(pm_seller);
+			dto.setPm_s_bank(pm_s_bank);
+			dto.setPm_s_account(pm_s_account);
+			dto.setPm_buyer(pm_buyer);
+			dto.setPm_b_bank(pm_b_bank);
+			dto.setPm_b_account(pm_b_account);
+			dto.setPm_s_amount(pm_s_amount);
+			dto.setPm_b_amount(pm_b_amount);
+			dto.setPm_regdate(pm_regdate);
+			dto.setPm_addr(pm_addr);
+			dto.setPm_bchek(pm_bchek);
+			dto.setPm_schek(pm_schek);
+			return dto;
+		}catch(SQLException se) {
+			System.out.println("오류 : " + se);
+			return null;
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null) con.close();
+			}catch(SQLException se) {}
+		}
+	}
+	
 	public void createPayment(TransferDTO dto) {
 		PreparedStatement pstmt= null;
 		try {
 			pstmt = con.prepareStatement(TransferSQL.SQL_INPAY);
-			pstmt.setInt(1, dto.getPdNo());
-			pstmt.setString(2, dto.getSeller());
-			pstmt.setString(3, dto.getsBank());
-			pstmt.setInt(4, dto.getsAccount());
-			pstmt.setString(5, dto.getBuyer());
-			pstmt.setString(6, dto.getbBank());
-			pstmt.setInt(7, dto.getbAccount());
-			pstmt.setInt(8, dto.getsAmount());
-			pstmt.setInt(9, dto.getbAmount());
-			pstmt.setString(10, dto.getbAddr());
+			pstmt.setInt(1, dto.getPd_no());
+			pstmt.setString(2, dto.getPm_seller());
+			pstmt.setString(3, dto.getPm_s_bank());
+			pstmt.setLong(4, dto.getPm_s_account());
+			pstmt.setString(5, dto.getPm_buyer());
+			pstmt.setString(6, dto.getPm_b_bank());
+			pstmt.setLong(7, dto.getPm_b_account());
+			pstmt.setLong(8, dto.getPm_s_amount());
+			pstmt.setLong(9, dto.getPm_b_amount());
+			pstmt.setString(10, dto.getPm_addr());
 			pstmt.executeQuery();
 			con.commit();
 		} catch (SQLException se) {
@@ -136,11 +187,11 @@ public class TransferDAO implements Transfer{
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = con.prepareStatement(TransferSQL.SQL_INHIS);
-			pstmt.setString(1, dto.getSeller());
-			pstmt.setInt(4, dto.getsAccount());
-			pstmt.setString(3, dto.getBuyer());
-			pstmt.setInt(4, dto.getbAccount());
-			pstmt.setInt(5, dto.getsAmount());
+			pstmt.setString(1, dto.getPm_seller());
+			pstmt.setLong(4, dto.getPm_s_account());
+			pstmt.setString(3, dto.getPm_buyer());
+			pstmt.setLong(4, dto.getPm_b_account());
+			pstmt.setLong(5, dto.getPm_s_amount());
 			pstmt.executeQuery();
 			return true;
 		} catch (SQLException se) {
@@ -168,10 +219,10 @@ public class TransferDAO implements Transfer{
 				 dDate = rs.getDate("H_DEALDATE");		
 			}		
 			TransferDTO dto = new TransferDTO();
-			dto.setSeller(hSeller);
-			dto.setBuyer(hBuyer);
-			dto.setsAmount(amount);
-			dto.setRegDate(dDate);
+			dto.setPm_seller(hSeller);
+			dto.setPm_buyer(hBuyer);
+			dto.setPm_s_amount(amount);
+			dto.setPm_regdate(dDate);
 			return dto;
 		} catch (SQLException se) {
 			System.out.println(se);
@@ -180,9 +231,9 @@ public class TransferDAO implements Transfer{
 	}
 	//최종확인시 돌아갈 트렌젝션
 	public boolean transfer(TransferDTO dto) {
-		String seller = dto.getSeller();
-		String buyer = dto.getBuyer();
-		int amount = dto.getsAmount();
+		String seller = dto.getPm_seller();
+		String buyer = dto.getPm_buyer();
+		long amount = dto.getPm_s_amount();
 		try {
 			if(isMember(seller)&&isMember(buyer)&&plus(seller,amount)&&log(dto)) {				
 				con.commit();

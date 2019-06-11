@@ -22,11 +22,11 @@ import java.util.*;
 import javax.servlet.http.Cookie;
 
 import tkl.product.model.ProductService;
+import tkl.transfer.model.TransferDTO;
+import tkl.transfer.model.TransferService;
 import tkl.product.model.ProductDTO;
 import tkl.preply.model.PreplyService;
 import tkl.preply.model.PreplyDTO;
-import tkl.payment.model.PaymentDTO;
-import tkl.payment.model.PaymentService;
 
 @WebServlet("/product.do")
 public class ProductControl extends HttpServlet {
@@ -214,8 +214,8 @@ public class ProductControl extends HttpServlet {
 		PreplyService service2 = PreplyService.getInstance();
 		ArrayList<PreplyDTO> reply_list = service2.selectS(pd_no);
 		request.setAttribute("reply_list", reply_list);
-		PaymentService service3 = PaymentService.getInstance();
-		PaymentDTO dto2 = service3.selectS(pd_no);
+		TransferService service3 = TransferService.getInstance();
+		TransferDTO dto2 = service3.selectS(pd_no);
 		request.setAttribute("payment", dto2);
 		RequestDispatcher rd = request.getRequestDispatcher("product/product_content.jsp");
 		rd.forward(request, response);

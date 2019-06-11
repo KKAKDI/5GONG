@@ -105,6 +105,8 @@ class ProductDAO {
 			String pd_name = rs.getString("pd_name");
 			String pd_class = rs.getString("pd_class");
 			int pd_price = rs.getInt("pd_price");
+			String pd_subject = rs.getString("pd_subject");
+			String pd_content = rs.getString("pd_content");
 			int pd_view = rs.getInt("pd_view");
 			String pd_img_copy = rs.getString("pd_img_copy");
 			java.sql.Date pd_regdate = rs.getDate("pd_regdate");
@@ -116,6 +118,8 @@ class ProductDAO {
 			dto.setPd_name(pd_name);
 			dto.setPd_class(pd_class);
 			dto.setPd_price(pd_price);
+			dto.setPd_subject(pd_subject);
+			dto.setPd_content(pd_content);
 			dto.setPd_view(pd_view);
 			dto.setPd_img_copy(pd_img_copy);
 			dto.setPd_regdate(pd_regdate);

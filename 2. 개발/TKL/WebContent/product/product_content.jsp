@@ -106,9 +106,15 @@ input[type="text"] {
 	<input type='hidden' name='pd_no' value='${con.pd_no}'>
 	<table id="content_tb">
 		<tr>
-			<td rowspan="10"><img
+			<td rowspan="12"><img
 				src='product.do?m=content_img&pd_img_copy=${con.pd_img_copy}'></td>
 			<td colspan="2">상품번호 : ${con.pd_no}</td>
+		</tr>
+		<tr>
+			<td colspan="2">제목 : ${con.pd_subject}</td>
+		</tr>
+		<tr>
+			<td colspan="2">내용 : ${con.pd_content}</td>
 		</tr>
 		<tr>
 			<td colspan="2">판매자 : ${con.pd_nick}</td>
@@ -141,7 +147,20 @@ input[type="text"] {
 	<div id = payblock>
 	<table >
 		<form name="f" method="post" action="transfer.do?m=payment">
-		<input type='hidden' name='pd_no' value='${con.pd_no}'>	
+		<input type='hidden' name='pd_no' value='${payment.pd_no}'>
+		<input type='hidden' name='pm_no' value='${payment.pm_no}'>
+		<input type='hidden' name='pm_seller' value='${payment.pm_seller}'>
+		<input type='hidden' name='pm_s_bank' value='${payment.pm_s_bank}'>
+		<input type='hidden' name='pm_s_account' value='${payment.pm_s_account}'>
+		<input type='hidden' name='pm_s_amount' value='${payment.pm_s_amount}'>
+		<input type='hidden' name='pm_b_amount' value='${payment.pm_b_amount}'>
+		<input type='hidden' name='pm_regdate' value='${payment.pm_regdate}'>
+		<input type='hidden' name='pm_bchek' value='${payment.pm_bchek}'>
+		<input type='hidden' name='pm_schek' value='${payment.pm_schek}'>
+		<input type='hidden' name='pm_buyer' value='${payment.pm_buyer}'>
+		<input type='hidden' name='pm_b_bank' value='${payment.pm_b_bank}'>
+		<input type='hidden' name='pm_b_account' value='${payment.pm_b_account}'>
+		<input type='hidden' name='pm_addr' value='${payment.pm_addr}'>
 			<tr>
 				<th>구매자</th>
 				<th id="buyer" name="buyer">${session_nick}</th>

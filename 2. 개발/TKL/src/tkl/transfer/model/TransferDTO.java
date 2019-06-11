@@ -3,126 +3,151 @@ package tkl.transfer.model;
 import java.sql.Date;
 
 public class TransferDTO {
-	private int pmNo;
-	private int pdNo;
-	private String seller;
-	private String sBank;
-	private	int sAccount;
-	private String buyer;
-	private String bBank;
-	private int bAccount;
-	private int sAmount;
-	private int bAmount;;
-	private Date regDate;
-	private String bAddr;
-	private String bcheck;
-	private String scheck;
+	private int pm_no;
+	private int pd_no;
+	private String pm_seller;
+	private String pm_s_bank;
+	private long pm_s_account;
+	private String pm_buyer;
+	private String pm_b_bank;
+	private long pm_b_account;
+	private long pm_s_amount;
+	private long pm_b_amount;
+	private Date pm_regdate;
+	private String pm_addr;
+	private String pm_bchek;
+	private String pm_schek;
 	
 	public TransferDTO() {}
-	
-	public TransferDTO(int pmNo, int pdNo, String seller, String sBank, int sAccount, String buyer, String bBank,
-			int bAccount, int sAmount, int bAmount, Date regDate, String bAddr, String bcheck, String scheck) {
-		super();
-		this.pmNo = pmNo;
-		this.pdNo = pdNo;
-		this.seller = seller;
-		this.sBank = sBank;
-		this.sAccount = sAccount;
-		this.buyer = buyer;
-		this.bBank = bBank;
-		this.bAccount = bAccount;
-		this.sAmount = sAmount;
-		this.bAmount = bAmount;
-		this.regDate = regDate;
-		this.bAddr = bAddr;
-		this.bcheck = bcheck;
-		this.scheck = scheck;
+
+	public TransferDTO(int pm_no, int pd_no, String pm_seller, String pm_s_bank, long pm_s_account, String pm_buyer,
+			String pm_b_bank, long pm_b_account, long pm_s_amount, long pm_b_amount, Date pm_regdate, String pm_addr,
+			String pm_bchek, String pm_schek) {
+		this.pm_no = pm_no;
+		this.pd_no = pd_no;
+		this.pm_seller = pm_seller;
+		this.pm_s_bank = pm_s_bank;
+		this.pm_s_account = pm_s_account;
+		this.pm_buyer = pm_buyer;
+		this.pm_b_bank = pm_b_bank;
+		this.pm_b_account = pm_b_account;
+		this.pm_s_amount = pm_s_amount;
+		this.pm_b_amount = pm_b_amount;
+		this.pm_regdate = pm_regdate;
+		this.pm_addr = pm_addr;
+		this.pm_bchek = pm_bchek;
+		this.pm_schek = pm_schek;
 	}
-	
-	public int getPmNo() {
-		return pmNo;
+
+	public int getPm_no() {
+		return pm_no;
 	}
-	public void setPmNo(int pmNo) {
-		this.pmNo = pmNo;
+
+	public void setPm_no(int pm_no) {
+		this.pm_no = pm_no;
 	}
-	public int getPdNo() {
-		return pdNo;
+
+	public int getPd_no() {
+		return pd_no;
 	}
-	public void setPdNo(int pdNo) {
-		this.pdNo = pdNo;
+
+	public void setPd_no(int pd_no) {
+		this.pd_no = pd_no;
 	}
-	public String getSeller() {
-		return seller;
+
+	public String getPm_seller() {
+		return pm_seller;
 	}
-	public void setSeller(String seller) {
-		this.seller = seller;
+
+	public void setPm_seller(String pm_seller) {
+		this.pm_seller = pm_seller;
 	}
-	public String getsBank() {
-		return sBank;
+
+	public String getPm_s_bank() {
+		return pm_s_bank;
 	}
-	public void setsBank(String sBank) {
-		this.sBank = sBank;
+
+	public void setPm_s_bank(String pm_s_bank) {
+		this.pm_s_bank = pm_s_bank;
 	}
-	public int getsAccount() {
-		return sAccount;
+
+	public long getPm_s_account() {
+		return pm_s_account;
 	}
-	public void setsAccount(int sAccount) {
-		this.sAccount = sAccount;
+
+	public void setPm_s_account(long pm_s_account) {
+		this.pm_s_account = pm_s_account;
 	}
-	public String getBuyer() {
-		return buyer;
+
+	public String getPm_buyer() {
+		return pm_buyer;
 	}
-	public void setBuyer(String buyer) {
-		this.buyer = buyer;
+
+	public void setPm_buyer(String pm_buyer) {
+		this.pm_buyer = pm_buyer;
 	}
-	public String getbBank() {
-		return bBank;
+
+	public String getPm_b_bank() {
+		return pm_b_bank;
 	}
-	public void setbBank(String bBank) {
-		this.bBank = bBank;
+
+	public void setPm_b_bank(String pm_b_bank) {
+		this.pm_b_bank = pm_b_bank;
 	}
-	public int getbAccount() {
-		return bAccount;
+
+	public long getPm_b_account() {
+		return pm_b_account;
 	}
-	public void setbAccount(int bAccount) {
-		this.bAccount = bAccount;
+
+	public void setPm_b_account(long pm_b_account) {
+		this.pm_b_account = pm_b_account;
 	}
-	public int getsAmount() {
-		return sAmount;
+
+	public long getPm_s_amount() {
+		return pm_s_amount;
 	}
-	public void setsAmount(int sAmount) {
-		this.sAmount = sAmount;
+
+	public void setPm_s_amount(long pm_s_amount) {
+		this.pm_s_amount = pm_s_amount;
 	}
-	public int getbAmount() {
-		return bAmount;
+
+	public long getPm_b_amount() {
+		return pm_b_amount;
 	}
-	public void setbAmount(int bAmount) {
-		this.bAmount = bAmount;
+
+	public void setPm_b_amount(long pm_b_amount) {
+		this.pm_b_amount = pm_b_amount;
 	}
-	public Date getRegDate() {
-		return regDate;
+
+	public Date getPm_regdate() {
+		return pm_regdate;
 	}
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+
+	public void setPm_regdate(Date pm_regdate) {
+		this.pm_regdate = pm_regdate;
 	}
-	public String getbAddr() {
-		return bAddr;
+
+	public String getPm_addr() {
+		return pm_addr;
 	}
-	public void setbAddr(String bAddr) {
-		this.bAddr = bAddr;
+
+	public void setPm_addr(String pm_addr) {
+		this.pm_addr = pm_addr;
 	}
-	public String getBcheck() {
-		return bcheck;
+
+	public String getPm_bchek() {
+		return pm_bchek;
 	}
-	public void setBcheck(String bcheck) {
-		this.bcheck = bcheck;
+
+	public void setPm_bchek(String pm_bchek) {
+		this.pm_bchek = pm_bchek;
 	}
-	public String getScheck() {
-		return scheck;
+
+	public String getPm_schek() {
+		return pm_schek;
 	}
-	public void setScheck(String scheck) {
-		this.scheck = scheck;
+
+	public void setPm_schek(String pm_schek) {
+		this.pm_schek = pm_schek;
 	}
-	
-	
 }

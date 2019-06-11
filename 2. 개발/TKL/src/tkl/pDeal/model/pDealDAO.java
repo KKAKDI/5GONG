@@ -29,10 +29,12 @@ public class pDealDAO {
 		Connection con = null;
 		System.out.println("2");
 		PreparedStatement pstmtM, pstmtP, pstmtPM = null;
-
+		System.out.println("3");
 		ResultSet rs = null;
 		try {
+			System.out.println("4");
 			con = ds.getConnection();
+			System.out.println("4");
 			pstmtM = con.prepareStatement(pDealSQL.sqlM);
 			pstmtM.setString(1, m_email);
 			pstmtP = con.prepareStatement(pDealSQL.sqlP);
@@ -40,8 +42,12 @@ public class pDealDAO {
 			pstmtPM = con.prepareStatement(pDealSQL.sqlPM);
 			pstmtPM.setInt(1, pay_pm_no);
 			rs = pstmtM.executeQuery();
+			System.out.println("6");
 			rs.next();
+			System.out.println("7");
 			String m_nick = rs.getString("M_NICK");
+			System.out.println("7-1");
+			System.out.println("m_nick : "+m_nick);
 			String m_name = rs.getString("M_NAME");
 			String m_bank = rs.getString("M_BANK");
 			int m_phone = rs.getInt("M_PHONE");
@@ -50,8 +56,11 @@ public class pDealDAO {
 			int m_trust = rs.getInt("M_TRUST");
 			Date m_regdate = rs.getDate("M_REGDATE");
 			rs = pstmtP.executeQuery();
+			System.out.println("8");
 			rs.next();
+			System.out.println("9");
 			int pd_no = rs.getInt("PD_NO");
+			System.out.println("PD_NO : "+pd_no);
 			String pd_email = rs.getString("PD_EMAIL");
 			String pd_nick = rs.getString("PD_NICK");
 			String pd_status = rs.getString("PD_STATUS");
@@ -61,8 +70,11 @@ public class pDealDAO {
 			int pd_price = rs.getInt("PD_PRICE");
 			Date pd_regdate = rs.getDate("PD_REGDATE");
 			rs = pstmtPM.executeQuery();
+			System.out.println("10");
 			rs.next();
+			System.out.println("11");
 			int pay_pd_no = rs.getInt("PD_NO");
+			System.out.println("pay_pd_no : "+pay_pd_no);
 			String pm_seller = rs.getString("PM_SELLER");
 			String pm_s_bank = rs.getString("PM_S_BANK");
 			long pm_s_account = rs.getLong("PM_S_ACCOUNT");

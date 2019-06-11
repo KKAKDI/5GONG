@@ -49,21 +49,16 @@ public class pDealControl extends HttpServlet {
 			throws ServletException, IOException {
 		pDealService service = pDealService.getInstance();
 		HttpSession session = request.getSession();
-		//int pdNo = Integer.parseInt(request.getParameter("bNo"));
-		//String m_email = (String)session.getAttribute("m_email");
-		//int pay_pm_no = Integer.parseInt(request.getParameter("pay_pm_no"));
-		String m_email = "bit@naver.com";
-		int pdNo =3;
-		int pay_pm_no = 3;
-
-	
+		int pd_no = Integer.parseInt(request.getParameter("pd_no"));
+		System.out.println("pd_no : " + pd_no);
+		String m_email = (String)session.getAttribute("session_email");
+		System.out.println("email : "+m_email);
+		int pm_no = Integer.parseInt(request.getParameter("pm_no"));
+		System.out.println("pm_no : " + pm_no);
 		
-		
-
 		///그냥 리스트
-		pDealDTO dto = service.pDeal_listS(m_email,pdNo, pay_pm_no);
+		pDealDTO dto = service.pDeal_listS(m_email, pd_no, pm_no);
 		request.setAttribute("dto", dto);
-		
 
 		RequestDispatcher rd = request.getRequestDispatcher("board/board_list2.jsp");
 		rd.forward(request, response);
