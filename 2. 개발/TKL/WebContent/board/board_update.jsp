@@ -5,6 +5,9 @@
  <meta charset='utf-8'>
 <html>
   <head>
+     <link type="text/css" rel="stylesheet" href="/_css/_comm.min.css?v=190401">
+     <link type="text/css" rel="stylesheet" href="/_head_tail/css/_head_comm.css?v=190610">
+     <link type='text/css' rel='stylesheet' href='css/view.css?v=190326'>
 	<title>reboard_edit.jsp</title>
 	<script>
    function logout(){

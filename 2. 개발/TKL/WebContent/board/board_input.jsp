@@ -3,9 +3,13 @@
 <meta charset='utf-8'>
 <html>
   <head>
+     <link type="text/css" rel="stylesheet" href="/_css/_comm.min.css?v=190401">
+        <link type="text/css" rel="stylesheet" href="/_head_tail/css/_head_comm.css?v=190610">
+        	<link type='text/css' rel='stylesheet' href='css/view.css?v=190326'>
     <title>TKL</title>
     <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script language="javascript">
+	
 	
     $(document).ready(function(){
         function readURL(input) {
@@ -69,6 +73,7 @@
    %>
    </script>   
   </head>
+  <center>
   <body>
 	    <font><b>글 쓰 기</b></font>
 	    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -113,3 +118,4 @@
 	  </form>
   </body>
 </html>
+</center>

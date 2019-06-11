@@ -332,7 +332,5 @@ public class BoardDAO {
 			}
 		}
 		return null;
-		
 	}
-
 }

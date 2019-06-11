@@ -5,8 +5,8 @@
 
 <center>
  <link type="text/css" rel="stylesheet" href="/_css/_comm.min.css?v=190401">
-        <link type="text/css" rel="stylesheet" href="/_head_tail/css/_head_comm.css?v=190610">
-        	<link type='text/css' rel='stylesheet' href='css/view.css?v=190326'>
+ <link type="text/css" rel="stylesheet" href="/_head_tail/css/_head_comm.css?v=190610">
+ <link type='text/css' rel='stylesheet' href='css/view.css?v=190326'>
 
         	
 
@@ -47,6 +47,10 @@ function check() {
    <%
       }   
    %>
+   function check(){
+	   alert("거래가 완료 되었습니다.");
+	   location.href='index.jsp';
+   }
    </script>   
    <style>
 form{
@@ -170,6 +174,9 @@ margin-top: 1em;
                     </tr>
                                 </table>
         </form>
+        <center></br>
+        <input type="button" value="거래 확인" onclick='check()'>
+        </center>
          
 
 

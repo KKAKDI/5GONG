@@ -5,8 +5,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <html>
   <head>
+   <link type="text/css" rel="stylesheet" href="/_css/_comm.min.css?v=190401">
+        <link type="text/css" rel="stylesheet" href="/_head_tail/css/_head_comm.css?v=190610">
+        	<link type='text/css' rel='stylesheet' href='css/view.css?v=190326'>
     <title>reboard_content.jsp</title>
     <script>
+    
    function logout(){
       location.href="sign_in.jsp";
    }
