@@ -6,7 +6,7 @@
 <title>공지사항 목록</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/news_list.css">
+<link rel="stylesheet" href="css/product_list_buy.css">
 
 <script>
    function logout(){
