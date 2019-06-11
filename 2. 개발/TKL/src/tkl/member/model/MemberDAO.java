@@ -64,7 +64,7 @@ public class MemberDAO {
 			pstmt.setString(3,dto.getPwd());
 			pstmt.setString(4,dto.getName());
 			pstmt.setString(5, dto.getBank());
-			pstmt.setInt(6, dto.getActNum());
+			pstmt.setLong(6, dto.getActNum());
 			pstmt.setInt(7, dto.getPhone());
 			pstmt.executeQuery();
 		} catch (SQLException se) {

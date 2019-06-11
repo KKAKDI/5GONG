@@ -231,7 +231,7 @@
                </li>
                <li>
                   <a href="product.do?m=content&pd_no=8">
-                     <img src="img/cupbob.jpg" height = '135' width='200' alt="demo">
+                     <img src="img/cupbab.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>주말 삽니다</dt>
                         <dd class="comment">댓글</dd>

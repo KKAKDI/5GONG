@@ -18,8 +18,9 @@ $(document).ready(function(){
 	function checklist(){
 		console.log("tic-tok");
 		if(emailCheck==true&&phoneCheck==true&&pwdCheck==true&&nickCheck==true&&actCheck==true&&terms1Check==true&&terms2Check==true){
+				$("#submit").css("background","rgba(0, 0, 0, 0.2)");	
 				$("#submit").attr("disabled",false);
-		}else{
+		}else{				
 				$("#submit").attr("disabled",true);
 		}
 	}
@@ -91,20 +92,21 @@ $(document).ready(function(){
 				var actlist = obj.actinfo;
 				for(var i=0;i<actlist.length;i++){
 					if(actlist[i].phone==getPhone){
-						$("#namefix").show();
-						$("#namefix").css("color", "green");
-						$("#namefix").text("본인 인증 완료.");
-						$("#name").css("border","1px solid #49ff86");
+						$("#namefixck").show();
+						$("#namefixck").css("color", "green");
+						$("#namefixck").text("본인 인증 완료.");						
 						$("#phone").css("border","1px solid #49ff86");
 						$("#name").val(actlist[i].name);
+						$("#name").css("background","rgba(0, 0, 0, 0.1)");
 						$("#actname").val(actlist[i].name);
+						$("#actname").css("background","rgba(0, 0, 0, 0.1)");						
 						$("#actname").attr("disabled",true);
 						phoneCheck = true;
 						return;
 					}else{
-						$("#namefix").show();
-						$("#namefix").css("color", "red");
-						$("#namefix").text("본인 인증 실패.");
+						$("#namefixck").show();
+						$("#namefixck").css("color", "red");
+						$("#namefixck").text("본인 인증 실패.");
 					}
 				}
 			}
@@ -238,16 +240,20 @@ $(document).ready(function(){
 	});
 	$("#service").click(function(){
 		if(terms1Check==false){
-			terms1Check = true;
+			$("#service").css("background","rgba(0, 0, 0, 0.3)");
+			terms1Check = true;			
 		}else if(terms1Check==true){
+			$("#service").css("background","#eaeaea");
 			terms1Check = false;
 		}
 	});
 	$("#privacy").click(function(){
 		if(terms2Check==false){
+			$("#privacy").css("background","rgba(0, 0, 0, 0.3)");
 			terms2Check = true;
 		//	alert(emailCheck+'/'+phoneCheck+'/'+pwdCheck+'/'+nickCheck+'/'+actCheck+'/'+terms1Check+'/'+terms2Check);
 		}else if(terms2Check==true){
+			$("#privacy").css("background","#eaeaea");
 			terms2Check = false;
 		}
 	});

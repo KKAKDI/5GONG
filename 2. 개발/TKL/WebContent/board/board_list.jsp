@@ -69,15 +69,15 @@ function check() {
 	 <c:if test="${not doneLoop}">
 
       <tr>
-         <td>${list.bNo}</td>
-         <td>${list.mNick}</td>
-         <td>${list.mEmail}</td>
-         <td>
+         <td align='center'>${list.bNo}</td>
+         <td align='center'>${list.mNick}</td>
+         <td align='center'>${list.mEmail}</td>
+         <td align='center'>
             <a href='board.do?m=board_content&bNo=${list.bNo}'>${list.bSubject}</a>
             <span style="color: red;">[${list.CNT}]</span>
          </td>
-         <td>${list.bWriteDate}</td>
-         <td>${list.bView}</td>
+         <td align='center'>${list.bWriteDate}</td>
+         <td align='center'>${list.bView}</td>
       </tr>
                <c:if test="${totalRecodeSize <= beginNum}">
               <c:set var="doneLoop" value="true"/>

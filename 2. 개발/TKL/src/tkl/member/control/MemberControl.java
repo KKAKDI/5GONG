@@ -37,7 +37,7 @@ public class MemberControl extends HttpServlet {
 	
 	protected void insert(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int actNum = 0;
+		long actNum = 0L;
 		int phone = 0;
 		String email = request.getParameter("email");
 		String phoneStr = request.getParameter("phone");
@@ -52,7 +52,7 @@ public class MemberControl extends HttpServlet {
 		String actNumStr = request.getParameter("actnum");
 		actNumStr.trim();
 		if(actNumStr!=null) {
-			actNum = Integer.parseInt(actNumStr);
+			actNum = Long.parseLong(actNumStr);
 		}
 		//String actName = request.getParameter("actname"); 예금주
 		MemberDTO dto = new MemberDTO();

@@ -103,7 +103,7 @@ public class BoardControl extends HttpServlet {
 		if (request.getParameter("curPage") != null) {
 			curPage = Integer.parseInt(request.getParameter("curPage"));
 		}
-		int recodeSizePerPage = 2;//내가 알기론 이거 한페이지 나올수 있는 리스트 
+		int recodeSizePerPage = 5;//내가 알기론 이거 한페이지 나올수 있는 리스트 
 		int beginNum = curPage * recodeSizePerPage;
 		int pageSize = (int) Math.ceil((double) totalRecodeSize / recodeSizePerPage);
 		//이거는 아래 i 이다

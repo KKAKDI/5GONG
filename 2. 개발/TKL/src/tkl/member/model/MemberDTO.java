@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String pwd;
 	private String name;
 	private String bank;
-	private int actNum;
+	private long actNum;
 	private int phone;
 	private int amount;
 	private int trust;
@@ -69,11 +69,11 @@ public class MemberDTO {
 	public void setBank(String bank) {
 		this.bank = bank;
 	}
-	public int getActNum() {
+	public long getActNum() {
 		return actNum;
 	}
-	public void setActNum(int actNum) {
-		this.actNum = actNum;
+	public void setActNum(long actNum2) {
+		this.actNum = actNum2;
 	}
 	public int getPhone() {
 		return phone;
