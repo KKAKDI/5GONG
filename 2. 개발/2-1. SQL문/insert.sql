@@ -22,6 +22,7 @@ insert into MONEY_MEMBER values('조성식', '01012345678', '카카오뱅크', '12345678
 insert into MONEY_MEMBER values('변정우', '01055556666', '우리은행', '777788889999', '변정우');
 insert into MONEY_MEMBER values('박동진', '01098765432', '기업은행', '987654321234', '박동진');
 
+
 --상품 (진행상태 - 0:판매중, 1:거래중, 2:거래완료 / 상품유형 - 0:팝니다, 1:삽니다)
 --인성팝니다
 insert into PRODUCT values(1, 'bit@naver.com', '비트', 100, '판매중', null, '기타', '팝니다', 500000, '인성 팝니다', '흐르는 인성 나눠드리려고 팝니다.', 0, 0, 'iPad.jsp', 'iPad_copy01.jsp',SYSDATE); 

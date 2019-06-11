@@ -10,7 +10,7 @@
 <title>새소식 목록</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
 <link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/news_list.css">
+<link rel="stylesheet" href="css/product_list_buy.css">
 <script>
    function logout(){
       location.href="sign_in.jsp";
@@ -31,13 +31,15 @@
 
 </head>
 <body>
+<center>
 	<h1>
 		새소식
 	</h1>
-	<br/>
+
 	&nbsp;&nbsp;&nbsp;<a href='./'>홈</a>
 	&nbsp;&nbsp;<a href='news.do?&m=news_notice'>공지사항</a>
    &nbsp;&nbsp;&nbsp;<a href='news.do?&m=news_event'>이벤트</a>	
+	<center>
 	<br/>
 	<div >
 <%
@@ -46,7 +48,9 @@
 		if(sessionGrant.equals("0") ){
 			System.out.println(sessionGrant);
 %>   
-	 <a href='news/news_reg.jsp'>새소식 등록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 &nbsp;<a href='news/news_reg.jsp'>새소식 등록</a>
+	 		  <hr width='600' size='2' noshade>
+
 <%
 	}else{
 		

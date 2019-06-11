@@ -27,20 +27,21 @@
 
 </head>
 <body>
+<center>
 	<h1>
 		이벤트 
 	</h1>
-	<br/>
 	&nbsp;&nbsp;&nbsp;<a href='news.do?&m=list'>새소식 전체</a>
 	&nbsp;&nbsp;<a href='news.do?&m=news_notice'>공지사항</a>
-	<br/>
+	<br/><br/>
 	<%
 	String sessionGrant = (String)session.getAttribute("session_grant"); 
 	sessionGrant = sessionGrant.trim();
 		if(sessionGrant.equals("0") ){
 			System.out.println(sessionGrant);
 %>   
-	 <a href='news/news_reg.jsp'>새소식 등록</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	 	 &nbsp;<a href='news/news_reg.jsp'>새소식 등록</a>
+	 		  <hr width='600' size='2' noshade>
 <%
 	}else{
 		
@@ -50,7 +51,7 @@
 	}
 %>
 	<div >
-	
+	<center>
 	<br><br>
 	</div>
 	<table>
