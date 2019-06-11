@@ -137,7 +137,7 @@ margin-top: 1em;
                 </tr>
                                     <tr>
                         <th>배송주소</th>
-                        <td>{dto.pm_bchek}</td>
+                        <td>${dto.pm_addr}</td>
                     </tr>
                                 </table>
         </form>
@@ -170,7 +170,7 @@ margin-top: 1em;
                 </tr>
                                     <tr>
                         <th>배송주소</th>
-                        <td>{dto.pm_bchek}</td>
+                        <td>${dto.pm_addr}</td>
                     </tr>
                                 </table>
         </form>
