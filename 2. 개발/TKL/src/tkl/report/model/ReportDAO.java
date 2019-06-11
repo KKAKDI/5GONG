@@ -38,6 +38,7 @@ public class ReportDAO {
 			System.out.println("sessionGrant11 : " + sessionGrant);
 			if(sessionGrant.equals("0 ")) {
 				if(searchKey == null) {
+					System.out.println("老肺甸绢柯い??");
 					pstmtPage = con.prepareStatement(ReportSQL.sqlSAll);
 					pstmtPage.setString(1, "贸府吝");
 					pstmtPage.setString(2, "贸府肯丰");
@@ -49,6 +50,12 @@ public class ReportDAO {
 				} else if(searchKey.equals("listC")) {
 					pstmtPage = con.prepareStatement(ReportSQL.SQL_SRAll);
 					pstmtPage.setString(1, "贸府肯丰");
+				} else {
+					pstmtPage = con.prepareStatement(ReportSQL.sqlSAll);
+					pstmtPage.setString(1, "贸府吝");
+					pstmtPage.setString(2, "贸府肯丰");
+					pstmtPage.setInt(3, begin);
+					pstmtPage.setInt(4, end);
 				}
 			}
 			if(sessionGrant.equals("1 ")) {
@@ -226,19 +233,26 @@ public class ReportDAO {
 		try {
 			con = ds.getConnection();
 			if(i+k == 1) {
+				System.out.println("葛滴");
 				pstmt = con.prepareStatement(ReportSQL.sql_TOTALAll);
-				pstmt.setInt(1, i);
-				pstmt.setInt(2, k);
-			} else {
+				pstmt.setString(1, "贸府吝");
+				pstmt.setString(2, "贸府肯丰");
+			}else if(i == 0 && k == 0) {
+				System.out.println("贸府吝");
 				pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
 				pstmt.setString(1, sessionNick);
-				pstmt.setInt(2, i);
-				pstmt.setInt(3, k);
+				pstmt.setString(2, "贸府吝");
+			}else if(i == 1 && k == 1) {
+				System.out.println("贸府肯丰");
+				pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
+				pstmt.setString(1, sessionNick);
+				pstmt.setString(2, "贸府肯丰");
 			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
 				cnt = rs.getInt(1);
 			}
+			System.out.println("cnt : " + cnt);
 			return cnt;
 		} catch (SQLException se) {		
 			return cnt;

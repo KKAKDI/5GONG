@@ -1,8 +1,12 @@
 <%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.report.model.ReportDTO"%>
 
+<center>
 <html>
   <head>
     <title>TKL 신고하기</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="../css/product_buy_list.css">
 	<meta charset='utf-8'>
 	<script language="javascript">
 	  function check(){
@@ -33,7 +37,7 @@
 	<form name="input" method="post" action="../rBoard.do?m=in" enctype="multipart/form-data">
 	   <table>
 	      <tr>
-		     <td>닉네임</td>
+		     <td align='center'>닉네임</td>
 			 <td><input type="hidden" name="rNick" size="60" value="<%=sessionNick%>"><%=sessionNick%></td>
 			 <td>신고분류 : 
 					<select name="rClass">
@@ -45,19 +49,19 @@
 				</td>
 		  </tr>
           <tr>
-		     <td>제목</td>
+		     <td align='center'>제목</td>
 			 <td><input type="text" name="rSubject" size="60"></td>
 		  </tr>
 		  <tr>
-		     <td>신고내용</td>
+		     <td align='center'>신고내용</td>
 			 <td><textarea name="rContent" rows="5" cols="53"></textarea></td>
 		  </tr>
 		  <tr>
-		     <td>파일첨부</td>
+		     <td align='center'>파일첨부</td>
 			 <td><input type="file" name="rFile" size="60"></td>
 		  </tr>
 		  <tr>
-		     <td>
+		     <td colspan='3' align='center'>
 			    <input type="button" value="작성하기" onclick="check()">
 				<input type="reset" value="다시입력">
 			 </td>
@@ -67,3 +71,4 @@
 	</form>
   </body>
 </html>
+</center>

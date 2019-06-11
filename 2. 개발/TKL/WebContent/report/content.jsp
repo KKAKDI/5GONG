@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=utf-8" import="java.util.*,tkl.report.model.ReportDTO,tkl.member.model.MemberDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-
+<center>
 <head>
 <meta charset='utf-8'>
 <title>${dtoContent.rNick}님의 ${dtoContent.rNO}번 신고내용</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
-<link rel="stylesheet" href="../css/reset.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
+	<link rel="stylesheet" href="css/reset.css">
+	<link rel="stylesheet" href="../css/product_buy_list.css">
 
 </head>
 <iframe id="ifrm_filedown"  
@@ -23,24 +24,24 @@ visibility:hidden;">
 <table>
 
 <tr>
-<td><b>신고분류</b></td>
+<td align='center'><b>신고분류</b></td>
 <td>${dtoContent.rClass}</td>
-<td><b>등록일</b></td>
+<td align='center'><b>등록일</b></td>
 <td>${dtoContent.rWriteDate}</td>
 </tr>
 <tr>
-<td><b>제목</b></td>
+<td align='center'><b>제목</b></td>
 <td>${dtoContent.rSubject}</td>
-<td><b>처리현황</b></td>
+<td align='center'><b>처리현황</b></td>
 <td>${dtoContent.rState}</td>
 </tr>
 <tr>
-<td><b>글내용</b></td>
+<td align='center'><b>글내용</b></td>
 <td>${dtoContent.rContent}</td>
 </tr>
 
 <tr>
-<td><b>첨부파일</b></td>
+<td align='center'><b>첨부파일</b></td>
 <td><a href="rBoard.do?m=fileDownLoad&rFile=${dtoContent.rFile}">${dtoContent.rFile}</a></td>
 
 </tr>
@@ -74,8 +75,9 @@ visibility:hidden;">
 <tr id="ta">
 
 <tr>
-<td><b>답변</b></td>
+<td align='center'><b>답변</b></td>
 <td>${dtoContent.rReply}</td>
 </tr>
  </table>
+ </center>
  

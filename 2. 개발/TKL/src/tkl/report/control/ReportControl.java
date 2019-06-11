@@ -75,7 +75,7 @@ public class ReportControl extends HttpServlet {
 		
 		ArrayList<ReportDTO> list = null;
 		int total = 0;
-		
+			
 		if(searchKey == null) {
 			list = service.selectS(sessionNick, sessionGrant, searchKey, begin, end);
 			total = service.getTotalS(sessionNick, 0, 1);

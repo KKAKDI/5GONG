@@ -1,12 +1,17 @@
 <%@ page contentType="text/html;charset=utf-8" import="java.util.*,tkl.report.model.ReportDTO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<center>
+
 <head>
 <meta charset='utf-8'>
 <title>TKL 신고게시판 List</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,400,700&display=swap&subset=korean">
-<link rel="stylesheet" href="../css/reset.css">
+<link rel="stylesheet" href="css/reset.css">
+<link rel="stylesheet" href="css/product_list_buy.css">
 </head>
+<hr>
+<h2>신고게시판</h2>
 &nbsp;&nbsp;&nbsp;
 <a href='rBoard.do?m=in_form'>신고하기</a>
 &nbsp;&nbsp;&nbsp;
@@ -51,11 +56,11 @@
 <c:forEach items="${list}" var="dto">		
 <tr>
 <!-- <td>${dto.rNO}</td> -->
-<td>${dto.rClass}</td>
-<td><a href='rBoard.do?m=content&rNO=${dto.rNO}'>${dto.rSubject}</a></td>
-<td>${dto.rNick}</td>
-<td>${dto.rWriteDate}</td>
-<td>${dto.rState}</td>
+<td align='center'>${dto.rClass}</td>
+<td align='center'><a href='rBoard.do?m=content&rNO=${dto.rNO}'>${dto.rSubject}</a></td>
+<td align='center'>${dto.rNick}</td>
+<td align='center'>${dto.rWriteDate}</td>
+<td align='center'>${dto.rState}</td>
 
 </tr>
 </c:forEach>
@@ -63,15 +68,15 @@
 </table>
 
 <br>
- <div class="page_num">
+ <div class="page_num">    
 	<ul>					
 		<%
 			if (pg > block) { //처음, 이전 링크
 		%> 
-		<a href="rBoard.do?pg=1">◀◀</a> <a href="rBoard.do?pg=<%=fromPage - 1%>">◀</a>
+		<a href="rBoard.do?pg=1">처음</a> <a href="rBoard.do?pg=<%=fromPage - 1%>">이전</a>
 		<%
 			} else {
-		%><span style="color: gray">◀◀</span><span style="color: blue">◀</span>
+		%><span style="color: blue">처음</span><span style="color: blue">ㅣ이전</span>
 		<%
 			}
 		%> 
@@ -79,11 +84,11 @@
 		 	for (int i = fromPage; i <= toPage; i++) {
 		 		if (i == pg) {
 		 %>
-		  <span><%=i%></span>
+		  <span>ㅣ<%=i%></span>
 		  <%
 		 		} else {
 		 %> 
-		 <a href="rBoard.do?pg=<%=i%>"><%=i%></a>
+		 <a href="rBoard.do?pg=<%=i%>">ㅣ<%=i%></a>
 		 <%
 		 		}
 		 	}
@@ -91,12 +96,13 @@
 		 <%
 		 	if (toPage < allPage) { //다음, 이후 링크
 		 %>
-		  <a href="rBoard.do?pg=<%=toPage + 1%>">▶</a><a href="rBoard.do?pg=<%=allPage%>">▶▶</a>
+		  <a href="rBoard.do?pg=<%=toPage + 1%>">다음</a><a href="rBoard.do?pg=<%=allPage%>">끝</a>
 		<%
 		 	} else {
-		 %> <span style="color: blue">▶</span><span style="color: gray">▶▶</span>
+		 %> <span style="color: blue">ㅣ다음</span><span style="color: blue">ㅣ끝</span>
 		<%
 		 	}
 		 %>					
 	</ul>
 </div>
+</center>
