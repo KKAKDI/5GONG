@@ -142,8 +142,8 @@
          <div class="pro_buy">
             <ul>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=1">
+                     <img src="img/iPad.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>인성 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -154,8 +154,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=2">
+                     <img src="img/handifan.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>정신머리 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -166,8 +166,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=3">
+                     <img src="img/gram.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>영혼 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -178,8 +178,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=4">
+                     <img src="img/gtx1080.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>월요일 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -190,8 +190,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=5">
+                     <img src="img/cap.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>근윽 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -206,8 +206,8 @@
          <div class="pro_sell">
             <ul>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=6">
+                     <img src="img/monitor.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>출근자 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -218,8 +218,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=7">
+                     <img src="img/nike.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>여포 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -230,8 +230,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=8">
+                     <img src="img/cupbob.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>주말 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -242,8 +242,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=9">
+                     <img src="img/series9.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>머리카락 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -254,8 +254,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=10">
+                     <img src="img/book.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>저는 서울 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -270,8 +270,8 @@
          <div class="pro_now">
             <ul>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=11">
+                     <img src="img/eleccigr.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>주말 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -282,8 +282,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=12">
+                     <img src="img/gucci.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>정신머리 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -294,8 +294,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=13">
+                     <img src="img/luisvit.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>룰루랄라 삽니다</dt>
                         <dd class="comment">댓글</dd>
@@ -306,8 +306,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=14">
+                     <img src="img/airpod.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>노래주머니 팝니다</dt>
                         <dd class="comment">댓글</dd>
@@ -318,8 +318,8 @@
                   </a>
                </li>
                <li>
-                  <a href="">
-                     <img src="img/demo_img.png" alt="demo">
+                  <a href="product.do?m=content&pd_no=15">
+                     <img src="img/BTspeaker.jpg" height = '135' width='200' alt="demo">
                      <dl>
                         <dt>전 잘 삽니다</dt>
                         <dd class="comment">댓글</dd>
