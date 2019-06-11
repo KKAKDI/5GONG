@@ -38,22 +38,22 @@ public class ReportDAO {
 			System.out.println("sessionGrant11 : " + sessionGrant);
 			if(sessionGrant.equals("0 ")) {
 				if(searchKey == null) {
-					System.out.println("ÀÏ·Îµé¾î¿Â¤¤??");
+					System.out.println("ëª¨ë‘");
 					pstmtPage = con.prepareStatement(ReportSQL.sqlSAll);
-					pstmtPage.setString(1, "Ã³¸®Áß");
-					pstmtPage.setString(2, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(1, "ì²˜ë¦¬ì¤‘");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì™„ë£Œ");
 					pstmtPage.setInt(3, begin);
 					pstmtPage.setInt(4, end);
 				} else if(searchKey.equals("listR")) {
 					pstmtPage = con.prepareStatement(ReportSQL.SQL_SRAll);
-					pstmtPage.setString(1, "Ã³¸®Áß");
+					pstmtPage.setString(1, "ì²˜ë¦¬ì¤‘");
 				} else if(searchKey.equals("listC")) {
 					pstmtPage = con.prepareStatement(ReportSQL.SQL_SRAll);
-					pstmtPage.setString(1, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(1, "ì²˜ë¦¬ì™„ë£Œ");
 				} else {
 					pstmtPage = con.prepareStatement(ReportSQL.sqlSAll);
-					pstmtPage.setString(1, "Ã³¸®Áß");
-					pstmtPage.setString(2, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(1, "ì²˜ë¦¬ì¤‘");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì™„ë£Œ");
 					pstmtPage.setInt(3, begin);
 					pstmtPage.setInt(4, end);
 				}
@@ -62,23 +62,23 @@ public class ReportDAO {
 				if(searchKey == null) {
 					pstmtPage = con.prepareStatement(ReportSQL.sqlS);
 					pstmtPage.setString(1, sessionNick);
-					pstmtPage.setString(2, "Ã³¸®Áß");
-					pstmtPage.setString(3, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì¤‘");
+					pstmtPage.setString(3, "ì²˜ë¦¬ì™„ë£Œ");
 					pstmtPage.setInt(4, begin);
 					pstmtPage.setInt(5, end);
 				} else if(searchKey.equals("listR")) {
 					pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
 					pstmtPage.setString(1, sessionNick);
-					pstmtPage.setString(2, "Ã³¸®Áß");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì¤‘");
 				} else if(searchKey.equals("listC")) {
 					pstmtPage = con.prepareStatement(ReportSQL.SQL_SR);
 					pstmtPage.setString(1, sessionNick);
-					pstmtPage.setString(2, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì™„ë£Œ");
 				} else {
 					pstmtPage = con.prepareStatement(ReportSQL.sqlS);
 					pstmtPage.setString(1, sessionNick);
-					pstmtPage.setString(2, "Ã³¸®Áß");
-					pstmtPage.setString(3, "Ã³¸®¿Ï·á");
+					pstmtPage.setString(2, "ì²˜ë¦¬ì¤‘");
+					pstmtPage.setString(3, "ì²˜ë¦¬ì™„ë£Œ");
 					pstmtPage.setInt(4, begin);
 					pstmtPage.setInt(5, end);	
 				}
@@ -104,7 +104,7 @@ public class ReportDAO {
 			}
 			return list;
 		}catch(SQLException se) {
-			System.out.println("sql¿À·ù1 : " + se);
+			System.out.println("sqlì—ëŸ¬1 : " + se);
 			return null;
 		}finally {
 			try {
@@ -233,20 +233,20 @@ public class ReportDAO {
 		try {
 			con = ds.getConnection();
 			if(i+k == 1) {
-				System.out.println("¸ğµÎ");
+				System.out.println("ëª¨ë‘");
 				pstmt = con.prepareStatement(ReportSQL.sql_TOTALAll);
-				pstmt.setString(1, "Ã³¸®Áß");
-				pstmt.setString(2, "Ã³¸®¿Ï·á");
+				pstmt.setString(1, "ì²˜ë¦¬ì¤‘");
+				pstmt.setString(2, "ì²˜ë¦¬ì™„ë£Œ");
 			}else if(i == 0 && k == 0) {
-				System.out.println("Ã³¸®Áß");
+				System.out.println("ì²˜ë¦¬ì¤‘");
 				pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
 				pstmt.setString(1, sessionNick);
-				pstmt.setString(2, "Ã³¸®Áß");
+				pstmt.setString(2, "ì²˜ë¦¬ì¤‘");
 			}else if(i == 1 && k == 1) {
-				System.out.println("Ã³¸®¿Ï·á");
+				System.out.println("ì²˜ë¦¬ì™„ë£Œ");
 				pstmt = con.prepareStatement(ReportSQL.sql_TOTAL);
 				pstmt.setString(1, sessionNick);
-				pstmt.setString(2, "Ã³¸®¿Ï·á");
+				pstmt.setString(2, "ì²˜ë¦¬ì™„ë£Œ");
 			}
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
